@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,8 @@ public class BoardSquare{
     PlaceValue placeValue = PlaceValue.NOTHING;
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
-        rectangle.relocate((xAxisIndex * 100) - 10, (yAxisIndex * 100) - 10);
+        rectangle.relocate((xAxisIndex * 110), (yAxisIndex * 110));
+        rectangle.setFill(Color.WHITE);
 
     }
 
@@ -24,8 +26,8 @@ public class BoardSquare{
         NOTHING, ZERO, CROSS
     }
 
-
 }
+
 
 class BoardSquareTest {
     @Test
