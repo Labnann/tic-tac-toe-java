@@ -8,11 +8,14 @@ import org.junit.jupiter.api.Test;
 
 
 public class BoardSquare {
-    Rectangle rectangle = new Rectangle(100, 100);
-    Pane squarePane = new Pane();
+    private Rectangle rectangle = new Rectangle(100, 100);
+    private Pane squarePane = new Pane();
     Text text = new Text(" ");
+    private PlaceValue placeValue = PlaceValue.NOTHING;
 
-    PlaceValue placeValue = PlaceValue.NOTHING;
+    public PlaceValue getPlaceValue() {
+        return placeValue;
+    }
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
@@ -51,6 +54,7 @@ public class BoardSquare {
     enum PlaceValue {
         NOTHING, ZERO, CROSS
     }
+
 
 }
 

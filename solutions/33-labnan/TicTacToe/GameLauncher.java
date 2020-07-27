@@ -8,7 +8,6 @@ public class GameLauncher {
     BoardSquare[][] boardSquares;
     private Board board;
     private Scene rootScene;
-  //  private Group rootGroup;
 
 
     public void setGameRootStage(Stage gameRootStage) {
@@ -18,8 +17,17 @@ public class GameLauncher {
     void startGame() {
         createUI();
         boardSquares = board.getBoardSquares();
-        //  startWatchingBoardSquares();
+        board.setBoardChangeListener(new BoardSquareListener() {
+            @Override
+            public void performOnChange() {
+                calculateWin();
+            }
+        });
         gameRootStage.show();
+    }
+
+    private boolean calculateWin() {
+        return false;
     }
 
 
