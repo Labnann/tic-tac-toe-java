@@ -22,7 +22,7 @@ public class BoardSquare {
 
 
     }
-    
+
 
     private void manageInnerText() {
         text.toFront();
@@ -36,7 +36,7 @@ public class BoardSquare {
     }
 
     public void setText(String text) {
-        //this.text.setText(text);
+        this.text.setText(text);
     }
 
     public Pane getSquarePane() {

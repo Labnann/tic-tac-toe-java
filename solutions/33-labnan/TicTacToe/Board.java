@@ -1,3 +1,5 @@
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -7,6 +9,7 @@ public class Board {
 
     Board() {
         createBoard();
+        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
     }
 
@@ -24,16 +27,16 @@ public class Board {
             for (int j = 0; j < 3; j++) {
                 boardSquares[i][j] = createBoardSquare(i, j);
             }
+        boardPane.relocate(70, 70);
 
     }
 
     private BoardSquare createBoardSquare(int i, int j) {
         BoardSquare boardSquare = new BoardSquare(i, j);
-        if ((i + j) % 2 == 0) {
-            boardSquare.getRectangle().setFill(Color.BLUE);
-        } else boardSquare.getRectangle().setFill(Color.VIOLET);
-        boardPane.getChildren().add(boardSquare.getRectangle());
+        boardPane.getChildren().add(boardSquare.getSquarePane());
+        boardSquare.getSquarePane().setOnMouseClicked(event -> boardSquare.setText("0"));
         return boardSquare;
     }
-}
 
+
+}

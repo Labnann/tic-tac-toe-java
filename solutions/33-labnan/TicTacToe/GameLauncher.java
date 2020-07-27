@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 public class GameLauncher {
     private Stage gameRootStage;
     Pane rootPane = new Pane();
+    BoardSquare[][] boardSquares;
     private Board board;
     private Scene rootScene;
   //  private Group rootGroup;
@@ -16,8 +17,11 @@ public class GameLauncher {
 
     void startGame() {
         createUI();
+        boardSquares = board.getBoardSquares();
+        //  startWatchingBoardSquares();
         gameRootStage.show();
     }
+
 
     private void createUI() {
         rootScene = new Scene(rootPane, 500, 500);
@@ -28,4 +32,6 @@ public class GameLauncher {
 
 
 }
+
+
 
