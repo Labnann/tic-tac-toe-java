@@ -1,6 +1,8 @@
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,16 +10,23 @@ import org.junit.jupiter.api.Test;
 public class BoardSquare {
     Rectangle rectangle = new Rectangle(100, 100);
     Pane squarePane = new Pane();
-    //Text text = new Text("A");
+    Text text = new Text("A");
 
     PlaceValue placeValue = PlaceValue.NOTHING;
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         rectangle.setFill(Color.WHITE);
-        squarePane.getChildren().addAll(rectangle);
-        //   text.toFront();
+        manageInnerText();
+        squarePane.getChildren().addAll(rectangle, text);
 
+
+    }
+
+    private void manageInnerText() {
+        text.toFront();
+        text.relocate(30, 30);
+        text.setFont(new Font(30));
     }
 
     public void setPlaceValue(PlaceValue placeValue) {
