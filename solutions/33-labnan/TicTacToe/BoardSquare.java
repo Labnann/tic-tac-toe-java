@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class BoardSquare {
     Rectangle rectangle = new Rectangle(100, 100);
     Pane squarePane = new Pane();
-    Text text = new Text("A");
+    Text text = new Text(" ");
 
     PlaceValue placeValue = PlaceValue.NOTHING;
 
@@ -19,8 +19,6 @@ public class BoardSquare {
         rectangle.setFill(Color.WHITE);
         manageInnerText();
         squarePane.getChildren().addAll(rectangle, text);
-
-
     }
 
 
@@ -31,8 +29,14 @@ public class BoardSquare {
         text.setFont(new Font(FONT_SIZE));
     }
 
-    public void setPlaceValue(PlaceValue placeValue) {
-        this.placeValue = placeValue;
+    public void markAs(PlaceValue placeValue) {
+        if (this.placeValue == PlaceValue.NOTHING) {
+            this.placeValue = placeValue;
+            if (placeValue == PlaceValue.CROSS)
+                setText("X");
+            else setText("O");
+        }
+
     }
 
     public void setText(String text) {
