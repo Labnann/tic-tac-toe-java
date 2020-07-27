@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -10,6 +12,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setScene(new Scene(new TextArea("Hello World")));
+        primaryStage.show();
         System.out.println("Hello World!");
     }
+}
+
+class GameLauncher{
+
 }
