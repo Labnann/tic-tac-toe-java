@@ -7,7 +7,8 @@ public class BoardSquare{
     PlaceValue placeValue = PlaceValue.NOTHING;
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
-        rectangle.relocate(xAxisIndex*100,yAxisIndex*100);
+        rectangle.relocate((xAxisIndex * 100) - 10, (yAxisIndex * 100) - 10);
+
     }
 
     public void setPlaceValue(PlaceValue placeValue) {

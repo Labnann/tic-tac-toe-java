@@ -1,4 +1,5 @@
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class Board {
     private Pane boardPane = new Pane();
@@ -28,6 +29,9 @@ public class Board {
 
     private BoardSquare createBoardSquare(int i, int j) {
         BoardSquare boardSquare = new BoardSquare(i, j);
+        if ((i + j) % 2 == 0) {
+            boardSquare.getRectangle().setFill(Color.BLUE);
+        } else boardSquare.getRectangle().setFill(Color.VIOLET);
         boardPane.getChildren().add(boardSquare.getRectangle());
         return boardSquare;
     }

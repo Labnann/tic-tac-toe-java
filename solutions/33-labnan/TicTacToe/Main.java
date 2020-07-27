@@ -1,23 +1,17 @@
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setScene(new Scene(new TextArea("Hello World")));
-        primaryStage.show();
-        System.out.println("Hello World!");
+        GameLauncher gameLauncher = new GameLauncher();
+        gameLauncher.setGameRootStage(primaryStage);
+        gameLauncher.startGame();
     }
 }
 
-class GameLauncher{
-
-}

@@ -7,6 +7,7 @@ public class GameLauncher {
     Pane rootPane = new Pane();
     private Board board;
     private Scene rootScene;
+  //  private Group rootGroup;
 
 
     public void setGameRootStage(Stage gameRootStage) {
@@ -20,7 +21,8 @@ public class GameLauncher {
 
     private void createUI() {
         rootScene = new Scene(rootPane, 500, 500);
-        
+        board = new Board();
+        rootPane.getChildren().add(board.getBoardPane());
         gameRootStage.setScene(this.rootScene);
     }
 
