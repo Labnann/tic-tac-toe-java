@@ -1,3 +1,5 @@
+package maingame;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -18,8 +20,6 @@ public class GameLauncher {
         new WinChecker(board).startChecking();
         gameRootStage.show();
     }
-
-
 
 
     private void createUI() {

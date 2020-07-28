@@ -1,10 +1,13 @@
+package maingame;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 
-public class BoardSquareTest {
+public class GameTester {
     BoardSquare square = new BoardSquare(0, 0);
+
 
     @BeforeClass
     public static void setup() throws InterruptedException {
@@ -20,7 +23,7 @@ public class BoardSquareTest {
 
     @Test
     public void getSquarePlaceValueTest() {
-        Assertions.assertEquals(square.getPlaceValue(), null);
+        Assertions.assertNull(square.getPlaceValue());
         square.triggerSquareAs(BoardSquare.PlaceValue.CROSS);
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, square.getPlaceValue());
         square.triggerSquareAs(BoardSquare.PlaceValue.ZERO);

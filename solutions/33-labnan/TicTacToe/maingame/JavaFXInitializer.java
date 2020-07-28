@@ -1,8 +1,10 @@
+package maingame;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class JavaFXInitializer extends Application {
-///CREATED USING ANSWER OF RLI IN STACK OVERFLOW >.>
+    ///CREATED USING ANSWER OF RLI IN STACK OVERFLOW >.>
     private static final Object barrier = new Object();
 
     public static void initialize() throws InterruptedException {
