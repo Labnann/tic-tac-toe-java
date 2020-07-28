@@ -46,9 +46,11 @@ public class Board {
         BoardSquare boardSquare = new BoardSquare(i, j);
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> {
-            boardSquare.triggerSquareAs(currentTurn);
-            changeTurn();
-            doOnChange();
+            if (!boardSquare.isTriggered()) {
+                boardSquare.triggerSquareAs(currentTurn);
+                changeTurn();
+                doOnChange();
+            }
         });
         return boardSquare;
     }

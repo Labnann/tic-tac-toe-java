@@ -25,6 +25,9 @@ public class BoardSquare {
         squarePane.getChildren().addAll(rectangle, text);
     }
 
+    public boolean isTriggered() {
+        return isTriggered;
+    }
 
     private void manageInnerText() {
         text.toFront();
@@ -34,7 +37,7 @@ public class BoardSquare {
     }
 
     public void triggerSquareAs(PlaceValue placeValue) {
-        if (isTriggered) {
+        if (!isTriggered()) {
             this.placeValue = placeValue;
             if (placeValue == PlaceValue.CROSS)
                 setText("X");
