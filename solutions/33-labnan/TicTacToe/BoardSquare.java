@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 public class BoardSquare {
     private Rectangle rectangle = new Rectangle(100, 100);
     private Pane squarePane = new Pane();
+    boolean isTriggered = false;
     Text text = new Text(" ");
     private PlaceValue placeValue = PlaceValue.NOTHING;
 
@@ -33,13 +34,12 @@ public class BoardSquare {
     }
 
     public void triggerSquareAs(PlaceValue placeValue) {
-        if (this.placeValue == PlaceValue.NOTHING) {
+        if (isTriggered) {
             this.placeValue = placeValue;
             if (placeValue == PlaceValue.CROSS)
                 setText("X");
             else setText("O");
         }
-
     }
 
     public void setText(String text) {
