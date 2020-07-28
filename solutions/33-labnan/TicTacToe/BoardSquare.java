@@ -32,7 +32,7 @@ public class BoardSquare {
         text.setFont(new Font(FONT_SIZE));
     }
 
-    public void markAs(PlaceValue placeValue) {
+    public void triggerSquareAs(PlaceValue placeValue) {
         if (this.placeValue == PlaceValue.NOTHING) {
             this.placeValue = placeValue;
             if (placeValue == PlaceValue.CROSS)

@@ -3,6 +3,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+
 interface BoardSquareListener {
     void performOnChange();
 }
@@ -45,7 +46,7 @@ public class Board {
         BoardSquare boardSquare = new BoardSquare(i, j);
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> {
-            boardSquare.markAs(currentTurn);
+            boardSquare.triggerSquareAs(currentTurn);
             changeTurn();
             doOnChange();
         });
@@ -67,3 +68,4 @@ public class Board {
 
 
 }
+
