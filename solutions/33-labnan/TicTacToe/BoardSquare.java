@@ -12,7 +12,7 @@ public class BoardSquare {
     private Pane squarePane = new Pane();
     boolean isTriggered = false;
     Text text = new Text(" ");
-    private PlaceValue placeValue = PlaceValue.NOTHING;
+    private PlaceValue placeValue;
 
     public PlaceValue getPlaceValue() {
         return placeValue;
@@ -56,7 +56,7 @@ public class BoardSquare {
 
 
     enum PlaceValue {
-        NOTHING, ZERO, CROSS
+        ZERO, CROSS
     }
 
 
@@ -70,5 +70,6 @@ class BoardSquareTest {
         Assertions.assertEquals(square.getSquarePane().getHeight(), 100);
 
     }
+
 
 }
