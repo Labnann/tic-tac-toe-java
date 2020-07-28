@@ -46,7 +46,7 @@ public class Board {
         BoardSquare boardSquare = new BoardSquare(i, j);
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> {
-            if (!boardSquare.isTriggered()) {
+            if (boardSquare.isNotTriggered()) {
                 boardSquare.triggerSquareAs(currentTurn);
                 changeTurn();
                 doOnChange();
