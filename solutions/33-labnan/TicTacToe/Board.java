@@ -45,14 +45,16 @@ public class Board {
     private BoardSquare createBoardSquare(int i, int j) {
         BoardSquare boardSquare = new BoardSquare(i, j);
         boardPane.getChildren().add(boardSquare.getSquarePane());
-        boardSquare.getSquarePane().setOnMouseClicked(event -> {
-            if (boardSquare.isNotTriggered()) {
-                boardSquare.triggerSquareAs(currentTurn);
-                changeTurn();
-                doOnChange();
-            }
-        });
+        boardSquare.getSquarePane().setOnMouseClicked(event -> triggerSquare(boardSquare));
         return boardSquare;
+    }
+
+    private void triggerSquare(BoardSquare boardSquare) {
+        if (boardSquare.isNotTriggered()) {
+            boardSquare.triggerSquareAs(currentTurn);
+            changeTurn();
+            doOnChange();
+        }
     }
 
     void doOnChange() {
