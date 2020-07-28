@@ -32,6 +32,7 @@ public class BoardSquare {
     private void manageInnerText() {
         text.toFront();
         int FONT_SIZE = 50;
+        Font textFont = new Font("Arial_Bold", 60);
         text.relocate(rectangle.getWidth() / 2 - FONT_SIZE / 2.0, rectangle.getHeight() / 2);
         text.setFont(new Font(FONT_SIZE));
     }

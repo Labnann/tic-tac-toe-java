@@ -17,12 +17,7 @@ public class GameLauncher {
     void startGame() {
         createUI();
         boardSquares = board.getBoardSquares();
-        board.setBoardChangeListener(new BoardSquareListener() {
-            @Override
-            public void performOnChange() {
-                calculateWin();
-            }
-        });
+        board.setBoardChangeListener(this::calculateWin);
         gameRootStage.show();
     }
 
