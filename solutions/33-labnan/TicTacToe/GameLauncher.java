@@ -5,9 +5,8 @@ import javafx.stage.Stage;
 public class GameLauncher {
     private Stage gameRootStage;
     Pane rootPane = new Pane();
-    BoardSquare[][] boardSquares;
     private Board board;
-    private Scene rootScene;
+    WinChecker winChecker = new WinChecker(board);
 
 
     public void setGameRootStage(Stage gameRootStage) {
@@ -16,21 +15,24 @@ public class GameLauncher {
 
     void startGame() {
         createUI();
-        boardSquares = board.getBoardSquares();
-        board.setBoardChangeListener(this::calculateWin);
+        //winChecker.start();
+        board.setBoardChangeListener(new BoardSquareListener() {
+            @Override
+            public void performOnChange() {
+                System.out.println("Check");
+            }
+        });
         gameRootStage.show();
     }
 
-    private boolean calculateWin() {
-        return false;
-    }
+
 
 
     private void createUI() {
-        rootScene = new Scene(rootPane, 500, 500);
+        Scene rootScene = new Scene(rootPane, 500, 500);
         board = new Board(BoardSquare.PlaceValue.CROSS);
         rootPane.getChildren().add(board.getBoardPane());
-        gameRootStage.setScene(this.rootScene);
+        gameRootStage.setScene(rootScene);
     }
 
 

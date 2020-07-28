@@ -4,6 +4,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 
+
 interface BoardSquareListener {
     void performOnChange();
 }
@@ -13,6 +14,7 @@ public class Board {
     private BoardSquare[][] boardSquares;
     private BoardSquare.PlaceValue currentTurn;
     private BoardSquareListener boardChangeListener;
+
 
     Board(BoardSquare.PlaceValue startTurn) {
         createBoard();
@@ -57,14 +59,14 @@ public class Board {
         }
     }
 
-    void doOnChange() {
+    private void doOnChange() {
         if (boardChangeListener != null) {
             boardChangeListener.performOnChange();
         }
     }
 
 
-    void changeTurn() {
+    private void changeTurn() {
         if (currentTurn == BoardSquare.PlaceValue.CROSS)
             currentTurn = BoardSquare.PlaceValue.ZERO;
         else currentTurn = BoardSquare.PlaceValue.CROSS;
@@ -72,4 +74,5 @@ public class Board {
 
 
 }
+
 

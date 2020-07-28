@@ -3,8 +3,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 
 public class BoardSquare {
@@ -43,6 +41,7 @@ public class BoardSquare {
             if (placeValue == PlaceValue.CROSS)
                 setText("X");
             else setText("O");
+            isTriggered = true;
         }
     }
 
@@ -63,13 +62,3 @@ public class BoardSquare {
 }
 
 
-class BoardSquareTest {
-    @Test
-    void testPlaceValue() {
-        BoardSquare square = new BoardSquare(0, 0);
-        Assertions.assertEquals(square.getSquarePane().getHeight(), 100);
-
-    }
-
-
-}
