@@ -6,7 +6,7 @@ public class GameLauncher {
     private Stage gameRootStage;
     Pane rootPane = new Pane();
     private Board board;
-    WinChecker winChecker = new WinChecker(board);
+    WinChecker winChecker;
 
 
     public void setGameRootStage(Stage gameRootStage) {
@@ -15,13 +15,7 @@ public class GameLauncher {
 
     void startGame() {
         createUI();
-        //winChecker.start();
-        board.setBoardChangeListener(new BoardSquareListener() {
-            @Override
-            public void performOnChange() {
-                System.out.println("Check");
-            }
-        });
+        new WinChecker(board).startChecking();
         gameRootStage.show();
     }
 
