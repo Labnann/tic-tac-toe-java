@@ -22,6 +22,10 @@ public class Board {
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
+    public void setStartingTurn(BoardSquare.PlaceValue startingTurn) {
+        this.currentTurn = startingTurn;
+    }
+
     public void setBoardChangeListener(BoardSquareListener boardChangeListener) {
         this.boardChangeListener = boardChangeListener;
     }
