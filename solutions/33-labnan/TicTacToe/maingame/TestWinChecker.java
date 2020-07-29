@@ -37,6 +37,12 @@ public class TestWinChecker {
         }
     }
 
+    private void populateColumn(int column, BoardSquare.PlaceValue placeValue) {
+        for (int i = 0; i < 3; i++) {
+            boardSquares[column][i].triggerSquareAs(placeValue);
+        }
+    }
+
     private void populateRowWithZero(int row) {
         for (int i = 0; i < 3; i++) {
             boardSquares[i][row].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
@@ -98,6 +104,12 @@ public class TestWinChecker {
         boardSquares[0][2].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
     }
 
+    private void populateAntiDiagonals(BoardSquare.PlaceValue placeValue) {
+        boardSquares[0][2].triggerSquareAs(placeValue);
+        boardSquares[1][1].triggerSquareAs(placeValue);
+        boardSquares[2][0].triggerSquareAs(placeValue);
+    }
+
     @Test
     public void doubleWinPreventionTest() {
 
@@ -111,5 +123,35 @@ public class TestWinChecker {
 
     }
 
+    @Test
+    public void leadingDiagonalWinTest() {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+        populateRowWithZero(0);
+        populateRowWith(1, BoardSquare.PlaceValue.ZERO);
+        winChecker.checkWinAtLeadingDiagonal();
+        Assertions.assertEquals(null, winChecker.getWinner());
+        Assertions.assertFalse(winChecker.isGameEnded());
+        boardSquares[2][2].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
+        winChecker.checkWinAtLeadingDiagonal();
+        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
+        Assertions.assertTrue(winChecker.isGameEnded());
+    }
+
+    @Test
+    public void antiDiagonalWinTest() {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+
+        populateFirstColumnUnequally();
+        //
+        populateAntiDiagonals(BoardSquare.PlaceValue.ZERO);
+        Assertions.assertEquals(null, winChecker.getWinner());
+        Assertions.assertFalse(winChecker.isGameEnded());
+
+        winChecker.checkWinAtAntiDiagonal();
+        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
+        Assertions.assertTrue(winChecker.isGameEnded());
+    }
 
 }
