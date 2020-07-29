@@ -24,10 +24,16 @@ public class WinChecker {
     public void startChecking() {
         board.setBoardChangeListener(() -> {
             checkWinAtColumns();
+            checkAllRows();
             if (gameEnded) {
                 doOnGameEnd();
             }
         });
+    }
+
+    private void checkAllRows() {
+        for (int i = 0; i < 3; i++)
+            checkWinAtRow(i);
     }
 
     private void checkWinAtColumns() {
