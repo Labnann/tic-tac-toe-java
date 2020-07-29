@@ -13,15 +13,13 @@ interface BoardSquareListener {
 public class Board {
     private Pane boardPane = new Pane();
     private BoardSquare[][] boardSquares;
-    private BoardSquare.PlaceValue currentTurn;
+    private BoardSquare.PlaceValue currentTurn = BoardSquare.PlaceValue.CROSS;
     private BoardSquareListener boardChangeListener;
 
 
     Board(BoardSquare.PlaceValue startTurn) {
         createBoard();
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        this.currentTurn = startTurn;
-
     }
 
     public void setBoardChangeListener(BoardSquareListener boardChangeListener) {
