@@ -51,7 +51,7 @@ public class WinChecker {
         BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
-                if (isAlreadyOccupiedBy(i, i, possibleWinner)) {
+                if (isNotTheSameAsAtIndex(i, i, possibleWinner)) {
                     return;
                 }
             }
@@ -60,7 +60,7 @@ public class WinChecker {
     }
 
 
-    private boolean isAlreadyOccupiedBy(int column, int row, BoardSquare.PlaceValue possibleWinner) {
+    private boolean isNotTheSameAsAtIndex(int column, int row, BoardSquare.PlaceValue possibleWinner) {
         return boardSquare[row][column].getPlaceValue() != possibleWinner || boardSquare[row][column].isNotTriggered();
     }
 
@@ -73,7 +73,7 @@ public class WinChecker {
         BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
-                if (isAlreadyOccupiedBy(2 - i, i, possibleWinner)) {
+                if (isNotTheSameAsAtIndex(i, 2 - i, possibleWinner)) {
                     return;
                 }
             }
