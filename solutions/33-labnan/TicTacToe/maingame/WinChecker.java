@@ -23,22 +23,23 @@ public class WinChecker {
 
     public void startChecking() {
         board.setBoardChangeListener(() -> {
-            checkWinAtColumns();
-            checkAllRows();
+            checkWinAtColumn();
+            checkWinAtAllRows();
             if (gameEnded) {
                 doOnGameEnd();
             }
         });
     }
 
-    private void checkAllRows() {
+    private void checkWinAtAllRows() {
         for (int i = 0; i < 3; i++)
             checkWinAtRow(i);
     }
 
-    private void checkWinAtColumns() {
+    private void checkWinAtColumn() {
+
         for (int i = 0; i < 3; i++) {
-            checkWinAtColumns(i);
+            checkWinAtColumn(i);
         }
     }
 
@@ -52,22 +53,26 @@ public class WinChecker {
         return winner;
     }
 
-    protected void checkWinAtColumns(final int column) {
-        BoardSquare.PlaceValue possibleWinner = boardSquare[column][0].getPlaceValue();
-        for (int row = 1; row < 3; row++) {
-            if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
+    protected void checkWinAtColumn(final int column) {
+        if (!isGameEnded()) {
+            BoardSquare.PlaceValue possibleWinner = boardSquare[column][0].getPlaceValue();
+            for (int row = 1; row < 3; row++) {
+                if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
+            }
+            gameEnded = true;
+            winner = possibleWinner;
         }
-        gameEnded = true;
-        winner = possibleWinner;
     }
 
     protected void checkWinAtRow(final int row) {
-        BoardSquare.PlaceValue possibleWinner = boardSquare[0][row].getPlaceValue();
-        for (int column = 1; column < 3; column++) {
-            if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
+        if (!isGameEnded()) {
+            BoardSquare.PlaceValue possibleWinner = boardSquare[0][row].getPlaceValue();
+            for (int column = 1; column < 3; column++) {
+                if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
+            }
+            gameEnded = true;
+            winner = possibleWinner;
         }
-        gameEnded = true;
-        winner = possibleWinner;
     }
 
     private boolean isElementOnSameLineEqual(int staticIndex, BoardSquare.PlaceValue possibleWinner, int changingIndex) {
