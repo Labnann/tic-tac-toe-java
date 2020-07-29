@@ -22,12 +22,14 @@ public class WinChecker {
     }
 
     public void startChecking() {
-        board.onChange(() -> {
-            checkWin();
-            if (gameEnded) {
-                doOnGameEnd();
-            }
-        });
+        board.onChange(this::doOnBoardChange);
+    }
+
+    private void doOnBoardChange() {
+        checkWin();
+        if (gameEnded) {
+            doOnGameEnd();
+        }
     }
 
     private void checkWin() {
