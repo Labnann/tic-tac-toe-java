@@ -43,7 +43,7 @@ public class WinChecker {
     }
 
     void doOnGameEnd() {
-        System.out.println("Game Ended");
+        System.out.println("Game Ended, Winner: " + getWinner());
         if (gameEndListener != null)
             gameEndListener.doOnGameEnd();
     }

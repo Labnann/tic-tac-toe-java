@@ -43,6 +43,14 @@ public class TestWinChecker {
         }
     }
 
+
+    private void populateRowWith(int row, BoardSquare.PlaceValue placeValue) {
+        for (int i = 0; i < 3; i++) {
+            boardSquares[i][row].triggerSquareAs(placeValue);
+        }
+    }
+
+
     @Test
     public void testRowChecker() {
         checkRowForWin(0);
@@ -88,6 +96,19 @@ public class TestWinChecker {
         boardSquares[0][0].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
         boardSquares[0][1].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
         boardSquares[0][2].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
+    }
+
+    @Test
+    public void doubleWinPreventionTest() {
+
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+        populateRowWith(0, BoardSquare.PlaceValue.CROSS);
+        populateRowWith(1, BoardSquare.PlaceValue.ZERO);
+        winChecker.checkWinAtRow(0);
+        winChecker.checkWinAtRow(1);
+        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
+
     }
 
 
