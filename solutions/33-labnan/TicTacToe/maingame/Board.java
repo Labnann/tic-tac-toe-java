@@ -26,7 +26,7 @@ public class Board {
         this.currentTurn = startingTurn;
     }
 
-    public void setBoardChangeListener(BoardSquareListener boardChangeListener) {
+    public void onChange(BoardSquareListener boardChangeListener) {
         this.boardChangeListener = boardChangeListener;
     }
 

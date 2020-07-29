@@ -48,33 +48,39 @@ public class WinChecker {
         BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
-                if (boardSquare[i][i].getPlaceValue() != possibleWinner || boardSquare[i][i].isNotTriggered()) {
+                if (isAlreadyOccupiedBy(i, i, possibleWinner)) {
                     return;
                 }
             }
-            gameEnded = true;
-            winner = possibleWinner;
-            System.out.println("Winner Found at Leading Diagonal");
+            declareWinner(possibleWinner);
         }
-
     }
 
+
+    private boolean isAlreadyOccupiedBy(int column, int row, BoardSquare.PlaceValue possibleWinner) {
+        return boardSquare[row][column].getPlaceValue() != possibleWinner || boardSquare[row][column].isNotTriggered();
+    }
+
+
+    // i = 0; j = 2
+    // i = 2; j = 0
+    // m = (2-0)/(0-2) = -1
+    // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
     private void checkWinAtAntiDiagonal() {
-        // i = 0; j = 2
-        // i = 2; j = 0
-        // m = (2-0)/(0-2) = -1
-        // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
         BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
-                if (boardSquare[i][2 - i].getPlaceValue() != possibleWinner || boardSquare[i][2 - i].isNotTriggered()) {
+                if (isAlreadyOccupiedBy(2 - i, i, possibleWinner)) {
                     return;
                 }
             }
-            gameEnded = true;
-            winner = possibleWinner;
-            System.out.println("Winner Found at AntiDiagonal");
+            declareWinner(possibleWinner);
         }
+    }
+
+    private void declareWinner(BoardSquare.PlaceValue possibleWinner) {
+        gameEnded = true;
+        winner = possibleWinner;
     }
 
     private void checkWinAtAllRows() {
@@ -105,8 +111,7 @@ public class WinChecker {
             for (int row = 1; row < 3; row++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
-            gameEnded = true;
-            winner = possibleWinner;
+            declareWinner(possibleWinner);
         }
     }
 
@@ -116,8 +121,7 @@ public class WinChecker {
             for (int column = 1; column < 3; column++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
-            gameEnded = true;
-            winner = possibleWinner;
+            declareWinner(possibleWinner);
         }
     }
 
