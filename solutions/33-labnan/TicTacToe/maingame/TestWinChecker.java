@@ -16,13 +16,13 @@ public class TestWinChecker {
 
     @Test
     public void testColumnChecker() {
-        checkColumn(2);
-        checkColumn(1);
-        checkColumn(0);
+        checkColumnForWin(2);
+        checkColumnForWin(1);
+        checkColumnForWin(0);
         Assertions.assertTrue(winChecker.isGameEnded());
     }
 
-    private void checkColumn(int i) {
+    private void checkColumnForWin(int i) {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateColumnWithCross(i);
@@ -45,18 +45,49 @@ public class TestWinChecker {
 
     @Test
     public void testRowChecker() {
-        checkRow(0);
-        checkRow(1);
-        checkRow(2);
+        checkRowForWin(0);
+        checkRowForWin(1);
+        checkRowForWin(2);
         Assertions.assertTrue(winChecker.isGameEnded());
     }
 
-    private void checkRow(int i) {
+    private void checkRowForWin(int i) {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateRowWithZero(i);
         winChecker.checkWinAtRow(i);
         Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
+    }
+
+    @Test
+    public void notEquallyPopulatedTest() {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+        populateFirstRowUnequally();
+        winChecker.checkWinAtRow(0);
+        Assertions.assertFalse(winChecker.isGameEnded());
+
+    }
+
+    @Test
+    public void columnUnequallyPopulatedTest() {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+        populateFirstColumnUnequally();
+        winChecker.checkWinAtColumn(0);
+        Assertions.assertFalse(winChecker.isGameEnded());
+    }
+
+    private void populateFirstRowUnequally() {
+        boardSquares[0][0].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[1][0].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[2][0].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
+    }
+
+    private void populateFirstColumnUnequally() {
+        boardSquares[0][0].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[0][1].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[0][2].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
     }
 
 
