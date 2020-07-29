@@ -23,13 +23,17 @@ public class WinChecker {
 
     public void startChecking() {
         board.setBoardChangeListener(() -> {
-            checkWinAtColumn();
-            checkWinAtAllRows();
-            checkWinAtAllDiagonals();
+            checkWin();
             if (gameEnded) {
                 doOnGameEnd();
             }
         });
+    }
+
+    private void checkWin() {
+        checkWinAtColumn();
+        checkWinAtAllRows();
+        checkWinAtAllDiagonals();
     }
 
     void checkWinAtAllDiagonals() {
