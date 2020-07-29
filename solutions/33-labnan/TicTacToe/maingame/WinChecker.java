@@ -42,22 +42,22 @@ public class WinChecker {
 
     }
 
-    BoardSquare.PlaceValue checkWinAtLeadingDiagonal() {
+    private void checkWinAtLeadingDiagonal() {
         BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (boardSquare[i][i].getPlaceValue() != possibleWinner || boardSquare[i][i].isNotTriggered()) {
-                    return null;
+                    return;
                 }
             }
             gameEnded = true;
             winner = possibleWinner;
             System.out.println("Winner Found at Leading Diagonal");
         }
-        return possibleWinner;
+
     }
 
-    public BoardSquare.PlaceValue checkWinAtAntiDiagonal() {
+    private void checkWinAtAntiDiagonal() {
         // i = 0; j = 2
         // i = 2; j = 0
         // m = (2-0)/(0-2) = -1
@@ -66,15 +66,13 @@ public class WinChecker {
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (boardSquare[i][2 - i].getPlaceValue() != possibleWinner || boardSquare[i][2 - i].isNotTriggered()) {
-                    return null;
+                    return;
                 }
             }
             gameEnded = true;
             winner = possibleWinner;
             System.out.println("Winner Found at AntiDiagonal");
         }
-        return possibleWinner;
-
     }
 
     private void checkWinAtAllRows() {

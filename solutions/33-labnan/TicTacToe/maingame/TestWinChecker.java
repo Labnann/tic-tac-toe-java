@@ -123,35 +123,6 @@ public class TestWinChecker {
 
     }
 
-    @Test
-    public void leadingDiagonalWinTest() {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
-        populateRowWithZero(0);
-        populateRowWith(1, BoardSquare.PlaceValue.ZERO);
-        winChecker.checkWinAtLeadingDiagonal();
-        Assertions.assertEquals(null, winChecker.getWinner());
-        Assertions.assertFalse(winChecker.isGameEnded());
-        boardSquares[2][2].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
-        winChecker.checkWinAtLeadingDiagonal();
-        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
-        Assertions.assertTrue(winChecker.isGameEnded());
-    }
 
-    @Test
-    public void antiDiagonalWinTest() {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
-
-        populateFirstColumnUnequally();
-        //
-        populateAntiDiagonals(BoardSquare.PlaceValue.ZERO);
-        Assertions.assertEquals(null, winChecker.getWinner());
-        Assertions.assertFalse(winChecker.isGameEnded());
-
-        winChecker.checkWinAtAntiDiagonal();
-        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
-        Assertions.assertTrue(winChecker.isGameEnded());
-    }
 
 }
