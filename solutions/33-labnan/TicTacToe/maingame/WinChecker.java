@@ -22,7 +22,7 @@ public class WinChecker {
     }
 
     public void startChecking() {
-        board.setBoardChangeListener(() -> {
+        board.onChange(() -> {
             checkWin();
             if (gameEnded) {
                 doOnGameEnd();
