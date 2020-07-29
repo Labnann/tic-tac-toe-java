@@ -26,7 +26,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateColumnWithCross(i);
-        winChecker.checkWinAtColumn(i);
+        winChecker.checkWin();
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
     }
 
@@ -69,7 +69,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateRowWithZero(i);
-        winChecker.checkWinAtRow(i);
+        winChecker.checkWin();
         Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
     }
 
@@ -78,7 +78,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateFirstRowUnequally();
-        winChecker.checkWinAtRow(0);
+        winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
 
     }
@@ -88,7 +88,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateFirstColumnUnequally();
-        winChecker.checkWinAtColumn(0);
+        winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
     }
 
@@ -117,8 +117,7 @@ public class TestWinChecker {
         boardSquares = winChecker.getBoardSquare();
         populateRowWith(0, BoardSquare.PlaceValue.CROSS);
         populateRowWith(1, BoardSquare.PlaceValue.ZERO);
-        winChecker.checkWinAtRow(0);
-        winChecker.checkWinAtRow(1);
+        winChecker.checkWin();
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
 
     }

@@ -32,7 +32,7 @@ public class WinChecker {
         }
     }
 
-    private void checkWin() {
+    public void checkWin() {
         checkWinAtColumn();
         checkWinAtAllRows();
         checkWinAtAllDiagonals();
@@ -99,7 +99,7 @@ public class WinChecker {
         return winner;
     }
 
-    protected void checkWinAtColumn(final int column) {
+    private void checkWinAtColumn(final int column) {
         if (!isGameEnded()) {
             BoardSquare.PlaceValue possibleWinner = boardSquare[column][0].getPlaceValue();
             for (int row = 1; row < 3; row++) {
@@ -110,7 +110,7 @@ public class WinChecker {
         }
     }
 
-    protected void checkWinAtRow(final int row) {
+    private void checkWinAtRow(final int row) {
         if (!isGameEnded()) {
             BoardSquare.PlaceValue possibleWinner = boardSquare[0][row].getPlaceValue();
             for (int column = 1; column < 3; column++) {
