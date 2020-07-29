@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class TestWinChecker {
-    WinChecker winChecker = new WinChecker(new Board());
-    BoardSquare[][] boardSquares = winChecker.getBoardSquare();
+    WinChecker winChecker;
+    BoardSquare[][] boardSquares;
 
     @BeforeClass
     public static void setup() throws InterruptedException {
@@ -23,6 +23,8 @@ public class TestWinChecker {
     }
 
     private void checkColumn(int i) {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
         populateColumnWithCross(i);
         winChecker.checkWinAtColumn(i);
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
@@ -33,6 +35,11 @@ public class TestWinChecker {
         for (int i = 0; i < 3; i++) {
             boardSquares[column][i].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
         }
+    }
+
+    @Test
+    public void testRowChecker() {
+        //  checkRow(0);
     }
 
 
