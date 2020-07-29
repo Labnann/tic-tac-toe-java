@@ -20,7 +20,7 @@ public class WinChecker {
 
     public void startChecking() {
         board.setBoardChangeListener(() -> {
-            checkFirstRow();
+            checkFirstColumn();
             if (gameEnded) {
                 doOnGameEnd();
             }
@@ -31,7 +31,7 @@ public class WinChecker {
         System.out.println("Game Ended");
     }
 
-    protected BoardSquare.PlaceValue checkFirstRow() {
+    protected BoardSquare.PlaceValue checkFirstColumn() {
         BoardSquare.PlaceValue temp = boardSquare[0][0].getPlaceValue();
         for (int i = 1; i < 3; i++) {
             if (boardSquare[0][i].isNotTriggered()) {

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 
-public class GameTester {
+public class BoardSquareTester {
     BoardSquare square = new BoardSquare(0, 0);
 
 

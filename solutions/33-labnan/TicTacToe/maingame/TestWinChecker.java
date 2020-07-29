@@ -16,7 +16,7 @@ public class TestWinChecker {
     @Test
     public void testFirstRowWinChecker() {
         populateFirstRowWithCross();
-        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.checkFirstRow());
+        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.checkFirstColumn());
         Assertions.assertTrue(winChecker.isGameEnded());
     }
 
