@@ -53,6 +53,19 @@ public class WinChecker {
         winner = possibleWinner;
     }
 
+    protected void checkWinAtRow(final int row) {
+        BoardSquare.PlaceValue possibleWinner = boardSquare[0][row].getPlaceValue();
+        for (int i = 1; i < 3; i++) {
+            if (boardSquare[i][row].isNotTriggered()) {
+                winner = possibleWinner;
+            } else if (possibleWinner != boardSquare[i][row].getPlaceValue()) {
+                return;
+            }
+        }
+        gameEnded = true;
+        winner = possibleWinner;
+    }
+
 
     public void setOnGameEnd(GameEndListener gameEndListener) {
         this.gameEndListener = gameEndListener;

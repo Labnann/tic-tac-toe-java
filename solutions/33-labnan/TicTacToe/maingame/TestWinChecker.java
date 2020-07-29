@@ -37,9 +37,26 @@ public class TestWinChecker {
         }
     }
 
+    private void populateRowWithZero(int row) {
+        for (int i = 0; i < 3; i++) {
+            boardSquares[i][row].triggerSquareAs(BoardSquare.PlaceValue.ZERO);
+        }
+    }
+
     @Test
     public void testRowChecker() {
-        //  checkRow(0);
+        checkRow(0);
+        checkRow(1);
+        checkRow(2);
+        Assertions.assertTrue(winChecker.isGameEnded());
+    }
+
+    private void checkRow(int i) {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+        populateRowWithZero(i);
+        winChecker.checkWinAtRow(i);
+        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
     }
 
 
