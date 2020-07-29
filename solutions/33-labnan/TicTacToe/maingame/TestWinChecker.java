@@ -23,8 +23,7 @@ public class TestWinChecker {
     }
 
     private void checkColumnForWin(int i) {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
+        initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
         winChecker.checkWin();
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
@@ -66,8 +65,7 @@ public class TestWinChecker {
     }
 
     private void checkRowForWin(int i) {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
+        initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
         winChecker.checkWin();
         Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, winChecker.getWinner());
@@ -75,8 +73,7 @@ public class TestWinChecker {
 
     @Test
     public void notEquallyPopulatedTest() {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
+        initializeWinCheckerAndBoardSquares();
         populateFirstRowUnequally();
         winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
@@ -85,8 +82,7 @@ public class TestWinChecker {
 
     @Test
     public void columnUnequallyPopulatedTest() {
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
+        initializeWinCheckerAndBoardSquares();
         populateFirstColumnUnequally();
         winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
@@ -113,8 +109,7 @@ public class TestWinChecker {
     @Test
     public void doubleWinPreventionTest() {
 
-        winChecker = new WinChecker(new Board());
-        boardSquares = winChecker.getBoardSquare();
+        initializeWinCheckerAndBoardSquares();
         populateRowWith(0, BoardSquare.PlaceValue.CROSS);
         populateRowWith(1, BoardSquare.PlaceValue.ZERO);
         winChecker.checkWin();
@@ -122,6 +117,21 @@ public class TestWinChecker {
 
     }
 
+    @Test
+    public void antiDiagonalWinTest() {
+        initializeWinCheckerAndBoardSquares();
+        boardSquares[0][2].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[1][1].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        boardSquares[2][0].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+        winChecker.checkWin();
+        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
+
+    }
+
+    private void initializeWinCheckerAndBoardSquares() {
+        winChecker = new WinChecker(new Board());
+        boardSquares = winChecker.getBoardSquare();
+    }
 
 
 }

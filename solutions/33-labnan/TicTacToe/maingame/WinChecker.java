@@ -42,7 +42,7 @@ public class WinChecker {
         checkWinAtAllDiagonals();
     }
 
-    void checkWinAtAllDiagonals() {
+    private void checkWinAtAllDiagonals() {
         if (!gameEnded) checkWinAtLeadingDiagonal();
         if (!gameEnded) checkWinAtAntiDiagonal();
     }
@@ -70,10 +70,10 @@ public class WinChecker {
     // m = (2-0)/(0-2) = -1
     // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
     private void checkWinAtAntiDiagonal() {
-        BoardSquare.PlaceValue possibleWinner = boardSquare[0][0].getPlaceValue();
+        BoardSquare.PlaceValue possibleWinner = boardSquare[0][2].getPlaceValue();
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
-                if (isNotTheSameAsAtIndex(i, 2 - i, possibleWinner)) {
+                if (isNotTheSameAsAtIndex(2 - i, i, possibleWinner)) {
                     return;
                 }
             }
