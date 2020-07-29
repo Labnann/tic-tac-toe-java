@@ -52,7 +52,7 @@ public class Board {
         return boardSquare;
     }
 
-    private void triggerSquare(BoardSquare boardSquare) {
+    public void triggerSquare(BoardSquare boardSquare) {
         if (boardSquare.isNotTriggered()) {
             boardSquare.triggerSquareAs(currentTurn);
             changeTurn();
