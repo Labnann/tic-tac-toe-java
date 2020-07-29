@@ -24,7 +24,8 @@ public class TestWinChecker {
 
     private void checkColumn(int i) {
         populateColumnWithCross(i);
-        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.checkWinAtColumn(i));
+        winChecker.checkWinAtColumn(i);
+        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
     }
 
 

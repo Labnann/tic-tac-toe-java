@@ -36,17 +36,21 @@ public class WinChecker {
             gameEndListener.doOnGameEnd();
     }
 
-    protected BoardSquare.PlaceValue checkWinAtColumn(final int column) {
-        BoardSquare.PlaceValue temp = boardSquare[column][0].getPlaceValue();
+    public BoardSquare.PlaceValue getWinner() {
+        return winner;
+    }
+
+    protected void checkWinAtColumn(final int column) {
+        BoardSquare.PlaceValue possibleWinner = boardSquare[column][0].getPlaceValue();
         for (int i = 1; i < 3; i++) {
             if (boardSquare[column][i].isNotTriggered()) {
-                return boardSquare[column][i].getPlaceValue();
-            } else if (temp != boardSquare[column][i].getPlaceValue()) {
-                return null;
+                winner = possibleWinner;
+            } else if (possibleWinner != boardSquare[column][i].getPlaceValue()) {
+                return;
             }
         }
         gameEnded = true;
-        return temp;
+        winner = possibleWinner;
     }
 
 
