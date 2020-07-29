@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class BoardTest {
-    Board board = new Board(BoardSquare.PlaceValue.CROSS);
+    Board board = new Board();
     BoardSquare[][] boardSquares = board.getBoardSquares();
 
     @BeforeClass

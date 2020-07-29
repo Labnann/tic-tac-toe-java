@@ -24,7 +24,7 @@ public class GameLauncher {
 
     private void createUI() {
         Scene rootScene = new Scene(rootPane, 500, 500);
-        board = new Board(BoardSquare.PlaceValue.CROSS);
+        board = new Board();
         rootPane.getChildren().add(board.getBoardPane());
         gameRootStage.setScene(rootScene);
     }

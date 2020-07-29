@@ -17,7 +17,7 @@ public class Board {
     private BoardSquareListener boardChangeListener;
 
 
-    Board(BoardSquare.PlaceValue startTurn) {
+    Board() {
         createBoard();
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }

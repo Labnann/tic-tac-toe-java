@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class TestWinChecker {
-    WinChecker winChecker = new WinChecker(new Board(BoardSquare.PlaceValue.CROSS));
+    WinChecker winChecker = new WinChecker(new Board());
     BoardSquare[][] boardSquares = winChecker.getBoardSquare();
 
     @BeforeClass
