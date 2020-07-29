@@ -20,7 +20,7 @@ public class WinChecker {
 
     public void startChecking() {
         board.setBoardChangeListener(() -> {
-            checkFirstColumn();
+            checkWinAtColumn(0);
             if (gameEnded) {
                 doOnGameEnd();
             }
@@ -31,12 +31,12 @@ public class WinChecker {
         System.out.println("Game Ended");
     }
 
-    protected BoardSquare.PlaceValue checkFirstColumn() {
-        BoardSquare.PlaceValue temp = boardSquare[0][0].getPlaceValue();
+    protected BoardSquare.PlaceValue checkWinAtColumn(final int column) {
+        BoardSquare.PlaceValue temp = boardSquare[column][0].getPlaceValue();
         for (int i = 1; i < 3; i++) {
-            if (boardSquare[0][i].isNotTriggered()) {
-                return boardSquare[0][i].getPlaceValue();
-            } else if (temp != boardSquare[0][i].getPlaceValue()) {
+            if (boardSquare[column][i].isNotTriggered()) {
+                return boardSquare[column][i].getPlaceValue();
+            } else if (temp != boardSquare[column][i].getPlaceValue()) {
                 return null;
             }
         }

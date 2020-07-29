@@ -13,17 +13,24 @@ public class TestWinChecker {
         JavaFXInitializer.initialize();
     }
 
+
     @Test
-    public void testFirstRowWinChecker() {
-        populateFirstRowWithCross();
-        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.checkFirstColumn());
+    public void testColumnChecker() {
+        checkColumn(2);
+        checkColumn(1);
+        checkColumn(0);
         Assertions.assertTrue(winChecker.isGameEnded());
     }
 
+    private void checkColumn(int i) {
+        populateColumnWithCross(i);
+        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.checkWinAtColumn(i));
+    }
 
-    private void populateFirstRowWithCross() {
+
+    private void populateColumnWithCross(int column) {
         for (int i = 0; i < 3; i++) {
-            boardSquares[0][i].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
+            boardSquares[column][i].triggerSquareAs(BoardSquare.PlaceValue.CROSS);
         }
     }
 
