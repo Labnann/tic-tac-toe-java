@@ -26,7 +26,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateColumnWithCross(i);
-        winChecker.checkWinAtColumn(i);
+        winChecker.checkWinAtColumns(i);
         Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, winChecker.getWinner());
     }
 
@@ -74,7 +74,7 @@ public class TestWinChecker {
         winChecker = new WinChecker(new Board());
         boardSquares = winChecker.getBoardSquare();
         populateFirstColumnUnequally();
-        winChecker.checkWinAtColumn(0);
+        winChecker.checkWinAtColumns(0);
         Assertions.assertFalse(winChecker.isGameEnded());
     }
 
