@@ -4,6 +4,9 @@ public class WinChecker {
     private BoardSquare[][] boardSquare;
     private Board board;
     private boolean gameEnded = false;
+    GameEndListener gameEndListener;
+    private BoardSquare.PlaceValue winner = null;
+
 
     WinChecker(Board board) {
         this.board = board;
@@ -29,6 +32,8 @@ public class WinChecker {
 
     void doOnGameEnd() {
         System.out.println("Game Ended");
+        if (gameEndListener != null)
+            gameEndListener.doOnGameEnd();
     }
 
     protected BoardSquare.PlaceValue checkWinAtColumn(final int column) {
@@ -42,6 +47,15 @@ public class WinChecker {
         }
         gameEnded = true;
         return temp;
+    }
+
+
+    public void setOnGameEnd(GameEndListener gameEndListener) {
+        this.gameEndListener = gameEndListener;
+    }
+
+    interface GameEndListener {
+        void doOnGameEnd();
     }
 }
 
