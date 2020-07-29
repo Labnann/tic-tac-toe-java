@@ -27,7 +27,7 @@ public class WinChecker {
     }
 
     private void doOnBoardChange() {
-        if (remainingMoveCount-- == 0) {
+        if (--remainingMoveCount == 0) {
             gameEnded = true;
         }
         checkWin();
