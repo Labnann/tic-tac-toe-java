@@ -42,7 +42,7 @@ public class WinChecker {
     }
 
     private void checkWinAtLeadingDiagonal() {
-        Turn possibleWinner = board.getBoardSquares()[0][0].getTurn();
+        Turn possibleWinner = findMarkAt(0, 0);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(i, i, possibleWinner)) {
@@ -53,9 +53,13 @@ public class WinChecker {
         }
     }
 
+    private Turn findMarkAt(int i, int j) {
+        return board.getBoardSquares()[i][j].getTurn();
+    }
+
 
     private boolean isNotTheSameAsAtIndex(int column, int row, Turn possibleWinner) {
-        return board.getBoardSquares()[row][column].getTurn() != possibleWinner || board.getBoardSquares()[row][column].getTurn() == null;
+        return findMarkAt(row, column) != possibleWinner || findMarkAt(row, column) == null;
     }
 
 
@@ -64,7 +68,7 @@ public class WinChecker {
     // m = (2-0)/(0-2) = -1
     // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
     private void checkWinAtAntiDiagonal() {
-        Turn possibleWinner = board.getBoardSquares()[0][2].getTurn();
+        Turn possibleWinner = findMarkAt(0, 2);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(2 - i, i, possibleWinner)) {
@@ -104,7 +108,7 @@ public class WinChecker {
     }
 
     private void checkWinAtColumn(final int column) {
-        Turn possibleWinner = board.getBoardSquares()[column][0].getTurn();
+        Turn possibleWinner = findMarkAt(column, 0);
             for (int row = 1; row < 3; row++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
@@ -112,7 +116,7 @@ public class WinChecker {
         }
 
     private void checkWinAtRow(final int row) {
-        Turn possibleWinner = board.getBoardSquares()[0][row].getTurn();
+        Turn possibleWinner = findMarkAt(0, row);
             for (int column = 1; column < 3; column++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
@@ -120,9 +124,9 @@ public class WinChecker {
     }
 
     private boolean isElementOnSameLineEqual(int staticIndex, Turn possibleWinner, int changingIndex) {
-        if (board.getBoardSquares()[changingIndex][staticIndex].getTurn() == null) {
+        if (findMarkAt(changingIndex, staticIndex) == null) {
             return true;
-        } else return possibleWinner != board.getBoardSquares()[changingIndex][staticIndex].getTurn();
+        } else return possibleWinner != findMarkAt(changingIndex, staticIndex);
     }
 
 

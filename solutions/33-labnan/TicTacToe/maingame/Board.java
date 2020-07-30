@@ -6,15 +6,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 
-interface BoardSquareListener {
-    void performOnChange();
-}
-
 public class Board {
     private Pane boardPane = new Pane();
     private BoardSquare[][] boardSquares;
     private Turn currentTurn = Turn.CROSS;
-    private BoardSquareListener boardChangeListener;
+    private BoardListener boardChangeListener;
 
 
     Board() {
@@ -26,7 +22,7 @@ public class Board {
         this.currentTurn = startingTurn;
     }
 
-    public void onChange(BoardSquareListener boardChangeListener) {
+    public void onChange(BoardListener boardChangeListener) {
         this.boardChangeListener = boardChangeListener;
     }
 
@@ -75,7 +71,9 @@ public class Board {
         else currentTurn = Turn.CROSS;
     }
 
-
+    interface BoardListener {
+        void performOnChange();
+    }
 }
 
 
