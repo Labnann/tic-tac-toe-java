@@ -17,11 +17,7 @@ public class WinChecker {
     public boolean isGameEnded() {
         return gameEnded;
     }
-
-    public BoardSquare[][] getBoardSquare() {
-        return boardSquare;
-    }
-
+    
     public void startChecking() {
         board.onChange(this::doOnBoardChange);
     }
