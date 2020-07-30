@@ -12,10 +12,10 @@ public class BoardSquare {
     private Pane squarePane = new Pane();
     boolean isTriggered = false;
     Text text = new Text(" ");
-    private PlaceValue placeValue;
+    private Turn turn;
 
-    public PlaceValue getPlaceValue() {
-        return placeValue;
+    public Turn getTurn() {
+        return turn;
     }
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
@@ -36,10 +36,10 @@ public class BoardSquare {
         text.setFont(textFont);
     }
 
-    public void triggerSquareAs(PlaceValue placeValue) {
+    public void triggerSquareAs(Turn turn) {
         if (this.isNotTriggered()) {
-            this.placeValue = placeValue;
-            if (placeValue == PlaceValue.CROSS)
+            this.turn = turn;
+            if (turn == Turn.CROSS)
                 setText("X");
             else setText("O");
             isTriggered = true;
@@ -52,11 +52,6 @@ public class BoardSquare {
 
     public Pane getSquarePane() {
         return squarePane;
-    }
-
-
-    enum PlaceValue {
-        ZERO, CROSS
     }
 
 

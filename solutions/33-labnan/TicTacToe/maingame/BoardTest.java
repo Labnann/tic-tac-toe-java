@@ -17,7 +17,7 @@ public class BoardTest {
     public void testBoardSquareDoubleTrigger() {
 
         simultaneouslyTrigger(0, 0);
-        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, boardSquares[0][0].getPlaceValue());
+        Assertions.assertEquals(Turn.CROSS, boardSquares[0][0].getTurn());
     }
 
     private void simultaneouslyTrigger(int i, int j) {
@@ -29,15 +29,15 @@ public class BoardTest {
     public void testBoardSquareSecondTrigger() {
 
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, boardSquares[0][1].getPlaceValue());
+        Assertions.assertEquals(Turn.ZERO, boardSquares[0][1].getTurn());
     }
 
     @Test
     public void testSetStartingTurn() {
-        board.setStartingTurn(BoardSquare.PlaceValue.ZERO);
+        board.setStartingTurn(Turn.ZERO);
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(BoardSquare.PlaceValue.ZERO, boardSquares[0][0].getPlaceValue());
-        Assertions.assertEquals(BoardSquare.PlaceValue.CROSS, boardSquares[0][1].getPlaceValue());
+        Assertions.assertEquals(Turn.ZERO, boardSquares[0][0].getTurn());
+        Assertions.assertEquals(Turn.CROSS, boardSquares[0][1].getTurn());
     }
 
 

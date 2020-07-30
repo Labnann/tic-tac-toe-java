@@ -13,7 +13,7 @@ interface BoardSquareListener {
 public class Board {
     private Pane boardPane = new Pane();
     private BoardSquare[][] boardSquares;
-    private BoardSquare.PlaceValue currentTurn = BoardSquare.PlaceValue.CROSS;
+    private Turn currentTurn = Turn.CROSS;
     private BoardSquareListener boardChangeListener;
 
 
@@ -22,7 +22,7 @@ public class Board {
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
-    public void setStartingTurn(BoardSquare.PlaceValue startingTurn) {
+    public void setStartingTurn(Turn startingTurn) {
         this.currentTurn = startingTurn;
     }
 
@@ -70,9 +70,9 @@ public class Board {
 
 
     private void changeTurn() {
-        if (currentTurn == BoardSquare.PlaceValue.CROSS)
-            currentTurn = BoardSquare.PlaceValue.ZERO;
-        else currentTurn = BoardSquare.PlaceValue.CROSS;
+        if (currentTurn == Turn.CROSS)
+            currentTurn = Turn.ZERO;
+        else currentTurn = Turn.CROSS;
     }
 
 
