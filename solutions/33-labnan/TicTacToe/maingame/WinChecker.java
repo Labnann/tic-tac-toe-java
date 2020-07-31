@@ -20,6 +20,21 @@ public class WinChecker {
         board.onChange(this::doOnBoardChange);
     }
 
+    public void checkWin() {
+        checkWinAtColumn();
+        checkWinAtAllRows();
+        checkWinAtAllDiagonals();
+    }
+
+    public LogicBasedBox.Type getWinner() {
+        return winner;
+    }
+
+    public void setOnGameEnd(GameEndListener gameEndListener) {
+        this.gameEndListener = gameEndListener;
+    }
+
+
     private void doOnBoardChange() {
         if (--remainingMoveCount == 0) {
             gameEnded = true;
@@ -28,12 +43,6 @@ public class WinChecker {
         if (gameEnded) {
             doOnGameEnd();
         }
-    }
-
-    public void checkWin() {
-        checkWinAtColumn();
-        checkWinAtAllRows();
-        checkWinAtAllDiagonals();
     }
 
     private void checkWinAtAllDiagonals() {
@@ -57,11 +66,9 @@ public class WinChecker {
         return board.getLogicBasedBoxes()[i][j].getTurnType();
     }
 
-
     private boolean isNotTheSameAsAtIndex(int column, int row, LogicBasedBox.Type possibleWinner) {
         return findMarkAt(row, column) != possibleWinner || findMarkAt(row, column) == null;
     }
-
 
     // i = 0; j = 2
     // i = 2; j = 0
@@ -97,30 +104,26 @@ public class WinChecker {
         }
     }
 
-    void doOnGameEnd() {
+    private void doOnGameEnd() {
         System.out.println("Game Ended, Winner: " + getWinner());
         if (gameEndListener != null)
             gameEndListener.doOnGameEnd();
     }
 
-    public LogicBasedBox.Type getWinner() {
-        return winner;
-    }
-
     private void checkWinAtColumn(final int column) {
         LogicBasedBox.Type possibleWinner = findMarkAt(column, 0);
-            for (int row = 1; row < 3; row++) {
-                if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
-            }
-            declareWinner(possibleWinner);
+        for (int row = 1; row < 3; row++) {
+            if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
         }
+        declareWinner(possibleWinner);
+    }
 
     private void checkWinAtRow(final int row) {
         LogicBasedBox.Type possibleWinner = findMarkAt(0, row);
-            for (int column = 1; column < 3; column++) {
-                if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
-            }
-            declareWinner(possibleWinner);
+        for (int column = 1; column < 3; column++) {
+            if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
+        }
+        declareWinner(possibleWinner);
     }
 
     private boolean isElementOnSameLineEqual(int staticIndex, LogicBasedBox.Type possibleWinner, int changingIndex) {
@@ -129,10 +132,6 @@ public class WinChecker {
         } else return possibleWinner != findMarkAt(changingIndex, staticIndex);
     }
 
-
-    public void setOnGameEnd(GameEndListener gameEndListener) {
-        this.gameEndListener = gameEndListener;
-    }
 
     interface GameEndListener {
         void doOnGameEnd();
