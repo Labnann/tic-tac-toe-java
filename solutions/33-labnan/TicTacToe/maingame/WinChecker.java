@@ -4,7 +4,7 @@ public class WinChecker {
     private Board board;
     private boolean gameEnded = false;
     GameEndListener gameEndListener;
-    private Turn winner = null;
+    private Turn.Type winner = null;
     private short remainingMoveCount = 9;
 
 
@@ -42,7 +42,7 @@ public class WinChecker {
     }
 
     private void checkWinAtLeadingDiagonal() {
-        Turn possibleWinner = findMarkAt(0, 0);
+        Turn.Type possibleWinner = findMarkAt(0, 0);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(i, i, possibleWinner)) {
@@ -53,12 +53,12 @@ public class WinChecker {
         }
     }
 
-    private Turn findMarkAt(int i, int j) {
-        return board.getBoardSquares()[i][j].getTurn();
+    private Turn.Type findMarkAt(int i, int j) {
+        return board.getBoardSquares()[i][j].getTurnType();
     }
 
 
-    private boolean isNotTheSameAsAtIndex(int column, int row, Turn possibleWinner) {
+    private boolean isNotTheSameAsAtIndex(int column, int row, Turn.Type possibleWinner) {
         return findMarkAt(row, column) != possibleWinner || findMarkAt(row, column) == null;
     }
 
@@ -68,7 +68,7 @@ public class WinChecker {
     // m = (2-0)/(0-2) = -1
     // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
     private void checkWinAtAntiDiagonal() {
-        Turn possibleWinner = findMarkAt(0, 2);
+        Turn.Type possibleWinner = findMarkAt(0, 2);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(2 - i, i, possibleWinner)) {
@@ -79,7 +79,7 @@ public class WinChecker {
         }
     }
 
-    private void declareWinner(Turn possibleWinner) {
+    private void declareWinner(Turn.Type possibleWinner) {
         gameEnded = true;
         winner = possibleWinner;
     }
@@ -103,12 +103,12 @@ public class WinChecker {
             gameEndListener.doOnGameEnd();
     }
 
-    public Turn getWinner() {
+    public Turn.Type getWinner() {
         return winner;
     }
 
     private void checkWinAtColumn(final int column) {
-        Turn possibleWinner = findMarkAt(column, 0);
+        Turn.Type possibleWinner = findMarkAt(column, 0);
             for (int row = 1; row < 3; row++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
@@ -116,14 +116,14 @@ public class WinChecker {
         }
 
     private void checkWinAtRow(final int row) {
-        Turn possibleWinner = findMarkAt(0, row);
+        Turn.Type possibleWinner = findMarkAt(0, row);
             for (int column = 1; column < 3; column++) {
                 if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
             }
             declareWinner(possibleWinner);
     }
 
-    private boolean isElementOnSameLineEqual(int staticIndex, Turn possibleWinner, int changingIndex) {
+    private boolean isElementOnSameLineEqual(int staticIndex, Turn.Type possibleWinner, int changingIndex) {
         if (findMarkAt(changingIndex, staticIndex) == null) {
             return true;
         } else return possibleWinner != findMarkAt(changingIndex, staticIndex);

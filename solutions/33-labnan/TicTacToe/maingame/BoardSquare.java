@@ -12,10 +12,10 @@ public class BoardSquare {
     private Pane squarePane = new Pane();
     boolean isTriggered = false;
     Text text = new Text(" ");
-    private Turn turn;
+    private Turn.Type turnType;
 
-    public Turn getTurn() {
-        return turn;
+    public Turn.Type getTurnType() {
+        return turnType;
     }
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
@@ -36,10 +36,10 @@ public class BoardSquare {
         text.setFont(textFont);
     }
 
-    public void triggerSquareAs(Turn turn) {
+    public void triggerSquareAs(Turn.Type turnType) {
         if (this.isNotTriggered()) {
-            this.turn = turn;
-            if (turn == Turn.CROSS)
+            this.turnType = turnType;
+            if (turnType == Turn.Type.CROSS)
                 setText("X");
             else setText("O");
             isTriggered = true;

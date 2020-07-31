@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 public class Board {
     private Pane boardPane = new Pane();
     private BoardSquare[][] boardSquares;
-    private Turn currentTurn = Turn.CROSS;
+    private Turn.Type currentTurnType = Turn.Type.CROSS;
     private BoardListener boardChangeListener;
 
 
@@ -18,8 +18,8 @@ public class Board {
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
-    public void setStartingTurn(Turn startingTurn) {
-        this.currentTurn = startingTurn;
+    public void setStartingTurn(Turn.Type startingTurnType) {
+        this.currentTurnType = startingTurnType;
     }
 
     public void onChange(BoardListener boardChangeListener) {
@@ -52,7 +52,7 @@ public class Board {
 
     public void triggerSquare(BoardSquare boardSquare) {
         if (boardSquare.isNotTriggered()) {
-            boardSquare.triggerSquareAs(currentTurn);
+            boardSquare.triggerSquareAs(currentTurnType);
             changeTurn();
             doOnChange();
         }
@@ -66,9 +66,9 @@ public class Board {
 
 
     private void changeTurn() {
-        if (currentTurn == Turn.CROSS)
-            currentTurn = Turn.ZERO;
-        else currentTurn = Turn.CROSS;
+        if (currentTurnType == Turn.Type.CROSS)
+            currentTurnType = Turn.Type.ZERO;
+        else currentTurnType = Turn.Type.CROSS;
     }
 
     interface BoardListener {

@@ -1,5 +1,8 @@
 package maingame;
 
-enum Turn {
-    ZERO, CROSS
+class Turn {
+
+    enum Type {
+        ZERO, CROSS
+    }
 }

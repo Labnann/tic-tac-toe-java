@@ -17,22 +17,22 @@ public class BoardSquareTester {
     @Test
     public void getSquareIsTriggeredTest() {
 
-        square.triggerSquareAs(Turn.CROSS);
+        square.triggerSquareAs(Turn.Type.CROSS);
         Assertions.assertFalse(square.isNotTriggered());
     }
 
     @Test
     public void getSquarePlaceValueTest() {
-        Assertions.assertNull(square.getTurn());
-        square.triggerSquareAs(Turn.CROSS);
-        Assertions.assertEquals(Turn.CROSS, square.getTurn());
-        square.triggerSquareAs(Turn.ZERO);
-        Assertions.assertEquals(Turn.CROSS, square.getTurn());
+        Assertions.assertNull(square.getTurnType());
+        square.triggerSquareAs(Turn.Type.CROSS);
+        Assertions.assertEquals(Turn.Type.CROSS, square.getTurnType());
+        square.triggerSquareAs(Turn.Type.ZERO);
+        Assertions.assertEquals(Turn.Type.CROSS, square.getTurnType());
         square = new BoardSquare(0, 0);
-        square.triggerSquareAs(Turn.ZERO);
-        Assertions.assertEquals(Turn.ZERO, square.getTurn());
-        square.triggerSquareAs(Turn.CROSS);
-        Assertions.assertEquals(Turn.ZERO, square.getTurn());
+        square.triggerSquareAs(Turn.Type.ZERO);
+        Assertions.assertEquals(Turn.Type.ZERO, square.getTurnType());
+        square.triggerSquareAs(Turn.Type.CROSS);
+        Assertions.assertEquals(Turn.Type.ZERO, square.getTurnType());
     }
 
 

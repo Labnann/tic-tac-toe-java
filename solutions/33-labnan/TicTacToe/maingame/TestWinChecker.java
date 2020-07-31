@@ -26,32 +26,32 @@ public class TestWinChecker {
         initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
         winChecker.checkWin();
-        Assertions.assertEquals(Turn.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(Turn.Type.CROSS, winChecker.getWinner());
     }
 
 
     private void populateColumnWithCross(int column) {
         for (int i = 0; i < 3; i++) {
-            boardSquares[column][i].triggerSquareAs(Turn.CROSS);
+            boardSquares[column][i].triggerSquareAs(Turn.Type.CROSS);
         }
     }
 
-    private void populateColumn(int column, Turn turn) {
+    private void populateColumn(int column, Turn.Type turnType) {
         for (int i = 0; i < 3; i++) {
-            boardSquares[column][i].triggerSquareAs(turn);
+            boardSquares[column][i].triggerSquareAs(turnType);
         }
     }
 
     private void populateRowWithZero(int row) {
         for (int i = 0; i < 3; i++) {
-            boardSquares[i][row].triggerSquareAs(Turn.ZERO);
+            boardSquares[i][row].triggerSquareAs(Turn.Type.ZERO);
         }
     }
 
 
-    private void populateRowWith(int row, Turn turn) {
+    private void populateRowWith(int row, Turn.Type turnType) {
         for (int i = 0; i < 3; i++) {
-            boardSquares[i][row].triggerSquareAs(turn);
+            boardSquares[i][row].triggerSquareAs(turnType);
         }
     }
 
@@ -68,7 +68,7 @@ public class TestWinChecker {
         initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
         winChecker.checkWin();
-        Assertions.assertEquals(Turn.ZERO, winChecker.getWinner());
+        Assertions.assertEquals(Turn.Type.ZERO, winChecker.getWinner());
     }
 
     @Test
@@ -89,42 +89,42 @@ public class TestWinChecker {
     }
 
     private void populateFirstRowUnequally() {
-        boardSquares[0][0].triggerSquareAs(Turn.CROSS);
-        boardSquares[1][0].triggerSquareAs(Turn.CROSS);
-        boardSquares[2][0].triggerSquareAs(Turn.ZERO);
+        boardSquares[0][0].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[1][0].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[2][0].triggerSquareAs(Turn.Type.ZERO);
     }
 
     private void populateFirstColumnUnequally() {
-        boardSquares[0][0].triggerSquareAs(Turn.CROSS);
-        boardSquares[0][1].triggerSquareAs(Turn.CROSS);
-        boardSquares[0][2].triggerSquareAs(Turn.ZERO);
+        boardSquares[0][0].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[0][1].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[0][2].triggerSquareAs(Turn.Type.ZERO);
     }
 
-    private void populateAntiDiagonals(Turn turn) {
-        boardSquares[0][2].triggerSquareAs(turn);
-        boardSquares[1][1].triggerSquareAs(turn);
-        boardSquares[2][0].triggerSquareAs(turn);
+    private void populateAntiDiagonals(Turn.Type turnType) {
+        boardSquares[0][2].triggerSquareAs(turnType);
+        boardSquares[1][1].triggerSquareAs(turnType);
+        boardSquares[2][0].triggerSquareAs(turnType);
     }
 
     @Test
     public void doubleWinPreventionTest() {
 
         initializeWinCheckerAndBoardSquares();
-        populateRowWith(0, Turn.CROSS);
-        populateRowWith(1, Turn.ZERO);
+        populateRowWith(0, Turn.Type.CROSS);
+        populateRowWith(1, Turn.Type.ZERO);
         winChecker.checkWin();
-        Assertions.assertEquals(Turn.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(Turn.Type.CROSS, winChecker.getWinner());
 
     }
 
     @Test
     public void antiDiagonalWinTest() {
         initializeWinCheckerAndBoardSquares();
-        boardSquares[0][2].triggerSquareAs(Turn.CROSS);
-        boardSquares[1][1].triggerSquareAs(Turn.CROSS);
-        boardSquares[2][0].triggerSquareAs(Turn.CROSS);
+        boardSquares[0][2].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[1][1].triggerSquareAs(Turn.Type.CROSS);
+        boardSquares[2][0].triggerSquareAs(Turn.Type.CROSS);
         winChecker.checkWin();
-        Assertions.assertEquals(Turn.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(Turn.Type.CROSS, winChecker.getWinner());
 
     }
 
