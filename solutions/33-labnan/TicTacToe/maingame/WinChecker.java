@@ -54,7 +54,7 @@ public class WinChecker {
     }
 
     private LogicBasedBox.Type findMarkAt(int i, int j) {
-        return board.getBoardSquares()[i][j].getTurnType();
+        return board.getLogicBasedBoxes()[i][j].getTurnType();
     }
 
 

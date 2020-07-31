@@ -11,11 +11,11 @@ public class BoardSquare {
     private Rectangle rectangle = new Rectangle(100, 100);
     private Pane squarePane = new Pane();
     boolean isTriggered = false;
+    private LogicBasedBox logicBasedBox = new LogicBasedBox();
     Text text = new Text(" ");
-    private LogicBasedBox.Type turnType;
 
     public LogicBasedBox.Type getTurnType() {
-        return turnType;
+        return logicBasedBox.getTurnType();
     }
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
@@ -38,7 +38,7 @@ public class BoardSquare {
 
     public void triggerSquareAs(LogicBasedBox.Type turnType) {
         if (this.isNotTriggered()) {
-            this.turnType = turnType;
+            logicBasedBox.setTurnType(turnType);
             if (turnType == LogicBasedBox.Type.CROSS)
                 setText("X");
             else setText("O");
@@ -54,7 +54,9 @@ public class BoardSquare {
         return squarePane;
     }
 
-
+    public LogicBasedBox getLogicBasedBox() {
+        return logicBasedBox;
+    }
 }
 
 

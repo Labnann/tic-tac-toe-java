@@ -11,6 +11,7 @@ public class Board {
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;
     private BoardListener boardChangeListener;
+    private LogicBasedBox[][] logicBasedBoxes = new LogicBasedBox[3][3];
 
 
     Board() {
@@ -47,7 +48,12 @@ public class Board {
         BoardSquare boardSquare = new BoardSquare(i, j);
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> triggerSquare(boardSquare));
+        logicBasedBoxes[i][j] = boardSquare.getLogicBasedBox();
         return boardSquare;
+    }
+
+    public LogicBasedBox[][] getLogicBasedBoxes() {
+        return logicBasedBoxes;
     }
 
     public void triggerSquare(BoardSquare boardSquare) {
