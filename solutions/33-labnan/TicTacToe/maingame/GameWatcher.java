@@ -26,11 +26,14 @@ public class GameWatcher {
 
     public void makeReferenceToAllLines() {
         for (int i = 0; i < 3; i++) {
+            columnLine[i] = new CheckerLine();
+            rowLine[i] = new CheckerLine();
             this.allLines[i] = rowLine[i];
             this.allLines[i + rowLine.length] = columnLine[i];
         }
         this.allLines[rowLine.length + columnLine.length + 1] = leadingDiagonalLine;
         this.allLines[columnLine.length + rowLine.length + 2] = antiDiagonalLine;
+
     }
 
     public boolean isDraw() {
@@ -62,8 +65,6 @@ public class GameWatcher {
 
     private void readyBoxesItemsForChecking() {
         for (int j = 0; j < 3; j++) {
-            columnLine[j] = new CheckerLine();
-            rowLine[j] = new CheckerLine();
             for (int i = 0; i < 3; i++) {
                 addChecker(j, i, i, j);
             }
