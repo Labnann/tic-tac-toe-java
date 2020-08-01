@@ -4,8 +4,8 @@ public class GameWatcher {
 
     private CheckerLine[] rowLine = new CheckerLine[3];
     private CheckerLine[] columnLine = new CheckerLine[3];
-    private CheckerLine leadingDiagonalLine;
-    private CheckerLine antiDiagonalLine;
+    private CheckerLine leadingDiagonalLine = new CheckerLine();
+    private CheckerLine antiDiagonalLine = new CheckerLine();
 
     public CheckerLine[] getRowLine() {
         return rowLine;
@@ -32,6 +32,8 @@ public class GameWatcher {
 
     private void readyBoxesItemsForChecking() {
         for (int j = 0; j < 3; j++) {
+            columnLine[j] = new CheckerLine();
+            rowLine[j] = new CheckerLine();
             for (int i = 0; i < 3; i++) {
                 addChecker(j, i, i, j);
             }
@@ -42,11 +44,17 @@ public class GameWatcher {
     private void addChecker(int j, int i, int finalI, int finalJ) {
         addCheckerAtColumn(logicBasedBoxes[finalI][finalJ], finalJ);
         addCheckerAtRow(finalJ, logicBasedBoxes[finalJ][finalI], rowLine);
-        addCheckerOnDiagonalLocatedAt(j, i, logicBasedBoxes[finalI][finalI], leadingDiagonalLine);
-        addCheckerOnDiagonalLocatedAt(2 - i, j, logicBasedBoxes[finalI][finalJ], antiDiagonalLine);
+        addCheckerOnDiagonalLine(j, i, logicBasedBoxes[finalI][finalI]);
+        addCheckerOnAntiDiagonalLine(i, j);
     }
 
-    private void addCheckerOnDiagonalLocatedAt(int j, int i, LogicBasedBox logicBasedBox, CheckerLine leadingDiagonalLine) {
+    private void addCheckerOnAntiDiagonalLine(int i, int j) {
+        if (i == 2 - j) {
+            logicBasedBoxes[i][j].addOnBoxChange(() -> antiDiagonalLine.addType(logicBasedBoxes[i][j].getTurnType()));
+        }
+    }
+
+    private void addCheckerOnDiagonalLine(int j, int i, LogicBasedBox logicBasedBox) {
         if (i == j) {
             logicBasedBox.addOnBoxChange(() -> leadingDiagonalLine.addType(logicBasedBox.getTurnType()));
         }
