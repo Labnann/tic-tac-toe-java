@@ -11,7 +11,8 @@ class LogicBasedBox {
     }
 
     public void setTurnType(Type turnType) {
-        this.turnType = turnType;
+        if (this.turnType == null)
+            this.turnType = turnType;
         doOnTypeChange();
     }
 

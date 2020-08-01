@@ -4,13 +4,12 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class LogicBasedBoxTester {
-    LogicBasedBox logicBasedBox;
+    LogicBasedBox logicBasedBox = new LogicBasedBox();
     int updateValue = 0;
 
     @Test
     public void testBoxListening() {
 
-        logicBasedBox = new LogicBasedBox();
 
         logicBasedBox.addOnBoxChange(() -> {
             update();
@@ -21,14 +20,19 @@ public class LogicBasedBoxTester {
             update();
             Assertions.assertEquals(3, updateValue);
         });
-
         logicBasedBox.setTurnType(LogicBasedBox.Type.CROSS);
     }
+
+    @Test
+    public void testBoxGetTypeOnDoubleSet() {
+        logicBasedBox.setTurnType(LogicBasedBox.Type.CROSS);
+        logicBasedBox.setTurnType(LogicBasedBox.Type.ZERO);
+        Assertions.assertEquals(LogicBasedBox.Type.CROSS, logicBasedBox.getTurnType());
+    }
+
 
     private void update() {
         updateValue++;
     }
 
-
-    //@Test
 }
