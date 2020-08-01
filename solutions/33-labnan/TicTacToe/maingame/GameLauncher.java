@@ -16,20 +16,36 @@ public class GameLauncher {
     }
 
     void startGame() {
-        createUI();
+        UICreator uiCreator = new UICreator(gameRootStage);
+        uiCreator.createUI();
+        board = uiCreator.getBoard();
         new WinChecker(board).startChecking();
         gameRootStage.show();
     }
+    
+
+}
+
+class UICreator {
+    Board board = new Board();
+    Pane rootPane = new Pane();
+    private Stage gameRootStage;
 
 
-    private void createUI() {
+    UICreator(Stage gameRootStage) {
+        this.gameRootStage = gameRootStage;
+
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void createUI() {
         Scene rootScene = new Scene(rootPane, 500, 500);
-        board = new Board();
         rootPane.getChildren().add(board.getBoardPane());
         gameRootStage.setScene(rootScene);
     }
-
-
 }
 
 
