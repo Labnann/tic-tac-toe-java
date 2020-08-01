@@ -2,10 +2,44 @@ package maingame;
 
 public class GameWatcher {
 
-    private CheckerLine[] rowLine = new CheckerLine[3];
-    private CheckerLine[] columnLine = new CheckerLine[3];
-    private CheckerLine leadingDiagonalLine = new CheckerLine();
-    private CheckerLine antiDiagonalLine = new CheckerLine();
+    private CheckerLine[] rowLine;
+    private CheckerLine[] columnLine;
+    private CheckerLine leadingDiagonalLine;
+    private CheckerLine antiDiagonalLine;
+    private CheckerLine[] allLines;
+
+    GameWatcher(LogicBasedBox[][] logicBasedBoxes) {
+        this.logicBasedBoxes = logicBasedBoxes;
+        initializeLines();
+        readyBoxesItemsForChecking();
+
+    }
+
+    void initializeLines() {
+        rowLine = new CheckerLine[3];
+        columnLine = new CheckerLine[3];
+        leadingDiagonalLine = new CheckerLine();
+        antiDiagonalLine = new CheckerLine();
+        allLines = new CheckerLine[9];
+        makeReferenceToAllLines();
+    }
+
+    public void makeReferenceToAllLines() {
+        for (int i = 0; i < 3; i++) {
+            this.allLines[i] = rowLine[i];
+            this.allLines[i + rowLine.length] = columnLine[i];
+        }
+        this.allLines[rowLine.length + columnLine.length + 1] = leadingDiagonalLine;
+        this.allLines[columnLine.length + rowLine.length + 2] = antiDiagonalLine;
+    }
+
+    public boolean isDraw() {
+        for (CheckerLine i : allLines) {
+            if (i.isWinnable()) return false;
+        }
+        return true;
+    }
+
 
     public CheckerLine[] getRowLine() {
         return rowLine;
@@ -25,10 +59,6 @@ public class GameWatcher {
 
     LogicBasedBox[][] logicBasedBoxes;
 
-    GameWatcher(LogicBasedBox[][] logicBasedBoxes) {
-        this.logicBasedBoxes = logicBasedBoxes;
-        readyBoxesItemsForChecking();
-    }
 
     private void readyBoxesItemsForChecking() {
         for (int j = 0; j < 3; j++) {
@@ -74,16 +104,20 @@ public class GameWatcher {
 class CheckerLine {
     private int count = 0;
     private LogicBasedBox.Type type;
-    private boolean updatable = true;
+    private boolean winnable = true;
 
     public void addType(LogicBasedBox.Type type) {
-        if (!updatable || count == 3) return;
+        if (!winnable || count == 3) return;
         if (this.type == null) {
             this.type = type;
             count++;
         } else if (this.type == type) {
             count++;
-        } else updatable = false;
+        } else winnable = false;
+    }
+
+    public boolean isWinnable() {
+        return winnable;
     }
 
     public int getCount() {

@@ -9,6 +9,7 @@ public class GameWatcherTester {
     LogicBasedBox[][] logicBasedBoxes;
     GameWatcher gameWatcher;
 
+
     @BeforeClass
     public static void setup() throws InterruptedException {
         JavaFXInitializer.initialize();
@@ -28,5 +29,10 @@ public class GameWatcherTester {
         Assertions.assertEquals(1, gameWatcher.getColumnLine()[2].getCount());
         Assertions.assertEquals(3, gameWatcher.getLeadingDiagonalLine().getCount());
         Assertions.assertEquals(1, gameWatcher.getAntiDiagonalLine().getCount());
+        Assertions.assertEquals(1, gameWatcher.getRowLine()[0].getCount());
+        Assertions.assertEquals(1, gameWatcher.getRowLine()[1].getCount());
+        Assertions.assertEquals(1, gameWatcher.getRowLine()[2].getCount());
+        Assertions.assertFalse(gameWatcher.isDraw());
+
     }
 }
