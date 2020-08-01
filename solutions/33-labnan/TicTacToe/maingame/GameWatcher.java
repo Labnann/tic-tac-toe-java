@@ -2,11 +2,26 @@ package maingame;
 
 public class GameWatcher {
 
-    CheckerLine[] rowLine = new CheckerLine[3];
-    CheckerLine[] columnLine = new CheckerLine[3];
-    CheckerLine leadingDiagonalLine;
-    CheckerLine antiDiagonalLine;
+    private CheckerLine[] rowLine = new CheckerLine[3];
+    private CheckerLine[] columnLine = new CheckerLine[3];
+    private CheckerLine leadingDiagonalLine;
+    private CheckerLine antiDiagonalLine;
 
+    public CheckerLine[] getRowLine() {
+        return rowLine;
+    }
+
+    public CheckerLine[] getColumnLine() {
+        return columnLine;
+    }
+
+    public CheckerLine getAntiDiagonalLine() {
+        return antiDiagonalLine;
+    }
+
+    public CheckerLine getLeadingDiagonalLine() {
+        return leadingDiagonalLine;
+    }
 
     LogicBasedBox[][] logicBasedBoxes;
 
@@ -49,16 +64,21 @@ public class GameWatcher {
 }
 
 class CheckerLine {
-    int count = 1;
-    LogicBasedBox.Type type;
-    boolean status = true;
+    private int count = 0;
+    private LogicBasedBox.Type type;
+    private boolean updatable = true;
 
     public void addType(LogicBasedBox.Type type) {
+        if (!updatable || count == 3) return;
         if (this.type == null) {
             this.type = type;
+            count++;
         } else if (this.type == type) {
             count++;
-        } else status = false;
+        } else updatable = false;
     }
 
+    public int getCount() {
+        return count;
+    }
 }
