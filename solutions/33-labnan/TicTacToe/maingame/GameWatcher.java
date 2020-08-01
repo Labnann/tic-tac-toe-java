@@ -18,9 +18,7 @@ public class GameWatcher {
     void initializeLines() {
         rowLine = new CheckerLine[3];
         columnLine = new CheckerLine[3];
-        leadingDiagonalLine = new CheckerLine();
-        antiDiagonalLine = new CheckerLine();
-        allLines = new CheckerLine[9];
+        allLines = new CheckerLine[8];
         makeReferenceToAllLines();
     }
 
@@ -31,9 +29,10 @@ public class GameWatcher {
             this.allLines[i] = rowLine[i];
             this.allLines[i + rowLine.length] = columnLine[i];
         }
-        this.allLines[rowLine.length + columnLine.length + 1] = leadingDiagonalLine;
-        this.allLines[columnLine.length + rowLine.length + 2] = antiDiagonalLine;
-
+        leadingDiagonalLine = new CheckerLine();
+        antiDiagonalLine = new CheckerLine();
+        this.allLines[rowLine.length + columnLine.length] = leadingDiagonalLine;
+        this.allLines[columnLine.length + rowLine.length + 1] = antiDiagonalLine;
     }
 
     public boolean isDraw() {

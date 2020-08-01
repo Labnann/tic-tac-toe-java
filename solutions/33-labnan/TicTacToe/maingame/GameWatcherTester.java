@@ -35,4 +35,22 @@ public class GameWatcherTester {
         Assertions.assertFalse(gameWatcher.isDraw());
 
     }
+
+    @Test
+    public void testCheckGameDraw() {
+        board.getLogicBasedBoxes();
+        logicBasedBoxes = board.getLogicBasedBoxes();
+        gameWatcher = new GameWatcher(logicBasedBoxes);
+        logicBasedBoxes[0][0].setTurnType(LogicBasedBox.Type.CROSS);
+        logicBasedBoxes[0][1].setTurnType(LogicBasedBox.Type.ZERO);
+        logicBasedBoxes[1][0].setTurnType(LogicBasedBox.Type.ZERO);
+        logicBasedBoxes[1][1].setTurnType(LogicBasedBox.Type.CROSS);
+        logicBasedBoxes[1][2].setTurnType(LogicBasedBox.Type.CROSS);
+        logicBasedBoxes[2][0].setTurnType(LogicBasedBox.Type.ZERO);
+        logicBasedBoxes[2][1].setTurnType(LogicBasedBox.Type.CROSS);
+        logicBasedBoxes[2][2].setTurnType(LogicBasedBox.Type.ZERO);
+        Assertions.assertTrue(gameWatcher.isDraw());
+
+
+    }
 }
