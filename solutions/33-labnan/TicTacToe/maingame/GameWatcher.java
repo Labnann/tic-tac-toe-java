@@ -15,6 +15,10 @@ public class GameWatcher {
 
     }
 
+    public CheckerLine[] getAllLines() {
+        return allLines;
+    }
+
     void initializeLines() {
         rowLine = new CheckerLine[3];
         columnLine = new CheckerLine[3];
@@ -118,6 +122,10 @@ class CheckerLine {
 
     public boolean isWinnable() {
         return winnable;
+    }
+
+    public LogicBasedBox.Type getType() {
+        return type;
     }
 
     public int getCount() {
