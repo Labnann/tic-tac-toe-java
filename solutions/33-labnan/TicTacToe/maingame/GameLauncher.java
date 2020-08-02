@@ -4,6 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -49,9 +52,17 @@ class UICreator {
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 700, 500);
         createLine();
+        addButtons();
         rootPane.getChildren().addAll(board.getBoardPane(), line);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
+    }
+
+    void addButtons() {
+        Pane startButton = createButton("Start");
+        startButton.relocate(500, 200);
+        rootPane.getChildren().addAll(startButton);
+
     }
 
     void createLine() {
@@ -59,12 +70,23 @@ class UICreator {
         line.setStartY(30);
         line.setEndX(430);
         line.setEndY(430);
-        line.autosize();
         line.setStrokeWidth(7);
         line.setFill(Color.BLACK);
     }
 
+    Pane createButton(String buttonText) {
+        Pane pane = new Pane();
+        Text text = new Text();
+        text.setFont(new Font("Arial", 15));
+        text.setText(buttonText);
+        text.setFill(Color.WHITE);
+        Rectangle rectangle = new Rectangle(50, 30);
+        pane.getChildren().addAll(rectangle, text);
+        return pane;
+    }
+
 }
+
 
 
 
