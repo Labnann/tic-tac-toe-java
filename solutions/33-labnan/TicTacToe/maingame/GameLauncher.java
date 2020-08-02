@@ -75,18 +75,27 @@ class UICreator {
     }
 
     Pane createButton(String buttonText) {
-        Pane pane = new Pane();
-        Text text = new Text();
-        text.setFont(new Font("Arial", 15));
-        text.setText(buttonText);
-        text.setFill(Color.WHITE);
-        Rectangle rectangle = new Rectangle(50, 30);
-        pane.getChildren().addAll(rectangle, text);
-        return pane;
+        return new Button("Start").getPane();
     }
 
 }
 
+class Button {
+    Pane pane = new Pane();
+    Text text = new Text();
+    Rectangle rectangle = new Rectangle(50, 30);
+
+    Button(String buttonText) {
+        text.setFont(new Font("Arial", 15));
+        text.setText(buttonText);
+        text.setFill(Color.WHITE);
+        pane.getChildren().addAll(rectangle, text);
+    }
+
+    public Pane getPane() {
+        return pane;
+    }
+}
 
 
 
