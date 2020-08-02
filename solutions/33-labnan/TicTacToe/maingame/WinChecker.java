@@ -36,10 +36,10 @@ public class WinChecker {
 
 
     private void doOnBoardChange() {
+        checkWin();
         if (--remainingMoveCount == 0) {
             gameEnded = true;
         }
-        checkWin();
         if (gameEnded) {
             doOnGameEnd();
         }
