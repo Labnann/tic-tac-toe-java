@@ -4,9 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -15,6 +12,7 @@ public class GameLauncher {
     Pane rootPane = new Pane();
     private Board board;
     WinChecker winChecker;
+    UICreator uiCreator;
 
 
     public void setGameRootStage(Stage gameRootStage) {
@@ -22,10 +20,16 @@ public class GameLauncher {
     }
 
     void startGame() {
-        UICreator uiCreator = new UICreator(gameRootStage);
+        uiCreator = new UICreator(gameRootStage);
         uiCreator.createUI();
+        addButtonFunctions();
         board = uiCreator.getBoard();
         new WinChecker(board).startChecking();
+    }
+
+    void addButtonFunctions() {
+
+        uiCreator.getStartButton().setOnMouseClicked(event -> startGame());
     }
 
 
@@ -34,6 +38,9 @@ public class GameLauncher {
 class UICreator {
     Board board = new Board();
     Pane rootPane = new Pane();
+    Pane startButton;
+    Pane buttonPane = new Pane();
+    Pane changeThemeButton;
 
     Line line = new Line();
 
@@ -59,9 +66,11 @@ class UICreator {
     }
 
     void addButtons() {
-        Pane startButton = createButton("Start");
-        startButton.relocate(500, 200);
-        rootPane.getChildren().addAll(startButton);
+        buttonPane.relocate(450, 0);
+        startButton = createButton("Start");
+        startButton.relocate(50, 200);
+        buttonPane.getChildren().addAll(startButton);
+        rootPane.getChildren().addAll(buttonPane);
 
     }
 
@@ -74,27 +83,14 @@ class UICreator {
         line.setFill(Color.BLACK);
     }
 
-    Pane createButton(String buttonText) {
+    public Pane getStartButton() {
+        return startButton;
+    }
+
+    private Pane createButton(String buttonText) {
         return new Button("Start").getPane();
     }
 
-}
-
-class Button {
-    Pane pane = new Pane();
-    Text text = new Text();
-    Rectangle rectangle = new Rectangle(50, 30);
-
-    Button(String buttonText) {
-        text.setFont(new Font("Arial", 15));
-        text.setText(buttonText);
-        text.setFill(Color.WHITE);
-        pane.getChildren().addAll(rectangle, text);
-    }
-
-    public Pane getPane() {
-        return pane;
-    }
 }
 
 
