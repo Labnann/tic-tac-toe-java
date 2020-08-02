@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 public class Button {
     Pane pane = new Pane();
     Text text = new Text();
-    Rectangle rectangle = new Rectangle(75, 40);
+    Rectangle rectangle = new Rectangle(220, 40);
 
     Button(String buttonText) {
         configText(buttonText);

@@ -36,11 +36,11 @@ public class GameLauncher {
 }
 
 class UICreator {
-    Board board = new Board();
-    Pane rootPane = new Pane();
-    Pane startButton;
-    Pane buttonPane = new Pane();
-    Pane changeThemeButton;
+    private Board board = new Board();
+    private Pane rootPane = new Pane();
+    private Pane startButton;
+    private Pane buttonPane = new Pane();
+    private Pane changeThemeButton;
 
     Line line = new Line();
 
@@ -57,10 +57,10 @@ class UICreator {
     }
 
     public void createUI() {
-        Scene rootScene = new Scene(rootPane, 700, 500);
+        Scene rootScene = new Scene(rootPane, 750, 500);
         createLine();
         addButtons();
-        rootPane.getChildren().addAll(board.getBoardPane(), line);
+        rootPane.getChildren().addAll(board.getBoardPane(), line, buttonPane);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
     }
@@ -68,9 +68,11 @@ class UICreator {
     void addButtons() {
         buttonPane.relocate(450, 0);
         startButton = createButton("Start");
+        changeThemeButton = createButton("Change Theme");
         startButton.relocate(50, 200);
-        buttonPane.getChildren().addAll(startButton);
-        rootPane.getChildren().addAll(buttonPane);
+        changeThemeButton.relocate(50, 250);
+        buttonPane.getChildren().addAll(startButton, changeThemeButton);
+
 
     }
 
@@ -88,7 +90,7 @@ class UICreator {
     }
 
     private Pane createButton(String buttonText) {
-        return new Button("Start").getPane();
+        return new Button(buttonText).getPane();
     }
 
 }
