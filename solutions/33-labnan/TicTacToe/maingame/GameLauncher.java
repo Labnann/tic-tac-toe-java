@@ -12,6 +12,7 @@ public class GameLauncher {
     UICreator uiCreator;
 
 
+
     public void setGameRootStage(Stage gameRootStage) {
         this.gameRootStage = gameRootStage;
     }
@@ -27,9 +28,14 @@ public class GameLauncher {
     void addButtonFunctions() {
 
         uiCreator.getStartButton().setOnMouseClicked(event -> startGame());
+        uiCreator.getChangeThemeButton().setOnMouseClicked(event -> changeTheme());
+
 
     }
 
+    private void changeTheme() {
+
+    }
 
 }
 

@@ -1,13 +1,11 @@
 package maingame;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 
 public class Board {
-    private Pane boardPane = new Pane();
+    Theme theme = new Theme();
+    private Pane boardPane = theme.getBoardPane();
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;
     private BoardListener boardChangeListener;
@@ -16,7 +14,10 @@ public class Board {
 
     Board() {
         createBoard();
-        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
 
     public void setStartingTurn(LogicBasedBox.Type startingTurnType) {
@@ -49,6 +50,7 @@ public class Board {
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> triggerSquare(boardSquare));
         logicBasedBoxes[i][j] = boardSquare.getLogicBasedBox();
+        boardSquare.setTheme(this.theme);
         return boardSquare;
     }
 
