@@ -8,13 +8,28 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class Theme {
+interface Theme {
+    String getCross();
+
+    String getZero();
+
+    Text getText();
+
+    Pane getSquarePane();
+
+    Rectangle getBoardRectangle();
+
+    Pane getBoardPane();
+
+}
+
+public class ClassicTheme implements Theme {
     Text text;
     Rectangle boardRectangle = new Rectangle(100, 100);
     Pane squarePane = new Pane();
     Pane boardPane = new Pane();
 
-    Theme() {
+    ClassicTheme() {
         this.text = new Text(" ");
         boardRectangle.setFill(Color.WHITE);
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
