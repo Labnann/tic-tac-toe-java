@@ -4,7 +4,7 @@ import javafx.scene.layout.Pane;
 
 
 public class Board {
-    Theme theme = new Theme();
+    Theme theme = new ClassicTheme();
     private Pane boardPane = theme.getBoardPane();
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 public class UICreator {
-    Theme theme = new Theme();
+    Theme theme = new ClassicTheme();
     Line line = new Line();
     private Board board = new Board();
     private Pane rootPane = new Pane();

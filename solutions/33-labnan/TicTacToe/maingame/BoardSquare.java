@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
 
 
 public class BoardSquare {
-    Theme theme = new Theme();
+    Theme theme = new ClassicTheme();
     Text text = theme.getText();
     private Pane squarePane = theme.getSquarePane();
     boolean isTriggered = false;
