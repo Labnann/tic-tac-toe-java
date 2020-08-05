@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 
 public class UICreator {
+    Theme theme = new Theme();
     Line line = new Line();
     private Board board = new Board();
     private Pane rootPane = new Pane();
@@ -18,6 +19,7 @@ public class UICreator {
     private Pane buttonPane = new Pane();
     private Pane changeThemeButton;
     private Stage gameRootStage;
+
 
     UICreator(Stage gameRootStage) {
         this.gameRootStage = gameRootStage;
@@ -34,6 +36,7 @@ public class UICreator {
 
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
+        board.setTheme(theme);
         createLine();
         addButtons();
         rootPane.getChildren().addAll(board.getBoardPane(), line, buttonPane);
@@ -51,6 +54,7 @@ public class UICreator {
 
 
     }
+
 
     void createLine() {
         line.setStartX(430);
