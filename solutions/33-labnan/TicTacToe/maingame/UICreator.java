@@ -4,7 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class UICreator {
     Line line = new Line();
@@ -68,5 +72,34 @@ public class UICreator {
 }
 
 class Theme {
+    Text text;
+    Rectangle rectangle = new Rectangle(100, 100);
 
+    Theme() {
+        this.text = new Text(" ");
+        manageInnerText();
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public Text getText() {
+        return this.text;
+    }
+
+    private void manageInnerText() {
+        text.toFront();
+        Font textFont = new Font("Arial_Bold", 60);
+        text.relocate(rectangle.getWidth() / 2 - textFont.getSize() / 3, rectangle.getHeight() / 2);
+        text.setFont(textFont);
+    }
+
+    public String getCross() {
+        return "X";
+    }
+
+    public String getZero() {
+        return "O";
+    }
 }

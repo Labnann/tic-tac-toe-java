@@ -3,16 +3,16 @@ package maingame;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
 public class BoardSquare {
-    private Rectangle rectangle = new Rectangle(100, 100);
+    Theme theme = new Theme();
+    Text text = theme.getText();
     private Pane squarePane = new Pane();
     boolean isTriggered = false;
     private LogicBasedBox logicBasedBox = new LogicBasedBox();
-    Text text = new Text(" ");
+    private Rectangle rectangle = theme.getRectangle();
 
     public LogicBasedBox.Type getTurnType() {
         return logicBasedBox.getTurnType();
@@ -21,7 +21,6 @@ public class BoardSquare {
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         rectangle.setFill(Color.WHITE);
-        manageInnerText();
         squarePane.getChildren().addAll(rectangle, text);
     }
 
@@ -29,19 +28,12 @@ public class BoardSquare {
         return !isTriggered;
     }
 
-    private void manageInnerText() {
-        text.toFront();
-        Font textFont = new Font("Arial_Bold", 60);
-        text.relocate(rectangle.getWidth() / 2 - textFont.getSize() / 3, rectangle.getHeight() / 2);
-        text.setFont(textFont);
-    }
-
     public void triggerSquareAs(LogicBasedBox.Type turnType) {
         if (this.isNotTriggered()) {
             logicBasedBox.setTurnType(turnType);
             if (turnType == LogicBasedBox.Type.CROSS)
-                setText("X");
-            else setText("O");
+                setText(theme.getCross());
+            else setText(theme.getZero());
             isTriggered = true;
         }
     }
