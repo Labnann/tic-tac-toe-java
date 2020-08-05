@@ -1,12 +1,12 @@
 package maingame;
 
 import javafx.scene.layout.Pane;
-import theme.ClassicTheme;
+import theme.ForestTheme;
 import theme.Theme;
 
 
 public class Board {
-    Theme theme = new ClassicTheme();
+    Theme theme = new ForestTheme();
     private Pane boardPane = theme.getBoardPane();
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;

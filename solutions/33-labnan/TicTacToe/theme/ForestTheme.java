@@ -30,7 +30,7 @@ public class ForestTheme implements Theme {
 
     private void manageInnerText() {
         text.toFront();
-        Font textFont = new Font("Arial_Bold", 60);
+        Font textFont = new Font("Segoe_UI_Symbol", 60);
         text.relocate(boardRectangle.getWidth() / 2 - textFont.getSize() / 3, boardRectangle.getHeight() / 2);
         text.setFont(textFont);
     }
@@ -47,16 +47,16 @@ public class ForestTheme implements Theme {
 
     @Override
     public Pane getSquarePane() {
-        return null;
+        return squarePane;
     }
 
     @Override
     public Rectangle getBoardRectangle() {
-        return null;
+        return boardRectangle;
     }
 
     @Override
     public Pane getBoardPane() {
-        return null;
+        return boardPane;
     }
 }

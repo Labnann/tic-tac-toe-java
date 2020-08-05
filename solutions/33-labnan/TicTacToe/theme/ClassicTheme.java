@@ -39,7 +39,7 @@ public class ClassicTheme implements Theme {
 
     private void manageInnerText() {
         text.toFront();
-        Font textFont = new Font("Arial_Bold", 60);
+        Font textFont = new Font("Segoe_UI_Symbol", 60);
         text.relocate(boardRectangle.getWidth() / 2 - textFont.getSize() / 3, boardRectangle.getHeight() / 2);
         text.setFont(textFont);
     }
