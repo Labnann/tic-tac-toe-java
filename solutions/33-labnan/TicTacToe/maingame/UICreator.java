@@ -5,6 +5,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import theme.ClassicTheme;
+import theme.Theme;
 
 
 public class UICreator {

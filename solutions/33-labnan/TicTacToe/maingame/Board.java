@@ -1,6 +1,8 @@
 package maingame;
 
 import javafx.scene.layout.Pane;
+import theme.ClassicTheme;
+import theme.Theme;
 
 
 public class Board {

@@ -1,4 +1,4 @@
-package maingame;
+package theme;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -8,28 +8,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-interface Theme {
-    String getCross();
-
-    String getZero();
-
-    Text getText();
-
-    Pane getSquarePane();
-
-    Rectangle getBoardRectangle();
-
-    Pane getBoardPane();
-
-}
-
 public class ClassicTheme implements Theme {
     Text text;
     Rectangle boardRectangle = new Rectangle(100, 100);
     Pane squarePane = new Pane();
     Pane boardPane = new Pane();
 
-    ClassicTheme() {
+    public ClassicTheme() {
         this.text = new Text(" ");
         boardRectangle.setFill(Color.WHITE);
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
