@@ -11,7 +11,7 @@ public class BoardSquare {
     private Pane squarePane = theme.getSquarePane();
     boolean isTriggered = false;
     private LogicBasedBox logicBasedBox = new LogicBasedBox();
-    private Rectangle rectangle = theme.getRectangle();
+    private Rectangle rectangle = theme.getBoardRectangle();
 
     public LogicBasedBox.Type getTurnType() {
         return logicBasedBox.getTurnType();
