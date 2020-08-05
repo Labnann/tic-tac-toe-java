@@ -18,3 +18,4 @@ public interface Theme {
     Pane getBoardPane();
 
 }
+
