@@ -6,8 +6,8 @@ import theme.Theme;
 
 
 public class Board {
-    Theme theme = new ForestTheme();
-    private Pane boardPane = theme.getBoardPane();
+    Theme theme;
+    private Pane boardPane;
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;
     private BoardListener boardChangeListener;
@@ -15,7 +15,13 @@ public class Board {
 
 
     Board() {
+        adjustWithTheme();
         createBoard();
+    }
+
+    private void adjustWithTheme() {
+        theme = new ForestTheme();
+        boardPane = theme.getBoardPane();
     }
 
     public void setTheme(Theme theme) {
@@ -52,7 +58,6 @@ public class Board {
         boardPane.getChildren().add(boardSquare.getSquarePane());
         boardSquare.getSquarePane().setOnMouseClicked(event -> triggerSquare(boardSquare));
         logicBasedBoxes[i][j] = boardSquare.getLogicBasedBox();
-        boardSquare.setTheme(this.theme);
         return boardSquare;
     }
 
