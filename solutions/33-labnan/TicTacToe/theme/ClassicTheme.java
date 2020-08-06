@@ -1,23 +1,23 @@
 package theme;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ClassicTheme implements Theme {
 
     ForestTheme forestTheme = new ForestTheme();
 
-    public void setBoardRectangle(Rectangle boardRectangle) {
-        forestTheme.setBoardRectangle(boardRectangle);
-    }
 
     public void setSquarePane(Pane squarePane) {
-        forestTheme.setSquarePane(squarePane);
+        squarePane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        squarePane.setPrefSize(100, 100);
     }
 
     public void setBoardPane(Pane boardPane) {
-        forestTheme.setBoardPane(boardPane);
+        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
 

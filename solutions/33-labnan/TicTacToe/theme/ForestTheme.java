@@ -4,20 +4,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ForestTheme implements Theme {
 
     private Text text;
-
-    public void setBoardRectangle(Rectangle boardRectangle) {
-        boardRectangle.setWidth(0);
-        boardRectangle.setHeight(0);
-
-        boardRectangle.setFill(Color.DARKGREEN);
-    }
 
     public void setSquarePane(Pane squarePane) {
         squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
