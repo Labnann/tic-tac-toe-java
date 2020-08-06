@@ -1,54 +1,38 @@
 package theme;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ClassicTheme implements Theme {
-    Text text;
-    Rectangle boardRectangle = new Rectangle(100, 100);
-    Pane squarePane = new Pane();
-    Pane boardPane = new Pane();
 
-    public ClassicTheme() {
-        this.text = new Text(" ");
-        boardRectangle.setFill(Color.WHITE);
-        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        manageInnerText();
+    ForestTheme forestTheme = new ForestTheme();
+
+    public void setBoardRectangle(Rectangle boardRectangle) {
+        forestTheme.setBoardRectangle(boardRectangle);
     }
 
-    public Pane getBoardPane() {
-        return boardPane;
+    public void setSquarePane(Pane squarePane) {
+        forestTheme.setSquarePane(squarePane);
     }
 
-    public Rectangle getBoardRectangle() {
-        return boardRectangle;
+    public void setBoardPane(Pane boardPane) {
+        forestTheme.setBoardPane(boardPane);
     }
 
-    public Pane getSquarePane() {
-        return squarePane;
+
+    public void setText(Text text) {
+        forestTheme.setText(text);
     }
 
-    public Text getText() {
-        return this.text;
+    @Override
+    public String getZero() {
+        return "O";
     }
 
-    private void manageInnerText() {
-        text.toFront();
-        Font textFont = new Font("Segoe_UI_Symbol", 60);
-        text.relocate(boardRectangle.getWidth() / 2 - textFont.getSize() / 3, boardRectangle.getHeight() / 2);
-        text.setFont(textFont);
-    }
-
+    @Override
     public String getCross() {
         return "X";
     }
 
-    public String getZero() {
-        return "O";
-    }
 }

@@ -9,13 +9,12 @@ public interface Theme {
 
     String getZero();
 
-    Text getText();
+    void setBoardRectangle(Rectangle boardRectangle);
 
-    Pane getSquarePane();
+    void setSquarePane(Pane squarePane);
 
-    Rectangle getBoardRectangle();
+    void setBoardPane(Pane boardPane);
 
-    Pane getBoardPane();
+    void setText(Text text);
 
 }
-

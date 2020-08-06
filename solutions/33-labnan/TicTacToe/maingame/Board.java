@@ -1,13 +1,12 @@
 package maingame;
 
 import javafx.scene.layout.Pane;
-import theme.ForestTheme;
 import theme.Theme;
 
 
 public class Board {
-    Theme theme;
-    private Pane boardPane;
+    Theme theme;// = new ForestTheme();
+    private Pane boardPane = new Pane();
     private BoardSquare[][] boardSquares;
     private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;
     private BoardListener boardChangeListener;
@@ -15,17 +14,23 @@ public class Board {
 
 
     Board() {
-        adjustWithTheme();
         createBoard();
     }
 
     private void adjustWithTheme() {
-        theme = new ForestTheme();
-        boardPane = theme.getBoardPane();
+        theme.setBoardPane(boardPane);
+        for (BoardSquare[] i : boardSquares) {
+            for (BoardSquare j : i) {
+                j.setTheme(theme);
+            }
+        }
+
     }
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+        adjustWithTheme();
+
     }
 
     public void setStartingTurn(LogicBasedBox.Type startingTurnType) {
@@ -89,6 +94,8 @@ public class Board {
     interface BoardListener {
         void performOnChange();
     }
+
+
 }
 
 

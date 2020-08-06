@@ -5,12 +5,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import theme.ClassicTheme;
+import theme.ForestTheme;
 import theme.Theme;
 
 
 public class UICreator {
-    Theme theme = new ClassicTheme();
+    Theme theme = new ForestTheme();
     Line line = new Line();
     private Board board = new Board();
     private Pane rootPane = new Pane();

@@ -10,28 +10,35 @@ import javafx.scene.text.Text;
 
 public class ForestTheme implements Theme {
 
-    Text text;
-    Rectangle boardRectangle = new Rectangle(100, 100);
-    Pane squarePane = new Pane();
-    Pane boardPane = new Pane();
+    private Text text;
 
-    public ForestTheme() {
-        this.text = new Text(" ");
+    public void setBoardRectangle(Rectangle boardRectangle) {
+        boardRectangle.setWidth(0);
+        boardRectangle.setHeight(0);
+
         boardRectangle.setFill(Color.DARKGREEN);
+    }
+
+    public void setSquarePane(Pane squarePane) {
+        squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
+        squarePane.setPrefSize(100, 100);
+    }
+
+    public void setBoardPane(Pane boardPane) {
         boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
+    }
+
+
+    public void setText(Text text) {
+        this.text = text;
         manageInnerText();
-
     }
 
-    @Override
-    public String getCross() {
-        return "🌸";
-    }
 
     private void manageInnerText() {
         text.toFront();
-        Font textFont = new Font("Segoe_UI_Symbol", 60);
-        text.relocate(boardRectangle.getWidth() / 2 - textFont.getSize() / 3, boardRectangle.getHeight() / 2);
+        Font textFont = new Font("Arial Black Bold", 60);
+        text.relocate(20, 50);
         text.setFont(textFont);
     }
 
@@ -41,22 +48,8 @@ public class ForestTheme implements Theme {
     }
 
     @Override
-    public Text getText() {
-        return this.text;
+    public String getCross() {
+        return "🌸";
     }
 
-    @Override
-    public Pane getSquarePane() {
-        return squarePane;
-    }
-
-    @Override
-    public Rectangle getBoardRectangle() {
-        return boardRectangle;
-    }
-
-    @Override
-    public Pane getBoardPane() {
-        return boardPane;
-    }
 }

@@ -3,38 +3,40 @@ package maingame;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import theme.ForestTheme;
 import theme.Theme;
 
 
 public class BoardSquare {
 
-    Theme theme;
-    Text text;
-    private Pane squarePane;
+    Rectangle rectangle;
+    private Theme theme;// = new ForestTheme();
+    private Text text = new Text();
     boolean isTriggered = false;
     private LogicBasedBox logicBasedBox = new LogicBasedBox();
-    private Rectangle rectangle;
+    private Pane squarePane = new Pane();
 
     public LogicBasedBox.Type getTurnType() {
         return logicBasedBox.getTurnType();
     }
 
     public BoardSquare(int xAxisIndex, int yAxisIndex) {
-        adjustWithTheme(xAxisIndex, yAxisIndex);
+        squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
+        squarePane.getChildren().addAll(text);
     }
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+        adjustWithTheme();
     }
 
-    private void adjustWithTheme(int xAxisIndex, int yAxisIndex) {
-        this.theme = new ForestTheme();
-        this.text = theme.getText();
-        this.squarePane = theme.getSquarePane();
-        this.rectangle = theme.getBoardRectangle();
-        squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
-        squarePane.getChildren().addAll(rectangle, text);
+
+    private void adjustWithTheme() {
+        setText();
+        theme.setSquarePane(squarePane);
+        // theme.setBoardRectangle(rectangle);
+        theme.setText(text);
+
+
     }
 
     public boolean isNotTriggered() {
@@ -53,7 +55,7 @@ public class BoardSquare {
     public void setText() {
         if (logicBasedBox.getTurnType() == LogicBasedBox.Type.CROSS)
             text.setText(theme.getCross());
-        else text.setText(theme.getZero());
+        else if (logicBasedBox.getTurnType() == LogicBasedBox.Type.ZERO) text.setText(theme.getZero());
     }
 
     public Pane getSquarePane() {
