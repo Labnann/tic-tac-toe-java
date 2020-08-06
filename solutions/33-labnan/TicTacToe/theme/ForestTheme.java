@@ -30,7 +30,7 @@ public class ForestTheme implements Theme {
     private void manageInnerText() {
         text.toFront();
         Font textFont = new Font("Arial Black Bold", 60);
-        text.relocate(20, 50);
+        text.relocate(20, 40);
         text.setFont(textFont);
     }
 
