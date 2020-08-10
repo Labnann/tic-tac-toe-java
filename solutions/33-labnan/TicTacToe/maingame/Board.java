@@ -7,10 +7,10 @@ import theme.Theme;
 public class Board {
     Theme theme;// = new ForestTheme();
     private Pane boardPane = new Pane();
-    private BoardSquare[][] boardSquares;
-    private LogicBasedBox.Type currentTurnType = LogicBasedBox.Type.CROSS;
+    private SmallCellUI[][] smallCellUIS;
+    private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
     private BoardListener boardChangeListener;
-    private LogicBasedBox[][] logicBasedBoxes = new LogicBasedBox[3][3];
+    private SmallCell[][] smallCells = new SmallCell[3][3];
 
 
     Board() {
@@ -19,8 +19,8 @@ public class Board {
 
     private void adjustWithTheme() {
         theme.setBoardPane(boardPane);
-        for (BoardSquare[] i : boardSquares) {
-            for (BoardSquare j : i) {
+        for (SmallCellUI[] i : smallCellUIS) {
+            for (SmallCellUI j : i) {
                 j.setTheme(theme);
             }
         }
@@ -33,7 +33,7 @@ public class Board {
 
     }
 
-    public void setStartingTurn(LogicBasedBox.Type startingTurnType) {
+    public void setStartingTurn(SmallCell.Type startingTurnType) {
         this.currentTurnType = startingTurnType;
     }
 
@@ -45,34 +45,34 @@ public class Board {
         return boardPane;
     }
 
-    public BoardSquare[][] getBoardSquares() {
-        return this.boardSquares;
+    public SmallCellUI[][] getSmallCellUIS() {
+        return this.smallCellUIS;
     }
 
     private void createBoard() {
-        boardSquares = new BoardSquare[3][3];
+        smallCellUIS = new SmallCellUI[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                boardSquares[i][j] = createBoardSquare(i, j);
+                smallCellUIS[i][j] = createBoardSquare(i, j);
             }
         boardPane.relocate(70, 70);
     }
 
-    private BoardSquare createBoardSquare(int i, int j) {
-        BoardSquare boardSquare = new BoardSquare(i, j);
-        boardPane.getChildren().add(boardSquare.getSquarePane());
-        boardSquare.getSquarePane().setOnMouseClicked(event -> triggerSquare(boardSquare));
-        logicBasedBoxes[i][j] = boardSquare.getLogicBasedBox();
-        return boardSquare;
+    private SmallCellUI createBoardSquare(int i, int j) {
+        SmallCellUI smallCellUI = new SmallCellUI(i, j);
+        boardPane.getChildren().add(smallCellUI.getSquarePane());
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> triggerSquare(smallCellUI));
+        smallCells[i][j] = smallCellUI.getSmallCell();
+        return smallCellUI;
     }
 
-    public LogicBasedBox[][] getLogicBasedBoxes() {
-        return logicBasedBoxes;
+    public SmallCell[][] getSmallCells() {
+        return smallCells;
     }
 
-    public void triggerSquare(BoardSquare boardSquare) {
-        if (boardSquare.isNotTriggered()) {
-            boardSquare.triggerSquareAs(currentTurnType);
+    public void triggerSquare(SmallCellUI smallCellUI) {
+        if (smallCellUI.isNotTriggered()) {
+            smallCellUI.triggerSquareAs(currentTurnType);
             changeTurn();
             doOnChange();
         }
@@ -86,9 +86,9 @@ public class Board {
 
 
     private void changeTurn() {
-        if (currentTurnType == LogicBasedBox.Type.CROSS)
-            currentTurnType = LogicBasedBox.Type.ZERO;
-        else currentTurnType = LogicBasedBox.Type.CROSS;
+        if (currentTurnType == SmallCell.Type.CROSS)
+            currentTurnType = SmallCell.Type.ZERO;
+        else currentTurnType = SmallCell.Type.CROSS;
     }
 
     interface BoardListener {

@@ -2,7 +2,7 @@ package maingame;
 
 import java.util.ArrayList;
 
-class LogicBasedBox {
+class SmallCell {
     ArrayList<BoxChangeListener> boxChangeListeners = new ArrayList<>();
     private Type turnType = null;
 

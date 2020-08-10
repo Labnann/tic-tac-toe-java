@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class GameWatcherTester {
     Board board = new Board();
-    LogicBasedBox[][] logicBasedBoxes;
+    SmallCell[][] smallCells;
     GameWatcher gameWatcher;
 
 
@@ -17,12 +17,12 @@ public class GameWatcherTester {
 
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
-        board.getLogicBasedBoxes();
-        logicBasedBoxes = board.getLogicBasedBoxes();
-        gameWatcher = new GameWatcher(logicBasedBoxes);
-        logicBasedBoxes[0][0].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[1][1].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[2][2].setTurnType(LogicBasedBox.Type.CROSS);
+        board.getSmallCells();
+        smallCells = board.getSmallCells();
+        gameWatcher = new GameWatcher(smallCells);
+        smallCells[0][0].setTurnType(SmallCell.Type.CROSS);
+        smallCells[1][1].setTurnType(SmallCell.Type.CROSS);
+        smallCells[2][2].setTurnType(SmallCell.Type.CROSS);
 
         Assertions.assertEquals(1, gameWatcher.getColumnLine()[0].getCount());
         Assertions.assertEquals(1, gameWatcher.getColumnLine()[1].getCount());
@@ -38,17 +38,17 @@ public class GameWatcherTester {
 
     @Test
     public void testCheckGameDraw() {
-        board.getLogicBasedBoxes();
-        logicBasedBoxes = board.getLogicBasedBoxes();
-        gameWatcher = new GameWatcher(logicBasedBoxes);
-        logicBasedBoxes[0][0].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[0][1].setTurnType(LogicBasedBox.Type.ZERO);
-        logicBasedBoxes[1][0].setTurnType(LogicBasedBox.Type.ZERO);
-        logicBasedBoxes[1][1].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[1][2].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[2][0].setTurnType(LogicBasedBox.Type.ZERO);
-        logicBasedBoxes[2][1].setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBoxes[2][2].setTurnType(LogicBasedBox.Type.ZERO);
+        board.getSmallCells();
+        smallCells = board.getSmallCells();
+        gameWatcher = new GameWatcher(smallCells);
+        smallCells[0][0].setTurnType(SmallCell.Type.CROSS);
+        smallCells[0][1].setTurnType(SmallCell.Type.ZERO);
+        smallCells[1][0].setTurnType(SmallCell.Type.ZERO);
+        smallCells[1][1].setTurnType(SmallCell.Type.CROSS);
+        smallCells[1][2].setTurnType(SmallCell.Type.CROSS);
+        smallCells[2][0].setTurnType(SmallCell.Type.ZERO);
+        smallCells[2][1].setTurnType(SmallCell.Type.CROSS);
+        smallCells[2][2].setTurnType(SmallCell.Type.ZERO);
         Assertions.assertTrue(gameWatcher.isDraw());
 
 

@@ -4,7 +4,7 @@ public class WinChecker {
     private Board board;
     private boolean gameEnded = false;
     GameEndListener gameEndListener;
-    private LogicBasedBox.Type winner = null;
+    private SmallCell.Type winner = null;
     private short remainingMoveCount = 9;
 
 
@@ -26,7 +26,7 @@ public class WinChecker {
         checkWinAtAllDiagonals();
     }
 
-    public LogicBasedBox.Type getWinner() {
+    public SmallCell.Type getWinner() {
         return winner;
     }
 
@@ -51,7 +51,7 @@ public class WinChecker {
     }
 
     private void checkWinAtLeadingDiagonal() {
-        LogicBasedBox.Type possibleWinner = findMarkAt(0, 0);
+        SmallCell.Type possibleWinner = findMarkAt(0, 0);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(i, i, possibleWinner)) {
@@ -62,11 +62,11 @@ public class WinChecker {
         }
     }
 
-    private LogicBasedBox.Type findMarkAt(int i, int j) {
-        return board.getLogicBasedBoxes()[i][j].getTurnType();
+    private SmallCell.Type findMarkAt(int i, int j) {
+        return board.getSmallCells()[i][j].getTurnType();
     }
 
-    private boolean isNotTheSameAsAtIndex(int column, int row, LogicBasedBox.Type possibleWinner) {
+    private boolean isNotTheSameAsAtIndex(int column, int row, SmallCell.Type possibleWinner) {
         return findMarkAt(row, column) != possibleWinner || findMarkAt(row, column) == null;
     }
 
@@ -75,7 +75,7 @@ public class WinChecker {
     // m = (2-0)/(0-2) = -1
     // j = mi + c; j = -1i + 2; j = 2-1*i  =  2 - i;
     private void checkWinAtAntiDiagonal() {
-        LogicBasedBox.Type possibleWinner = findMarkAt(0, 2);
+        SmallCell.Type possibleWinner = findMarkAt(0, 2);
         if (!gameEnded) {
             for (int i = 1; i < 3; i++) {
                 if (isNotTheSameAsAtIndex(2 - i, i, possibleWinner)) {
@@ -86,7 +86,7 @@ public class WinChecker {
         }
     }
 
-    private void declareWinner(LogicBasedBox.Type possibleWinner) {
+    private void declareWinner(SmallCell.Type possibleWinner) {
         gameEnded = true;
         winner = possibleWinner;
     }
@@ -111,7 +111,7 @@ public class WinChecker {
     }
 
     private void checkWinAtColumn(final int column) {
-        LogicBasedBox.Type possibleWinner = findMarkAt(column, 0);
+        SmallCell.Type possibleWinner = findMarkAt(column, 0);
         for (int row = 1; row < 3; row++) {
             if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
         }
@@ -119,14 +119,14 @@ public class WinChecker {
     }
 
     private void checkWinAtRow(final int row) {
-        LogicBasedBox.Type possibleWinner = findMarkAt(0, row);
+        SmallCell.Type possibleWinner = findMarkAt(0, row);
         for (int column = 1; column < 3; column++) {
             if (isElementOnSameLineEqual(row, possibleWinner, column)) return;
         }
         declareWinner(possibleWinner);
     }
 
-    private boolean isElementOnSameLineEqual(int staticIndex, LogicBasedBox.Type possibleWinner, int changingIndex) {
+    private boolean isElementOnSameLineEqual(int staticIndex, SmallCell.Type possibleWinner, int changingIndex) {
         if (findMarkAt(changingIndex, staticIndex) == null) {
             return true;
         } else return possibleWinner != findMarkAt(changingIndex, staticIndex);

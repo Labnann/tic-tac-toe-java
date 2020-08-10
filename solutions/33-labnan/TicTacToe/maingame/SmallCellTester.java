@@ -3,31 +3,31 @@ package maingame;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class LogicBasedBoxTester {
-    LogicBasedBox logicBasedBox = new LogicBasedBox();
+public class SmallCellTester {
+    SmallCell smallCell = new SmallCell();
     int updateValue = 0;
 
     @Test
     public void testBoxListening() {
 
 
-        logicBasedBox.addOnBoxChange(() -> {
+        smallCell.addOnBoxChange(() -> {
             update();
             Assertions.assertEquals(1, updateValue);
         });
-        logicBasedBox.addOnBoxChange(() -> {
+        smallCell.addOnBoxChange(() -> {
             update();
             update();
             Assertions.assertEquals(3, updateValue);
         });
-        logicBasedBox.setTurnType(LogicBasedBox.Type.CROSS);
+        smallCell.setTurnType(SmallCell.Type.CROSS);
     }
 
     @Test
     public void testBoxGetTypeOnDoubleSet() {
-        logicBasedBox.setTurnType(LogicBasedBox.Type.CROSS);
-        logicBasedBox.setTurnType(LogicBasedBox.Type.ZERO);
-        Assertions.assertEquals(LogicBasedBox.Type.CROSS, logicBasedBox.getTurnType());
+        smallCell.setTurnType(SmallCell.Type.CROSS);
+        smallCell.setTurnType(SmallCell.Type.ZERO);
+        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
     }
 
 

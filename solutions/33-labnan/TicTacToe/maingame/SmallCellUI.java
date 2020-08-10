@@ -1,25 +1,24 @@
 package maingame;
 
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import theme.ForestTheme;
 import theme.Theme;
 
 
-public class BoardSquare {
+public class SmallCellUI {
 
-    Rectangle rectangle;
-    private Theme theme;// = new ForestTheme();
+    private Theme theme = new ForestTheme();// = new ForestTheme();
     private Text text = new Text();
     boolean isTriggered = false;
-    private LogicBasedBox logicBasedBox = new LogicBasedBox();
+    private SmallCell smallCell = new SmallCell();
     private Pane squarePane = new Pane();
 
-    public LogicBasedBox.Type getTurnType() {
-        return logicBasedBox.getTurnType();
+    public SmallCell.Type getTurnType() {
+        return smallCell.getTurnType();
     }
 
-    public BoardSquare(int xAxisIndex, int yAxisIndex) {
+    public SmallCellUI(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         squarePane.getChildren().addAll(text);
     }
@@ -44,26 +43,27 @@ public class BoardSquare {
     }
 
 
-    public void triggerSquareAs(LogicBasedBox.Type turnType) {
+    public void triggerSquareAs(SmallCell.Type turnType) {
         if (this.isNotTriggered()) {
-            logicBasedBox.setTurnType(turnType);
+            smallCell.setTurnType(turnType);
             isTriggered = true;
         }
         setText();
     }
 
     public void setText() {
-        if (logicBasedBox.getTurnType() == LogicBasedBox.Type.CROSS)
-            text.setText(theme.getCross());
-        else if (logicBasedBox.getTurnType() == LogicBasedBox.Type.ZERO) text.setText(theme.getZero());
+        if (smallCell.getTurnType() == SmallCell.Type.CROSS)
+            text.setText
+                    (theme.getCross());
+        else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());
     }
 
     public Pane getSquarePane() {
         return squarePane;
     }
 
-    public LogicBasedBox getLogicBasedBox() {
-        return logicBasedBox;
+    public SmallCell getSmallCell() {
+        return smallCell;
     }
 }
 

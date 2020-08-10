@@ -8,8 +8,8 @@ public class GameWatcher {
     private CheckerLine antiDiagonalLine;
     private CheckerLine[] allLines;
 
-    GameWatcher(LogicBasedBox[][] logicBasedBoxes) {
-        this.logicBasedBoxes = logicBasedBoxes;
+    GameWatcher(SmallCell[][] smallCells) {
+        this.smallCells = smallCells;
         initializeLines();
         readyBoxesItemsForChecking();
 
@@ -63,7 +63,7 @@ public class GameWatcher {
         return leadingDiagonalLine;
     }
 
-    LogicBasedBox[][] logicBasedBoxes;
+    SmallCell[][] smallCells;
 
 
     private void readyBoxesItemsForChecking() {
@@ -76,30 +76,30 @@ public class GameWatcher {
     }
 
     private void addChecker(int j, int i, int finalI, int finalJ) {
-        addCheckerAtColumn(logicBasedBoxes[finalI][finalJ], finalJ);
-        addCheckerAtRow(finalJ, logicBasedBoxes[finalJ][finalI], rowLine);
-        addCheckerOnDiagonalLine(j, i, logicBasedBoxes[finalI][finalI]);
+        addCheckerAtColumn(smallCells[finalI][finalJ], finalJ);
+        addCheckerAtRow(finalJ, smallCells[finalJ][finalI], rowLine);
+        addCheckerOnDiagonalLine(j, i, smallCells[finalI][finalI]);
         addCheckerOnAntiDiagonalLine(i, j);
     }
 
     private void addCheckerOnAntiDiagonalLine(int i, int j) {
         if (i == 2 - j) {
-            logicBasedBoxes[i][j].addOnBoxChange(() -> antiDiagonalLine.addType(logicBasedBoxes[i][j].getTurnType()));
+            smallCells[i][j].addOnBoxChange(() -> antiDiagonalLine.addType(smallCells[i][j].getTurnType()));
         }
     }
 
-    private void addCheckerOnDiagonalLine(int j, int i, LogicBasedBox logicBasedBox) {
+    private void addCheckerOnDiagonalLine(int j, int i, SmallCell smallCell) {
         if (i == j) {
-            logicBasedBox.addOnBoxChange(() -> leadingDiagonalLine.addType(logicBasedBox.getTurnType()));
+            smallCell.addOnBoxChange(() -> leadingDiagonalLine.addType(smallCell.getTurnType()));
         }
     }
 
-    private void addCheckerAtRow(int finalJ, LogicBasedBox logicBasedBox, CheckerLine[] rowLine) {
-        logicBasedBox.addOnBoxChange(() -> rowLine[finalJ].addType(logicBasedBox.getTurnType()));
+    private void addCheckerAtRow(int finalJ, SmallCell smallCell, CheckerLine[] rowLine) {
+        smallCell.addOnBoxChange(() -> rowLine[finalJ].addType(smallCell.getTurnType()));
     }
 
-    private void addCheckerAtColumn(LogicBasedBox logicBasedBox, int finalJ) {
-        addCheckerAtRow(finalJ, logicBasedBox, columnLine); //Transposed the matrix
+    private void addCheckerAtColumn(SmallCell smallCell, int finalJ) {
+        addCheckerAtRow(finalJ, smallCell, columnLine); //Transposed the matrix
     }
 
 
@@ -107,10 +107,10 @@ public class GameWatcher {
 
 class CheckerLine {
     private int count = 0;
-    private LogicBasedBox.Type type;
+    private SmallCell.Type type;
     private boolean winnable = true;
 
-    public void addType(LogicBasedBox.Type type) {
+    public void addType(SmallCell.Type type) {
         if (!winnable || count == 3) return;
         if (this.type == null) {
             this.type = type;
@@ -124,7 +124,7 @@ class CheckerLine {
         return winnable;
     }
 
-    public LogicBasedBox.Type getType() {
+    public SmallCell.Type getType() {
         return type;
     }
 
