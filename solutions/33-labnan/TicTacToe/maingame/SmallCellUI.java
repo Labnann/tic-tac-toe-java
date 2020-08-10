@@ -10,7 +10,7 @@ public class SmallCellUI {
 
     private Theme theme = new ForestTheme();// = new ForestTheme();
     private Text text = new Text();
-    boolean isTriggered = false;
+
     private SmallCell smallCell = new SmallCell();
     private Pane squarePane = new Pane();
 
@@ -39,15 +39,12 @@ public class SmallCellUI {
     }
 
     public boolean isNotTriggered() {
-        return !isTriggered;
+        return smallCell.isNotTriggered();
     }
 
 
     public void triggerSquareAs(SmallCell.Type turnType) {
-        if (this.isNotTriggered()) {
-            smallCell.setTurnType(turnType);
-            isTriggered = true;
-        }
+        smallCell.triggerSquareAs(turnType);
         setText();
     }
 

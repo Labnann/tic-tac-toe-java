@@ -5,6 +5,7 @@ import java.util.ArrayList;
 class SmallCell {
     ArrayList<BoxChangeListener> boxChangeListeners = new ArrayList<>();
     private Type turnType = null;
+    private boolean isTriggered = false;
 
     public Type getTurnType() {
         return turnType;
@@ -14,6 +15,21 @@ class SmallCell {
         if (this.turnType == null)
             this.turnType = turnType;
         doOnTypeChange();
+    }
+
+    public void setTriggered(boolean triggered) {
+        isTriggered = triggered;
+    }
+
+    public void triggerSquareAs(Type turnType){
+        if(this.isNotTriggered()){
+            this.setTurnType(turnType);
+            this.setTriggered(true);
+        }
+    }
+
+    public boolean isNotTriggered() {
+        return !isTriggered;
     }
 
     private void doOnTypeChange() {

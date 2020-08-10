@@ -35,4 +35,27 @@ public class SmallCellTester {
         updateValue++;
     }
 
+
+    @Test
+    public void getSquareIsTriggeredTest() {
+
+        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertFalse(smallCell.isNotTriggered());
+    }
+
+    @Test
+    public void getSquarePlaceValueTest() {
+        Assertions.assertNull(smallCell.getTurnType());
+        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
+        smallCell.triggerSquareAs(SmallCell.Type.ZERO);
+        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
+        smallCell = new SmallCell();
+        smallCell.triggerSquareAs(SmallCell.Type.ZERO);
+        Assertions.assertEquals(SmallCell.Type.ZERO, smallCell.getTurnType());
+        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertEquals(SmallCell.Type.ZERO, smallCell.getTurnType());
+    }
+
+
 }
