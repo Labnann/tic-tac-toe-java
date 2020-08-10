@@ -15,14 +15,14 @@ public class GameLauncher {
 
     void startGame() {
         uiCreator = new UICreator(gameRootStage);
+        BoardUI boardUi = new BoardUI();
+        uiCreator.setBoardUi(boardUi);
         uiCreator.createUI();
         addButtonFunctions();
-        Board board = uiCreator.getBoard();
-        new WinChecker(board).startChecking();
+        new WinChecker(boardUi).startChecking();
     }
 
     void addButtonFunctions() {
-
         uiCreator.getStartButton().setOnMouseClicked(event -> startGame());
     }
 

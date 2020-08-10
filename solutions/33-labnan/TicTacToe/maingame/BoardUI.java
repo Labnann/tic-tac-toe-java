@@ -4,16 +4,18 @@ import javafx.scene.layout.Pane;
 import theme.Theme;
 
 
-public class Board {
+public class BoardUI {
+
     Theme theme;// = new ForestTheme();
     private Pane boardPane = new Pane();
     private SmallCellUI[][] smallCellUIS;
     private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
-    private BoardListener boardChangeListener;
     private SmallCell[][] smallCells = new SmallCell[3][3];
+    private BoardListener boardChangeListener;
 
 
-    Board() {
+
+    BoardUI() {
         createBoard();
     }
 
@@ -97,5 +99,8 @@ public class Board {
 
 
 }
+
+
+
 
 

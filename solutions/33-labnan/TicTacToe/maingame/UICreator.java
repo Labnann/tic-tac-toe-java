@@ -13,7 +13,7 @@ import theme.Theme;
 public class UICreator {
     private Theme theme = new ClassicTheme();
     private Line line = new Line();
-    private Board board = new Board();
+    private BoardUI boardUi = new BoardUI();
     private Pane rootPane = new Pane();
     private Pane startButton;
     private Pane buttonPane = new Pane();
@@ -25,20 +25,19 @@ public class UICreator {
     }
 
 
-    public Board getBoard() {
-
-        return board;
+    public void setBoardUi(BoardUI boardUi) {
+        this.boardUi = boardUi;
     }
 
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
         createLine();
         addButtons();
-        rootPane.getChildren().addAll(board.getBoardPane(), line, buttonPane);
+        rootPane.getChildren().addAll(boardUi.getBoardPane(), line, buttonPane);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
-        board.setTheme(theme);
-        board.setTheme(theme);
+        boardUi.setTheme(theme);
+        boardUi.setTheme(theme);
     }
 
     void addButtons() {
@@ -61,7 +60,7 @@ public class UICreator {
         buttonPane.getChildren().add(classicThemeButton);
         classicThemeButton.setOnMouseClicked(event -> {
             theme = new ClassicTheme();
-            board.setTheme(theme);
+            boardUi.setTheme(theme);
         });
     }
 
@@ -72,13 +71,10 @@ public class UICreator {
 
         forestThemeButton.setOnMouseClicked(event -> {
             theme = new ForestTheme();
-            board.setTheme(theme);
+            boardUi.setTheme(theme);
         });
     }
 
-    public void setTheme(Theme theme) {
-        this.theme = theme;
-    }
 
     void createLine() {
         line.setStartX(430);

@@ -129,9 +129,9 @@ public class TestWinChecker {
     }
 
     private void initializeWinCheckerAndBoardSquares() {
-        Board board = new Board();
-        smallCellUIS = board.getSmallCellUIS();
-        winChecker = new WinChecker(board);
+        BoardUI boardUi = new BoardUI();
+        smallCellUIS = boardUi.getSmallCellUIS();
+        winChecker = new WinChecker(boardUi);
     }
 
 

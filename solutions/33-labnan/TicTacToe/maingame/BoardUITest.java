@@ -4,9 +4,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class BoardTest {
-    Board board = new Board();
-    SmallCellUI[][] smallCellUIS = board.getSmallCellUIS();
+public class BoardUITest {
+    BoardUI boardUi = new BoardUI();
+    SmallCellUI[][] smallCellUIS = boardUi.getSmallCellUIS();
 
     @BeforeClass
     public static void setup() throws InterruptedException {
@@ -21,8 +21,8 @@ public class BoardTest {
     }
 
     private void simultaneouslyTrigger(int i, int j) {
-        board.triggerSquare(smallCellUIS[0][i]);
-        board.triggerSquare(smallCellUIS[0][j]);
+        boardUi.triggerSquare(smallCellUIS[0][i]);
+        boardUi.triggerSquare(smallCellUIS[0][j]);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class BoardTest {
 
     @Test
     public void testSetStartingTurn() {
-        board.setStartingTurn(SmallCell.Type.ZERO);
+        boardUi.setStartingTurn(SmallCell.Type.ZERO);
         simultaneouslyTrigger(0, 1);
         Assertions.assertEquals(SmallCell.Type.ZERO, smallCellUIS[0][0].getTurnType());
         Assertions.assertEquals(SmallCell.Type.CROSS, smallCellUIS[0][1].getTurnType());

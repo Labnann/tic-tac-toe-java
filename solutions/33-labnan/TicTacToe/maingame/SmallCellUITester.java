@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 
 
 public class SmallCellUITester {
-    SmallCellUI square = new SmallCellUI(0, 0);
+    SmallCellUI smallCellUI = new SmallCellUI(0, 0);
 
 
     @BeforeClass
@@ -17,22 +17,22 @@ public class SmallCellUITester {
     @Test
     public void getSquareIsTriggeredTest() {
 
-        square.triggerSquareAs(SmallCell.Type.CROSS);
-        Assertions.assertFalse(square.isNotTriggered());
+        smallCellUI.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertFalse(smallCellUI.isNotTriggered());
     }
 
     @Test
     public void getSquarePlaceValueTest() {
-        Assertions.assertNull(square.getTurnType());
-        square.triggerSquareAs(SmallCell.Type.CROSS);
-        Assertions.assertEquals(SmallCell.Type.CROSS, square.getTurnType());
-        square.triggerSquareAs(SmallCell.Type.ZERO);
-        Assertions.assertEquals(SmallCell.Type.CROSS, square.getTurnType());
-        square = new SmallCellUI(0, 0);
-        square.triggerSquareAs(SmallCell.Type.ZERO);
-        Assertions.assertEquals(SmallCell.Type.ZERO, square.getTurnType());
-        square.triggerSquareAs(SmallCell.Type.CROSS);
-        Assertions.assertEquals(SmallCell.Type.ZERO, square.getTurnType());
+        Assertions.assertNull(smallCellUI.getTurnType());
+        smallCellUI.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertEquals(SmallCell.Type.CROSS, smallCellUI.getTurnType());
+        smallCellUI.triggerSquareAs(SmallCell.Type.ZERO);
+        Assertions.assertEquals(SmallCell.Type.CROSS, smallCellUI.getTurnType());
+        smallCellUI = new SmallCellUI(0, 0);
+        smallCellUI.triggerSquareAs(SmallCell.Type.ZERO);
+        Assertions.assertEquals(SmallCell.Type.ZERO, smallCellUI.getTurnType());
+        smallCellUI.triggerSquareAs(SmallCell.Type.CROSS);
+        Assertions.assertEquals(SmallCell.Type.ZERO, smallCellUI.getTurnType());
     }
 
 
