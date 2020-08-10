@@ -3,7 +3,7 @@ package maingame;
 import java.util.ArrayList;
 
 class SmallCell {
-    ArrayList<BoxChangeListener> boxChangeListeners = new ArrayList<>();
+    ArrayList<SmallCellChangeListener> smallCellChangeListeners = new ArrayList<>();
     private Type turnType = null;
     private boolean isTriggered = false;
 
@@ -33,21 +33,21 @@ class SmallCell {
     }
 
     private void doOnTypeChange() {
-        for (BoxChangeListener i : boxChangeListeners) {
+        for (SmallCellChangeListener i : smallCellChangeListeners) {
             if (i == null) break;
             else i.doOnBoxChange();
         }
     }
 
-    public void addOnSmallCellTrigger(BoxChangeListener boxChangeListener) {
-        this.boxChangeListeners.add(boxChangeListener);
+    public void addOnSmallCellTrigger(SmallCellChangeListener smallCellChangeListener) {
+        this.smallCellChangeListeners.add(smallCellChangeListener);
     }
 
     enum Type {
         ZERO, CROSS
     }
 
-    interface BoxChangeListener {
+    interface SmallCellChangeListener {
         void doOnBoxChange();
     }
 }

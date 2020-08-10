@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class TestWinChecker {
     WinChecker winChecker;
-    SmallCellUI[][] smallCellUIS;
+    SmallCell[][] smallCellUIS;
 
     @BeforeClass
     public static void setup() throws InterruptedException {
@@ -130,7 +130,7 @@ public class TestWinChecker {
 
     private void initializeWinCheckerAndBoardSquares() {
         BoardUI boardUi = new BoardUI();
-        smallCellUIS = boardUi.getSmallCellUIS();
+        smallCellUIS = boardUi.getSmallCells();
         winChecker = new WinChecker(boardUi);
     }
 

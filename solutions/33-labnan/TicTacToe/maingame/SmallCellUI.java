@@ -14,10 +14,6 @@ public class SmallCellUI {
     private SmallCell smallCell = new SmallCell();
     private Pane squarePane = new Pane();
 
-    public SmallCell.Type getTurnType() {
-        return smallCell.getTurnType();
-    }
-
     public SmallCellUI(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         squarePane.getChildren().addAll(text);
@@ -34,15 +30,6 @@ public class SmallCellUI {
         setText();
         theme.setSquarePane(squarePane);
         theme.setText(text);
-    }
-
-    public boolean isNotTriggered() {
-        return smallCell.isNotTriggered();
-    }
-
-
-    public void triggerSquareAs(SmallCell.Type turnType) {
-        smallCell.triggerSquareAs(turnType);
     }
 
     public void setText() {

@@ -63,8 +63,9 @@ public class BoardUI {
     private SmallCellUI createBoardSquare(int i, int j) {
         SmallCellUI smallCellUI = new SmallCellUI(i, j);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> triggerSquare(smallCellUI));
         smallCells[i][j] = smallCellUI.getSmallCell();
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> triggerSquare(smallCells[i][j]));
+
         return smallCellUI;
     }
 
@@ -72,9 +73,9 @@ public class BoardUI {
         return smallCells;
     }
 
-    public void triggerSquare(SmallCellUI smallCellUI) {
-        if (smallCellUI.isNotTriggered()) {
-            smallCellUI.triggerSquareAs(currentTurnType);
+    public void triggerSquare(SmallCell smallCell) {
+        if (smallCell.isNotTriggered()) {
+            smallCell.triggerSquareAs(currentTurnType);
             changeTurn();
             doOnChange();
         }
