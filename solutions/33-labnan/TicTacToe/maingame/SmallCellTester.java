@@ -11,11 +11,11 @@ public class SmallCellTester {
     public void testBoxListening() {
 
 
-        smallCell.addOnBoxChange(() -> {
+        smallCell.addOnSmallCellTrigger(() -> {
             update();
             Assertions.assertEquals(1, updateValue);
         });
-        smallCell.addOnBoxChange(() -> {
+        smallCell.addOnSmallCellTrigger(() -> {
             update();
             update();
             Assertions.assertEquals(3, updateValue);

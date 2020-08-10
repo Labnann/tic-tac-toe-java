@@ -84,18 +84,18 @@ public class GameWatcher {
 
     private void addCheckerOnAntiDiagonalLine(int i, int j) {
         if (i == 2 - j) {
-            smallCells[i][j].addOnBoxChange(() -> antiDiagonalLine.addType(smallCells[i][j].getTurnType()));
+            smallCells[i][j].addOnSmallCellTrigger(() -> antiDiagonalLine.addType(smallCells[i][j].getTurnType()));
         }
     }
 
     private void addCheckerOnDiagonalLine(int j, int i, SmallCell smallCell) {
         if (i == j) {
-            smallCell.addOnBoxChange(() -> leadingDiagonalLine.addType(smallCell.getTurnType()));
+            smallCell.addOnSmallCellTrigger(() -> leadingDiagonalLine.addType(smallCell.getTurnType()));
         }
     }
 
     private void addCheckerAtRow(int finalJ, SmallCell smallCell, CheckerLine[] rowLine) {
-        smallCell.addOnBoxChange(() -> rowLine[finalJ].addType(smallCell.getTurnType()));
+        smallCell.addOnSmallCellTrigger(() -> rowLine[finalJ].addType(smallCell.getTurnType()));
     }
 
     private void addCheckerAtColumn(SmallCell smallCell, int finalJ) {

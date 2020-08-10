@@ -21,6 +21,7 @@ public class SmallCellUI {
     public SmallCellUI(int xAxisIndex, int yAxisIndex) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         squarePane.getChildren().addAll(text);
+        smallCell.addOnSmallCellTrigger(this::setText);
     }
 
     public void setTheme(Theme theme) {
@@ -32,10 +33,7 @@ public class SmallCellUI {
     private void adjustWithTheme() {
         setText();
         theme.setSquarePane(squarePane);
-        // theme.setBoardRectangle(rectangle);
         theme.setText(text);
-
-
     }
 
     public boolean isNotTriggered() {
@@ -45,13 +43,11 @@ public class SmallCellUI {
 
     public void triggerSquareAs(SmallCell.Type turnType) {
         smallCell.triggerSquareAs(turnType);
-        setText();
     }
 
     public void setText() {
         if (smallCell.getTurnType() == SmallCell.Type.CROSS)
-            text.setText
-                    (theme.getCross());
+            text.setText(theme.getCross());
         else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());
     }
 

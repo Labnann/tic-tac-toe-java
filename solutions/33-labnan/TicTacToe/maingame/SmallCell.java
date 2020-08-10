@@ -39,7 +39,7 @@ class SmallCell {
         }
     }
 
-    public void addOnBoxChange(BoxChangeListener boxChangeListener) {
+    public void addOnSmallCellTrigger(BoxChangeListener boxChangeListener) {
         this.boxChangeListeners.add(boxChangeListener);
     }
 
