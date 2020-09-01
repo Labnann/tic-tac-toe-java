@@ -8,7 +8,7 @@ public class BoardUI {
 
     Theme theme;// = new ForestTheme();
     private Pane boardPane = new Pane();
-    private SmallCellUI[][] smallCellUIS;
+    private SmallCellUI[][] smallCellUIs;
     private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
     private SmallCell[][] smallCells = new SmallCell[3][3];
     private BoardListener boardChangeListener;
@@ -16,17 +16,25 @@ public class BoardUI {
 
 
     BoardUI() {
+        initializeSmallCells();
         createBoard();
+    }
+
+    private void initializeSmallCells() {
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                smallCells[i][j] = new SmallCell();
+            }
+        }
     }
 
     private void adjustWithTheme() {
         theme.setBoardPane(boardPane);
-        for (SmallCellUI[] i : smallCellUIS) {
+        for (SmallCellUI[] i : smallCellUIs) {
             for (SmallCellUI j : i) {
                 j.setTheme(theme);
             }
         }
-
     }
 
     public void setTheme(Theme theme) {
@@ -47,25 +55,19 @@ public class BoardUI {
         return boardPane;
     }
 
-    public SmallCellUI[][] getSmallCellUIS() {
-        return this.smallCellUIS;
-    }
-
     private void createBoard() {
-        smallCellUIS = new SmallCellUI[3][3];
+        smallCellUIs = new SmallCellUI[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                smallCellUIS[i][j] = createBoardSquare(i, j);
+                smallCellUIs[i][j] = createBoardSquare(i, j);
             }
         boardPane.relocate(70, 70);
     }
 
     private SmallCellUI createBoardSquare(int i, int j) {
-        SmallCellUI smallCellUI = new SmallCellUI(i, j);
+        SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCells[i][j] = smallCellUI.getSmallCell();
         smallCellUI.getSquarePane().setOnMouseClicked(event -> triggerSquare(smallCells[i][j]));
-
         return smallCellUI;
     }
 

@@ -4,12 +4,13 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ClassicTheme implements Theme {
 
-    ForestTheme forestTheme = new ForestTheme();
 
+    private Text text;
 
     public void setSquarePane(Pane squarePane) {
         squarePane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -22,7 +23,15 @@ public class ClassicTheme implements Theme {
 
 
     public void setText(Text text) {
-        forestTheme.setText(text);
+        this.text = text;
+        manageInnerText();
+    }
+
+    private void manageInnerText() {
+        text.toFront();
+        Font textFont = new Font("Arial Black Bold", 60);
+        text.relocate(25, 5);
+        text.setFont(textFont);
     }
 
     @Override
