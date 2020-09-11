@@ -5,13 +5,22 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class GameWatcherTester {
-    Board board = new Board();
-    SmallCell[][] smallCells;
+
+    SmallCell[][] smallCells = new SmallCell[3][3];
+    Board board = new Board(smallCells);
     GameWatcher gameWatcher;
 
-    
+    private void initializeSmallCells() {
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                smallCells[i][j] = new SmallCell();
+            }
+        }
+    }
+
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
+        initializeSmallCells();
         board.getSmallCells();
         smallCells = board.getSmallCells();
         gameWatcher = new GameWatcher(smallCells);
@@ -33,6 +42,7 @@ public class GameWatcherTester {
 
     @Test
     public void testCheckGameDraw() {
+        initializeSmallCells();
         board.getSmallCells();
         smallCells = board.getSmallCells();
         gameWatcher = new GameWatcher(smallCells);

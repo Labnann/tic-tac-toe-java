@@ -6,11 +6,11 @@ import theme.Theme;
 
 public class Board {
     private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
-    private SmallCell[][] smallCells = new SmallCell[3][3];
+    private SmallCell[][] smallCells;
     private BoardListener boardChangeListener;
 
-    Board(){
-        initializeSmallCells();
+    Board(SmallCell[][] smallCells){
+        this.smallCells = smallCells;
     }
 
     public void onChange(BoardListener boardChangeListener) {
@@ -22,13 +22,7 @@ public class Board {
         this.currentTurnType = startingTurnType;
     }
 
-    private void initializeSmallCells() {
-        for(int i = 0; i<3; i++){
-            for(int j = 0; j<3; j++){
-                smallCells[i][j] = new SmallCell();
-            }
-        }
-    }
+
 
     public void triggerSquare(SmallCell smallCell) {
         if (smallCell.isNotTriggered()) {

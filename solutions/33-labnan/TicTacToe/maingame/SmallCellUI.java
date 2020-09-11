@@ -33,9 +33,10 @@ public class SmallCellUI {
     }
 
     private void syncWithTheCell() {
+        if(smallCell!=null){
         if (smallCell.getTurnType() == SmallCell.Type.CROSS)
             text.setText(theme.getCross());
-        else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());
+        else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());}
     }
 
     public Pane getSquarePane() {

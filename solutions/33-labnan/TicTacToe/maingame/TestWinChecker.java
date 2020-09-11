@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Assertions;
 public class TestWinChecker {
     WinChecker winChecker;
     SmallCell[][] smallCellUIS;
+    SmallCell[][] smallCells = new SmallCell[3][3];
 
 
     @Test
     public void testColumnChecker() {
+        initializeSmallCells();
         checkColumnForWin(2);
         checkColumnForWin(1);
         checkColumnForWin(0);
@@ -53,6 +55,7 @@ public class TestWinChecker {
 
     @Test
     public void testRowChecker() {
+        initializeSmallCells();
         checkRowForWin(0);
         checkRowForWin(1);
         checkRowForWin(2);
@@ -68,6 +71,7 @@ public class TestWinChecker {
 
     @Test
     public void notEquallyPopulatedTest() {
+        initializeSmallCells();
         initializeWinCheckerAndBoardSquares();
         populateFirstRowUnequally();
         winChecker.checkWin();
@@ -77,6 +81,7 @@ public class TestWinChecker {
 
     @Test
     public void columnUnequallyPopulatedTest() {
+        initializeSmallCells();
         initializeWinCheckerAndBoardSquares();
         populateFirstColumnUnequally();
         winChecker.checkWin();
@@ -103,7 +108,7 @@ public class TestWinChecker {
 
     @Test
     public void doubleWinPreventionTest() {
-
+        initializeSmallCells();
         initializeWinCheckerAndBoardSquares();
         populateRowWith(0, SmallCell.Type.CROSS);
         populateRowWith(1, SmallCell.Type.ZERO);
@@ -114,6 +119,7 @@ public class TestWinChecker {
 
     @Test
     public void antiDiagonalWinTest() {
+        initializeSmallCells();
         initializeWinCheckerAndBoardSquares();
         smallCellUIS[0][2].triggerSquareAs(SmallCell.Type.CROSS);
         smallCellUIS[1][1].triggerSquareAs(SmallCell.Type.CROSS);
@@ -124,10 +130,21 @@ public class TestWinChecker {
     }
 
     private void initializeWinCheckerAndBoardSquares() {
-        Board board = new Board();
+
+        Board board = new Board(smallCells);
         smallCellUIS = board.getSmallCells();
         winChecker = new WinChecker(board);
     }
+
+    private void initializeSmallCells() {
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                smallCells[i][j] = new SmallCell();
+            }
+        }
+    }
+
+
 
 
 }
