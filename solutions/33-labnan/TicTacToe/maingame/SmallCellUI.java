@@ -36,7 +36,11 @@ public class SmallCellUI {
         if(smallCell!=null){
         if (smallCell.getTurnType() == SmallCell.Type.CROSS)
             text.setText(theme.getCross());
-        else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());}
+        else if (smallCell.getTurnType() == SmallCell.Type.ZERO) text.setText(theme.getZero());
+        else text.setText("");
+
+        }
+
     }
 
     public Pane getSquarePane() {

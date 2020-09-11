@@ -19,15 +19,17 @@ public class GameLauncher {
 
     public void setGameRootStage(Stage gameRootStage) {
         this.gameRootStage = gameRootStage;
-        initializeSmallCells();
-        board = new Board(smallCells);
-        boardUI = new BoardUI(board,createBoardUI(),boardPane,theme);
+
     }
 
     void startGame() {
+        smallCells = new SmallCell[3][3];
+        initializeSmallCells();
         board = new Board(smallCells);
-        boardUI.setBoard(board);
-        uiCreator = new UICreator(gameRootStage,boardUI);
+        boardUI = new BoardUI(board,createBoardUI(),boardPane,theme);
+        if(uiCreator!=null)
+        theme = uiCreator.getTheme();
+        uiCreator = new UICreator(gameRootStage,boardUI,theme);
         uiCreator.createUI();
         addButtonFunctions();
         new WinChecker(board).startChecking();
