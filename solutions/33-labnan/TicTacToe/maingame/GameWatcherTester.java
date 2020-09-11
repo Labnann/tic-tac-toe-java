@@ -10,11 +10,6 @@ public class GameWatcherTester {
     GameWatcher gameWatcher;
 
 
-    @BeforeClass
-    public static void setup() throws InterruptedException {
-        JavaFXInitializer.initialize();
-    }
-
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
         board.getSmallCells();
