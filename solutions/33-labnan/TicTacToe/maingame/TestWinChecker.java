@@ -8,11 +8,6 @@ public class TestWinChecker {
     WinChecker winChecker;
     SmallCell[][] smallCellUIS;
 
-    @BeforeClass
-    public static void setup() throws InterruptedException {
-        JavaFXInitializer.initialize();
-    }
-
 
     @Test
     public void testColumnChecker() {
