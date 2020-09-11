@@ -1,15 +1,15 @@
 package maingame;
 
 public class WinChecker {
-    private BoardUI boardUi;
+    private Board board;
     private boolean gameEnded = false;
     GameEndListener gameEndListener;
     private SmallCell.Type winner = null;
     private short remainingMoveCount = 9;
 
 
-    WinChecker(BoardUI boardUi) {
-        this.boardUi = boardUi;
+    WinChecker(Board board) {
+        this.board = board;
     }
 
     public boolean isGameEnded() {
@@ -17,7 +17,7 @@ public class WinChecker {
     }
 
     public void startChecking() {
-        boardUi.onChange(this::doOnBoardChange);
+        board.onChange(this::doOnBoardChange);
     }
 
     public void checkWin() {
@@ -63,7 +63,7 @@ public class WinChecker {
     }
 
     private SmallCell.Type findMarkAt(int i, int j) {
-        return boardUi.getSmallCells()[i][j].getTurnType();
+        return board.getSmallCells()[i][j].getTurnType();
     }
 
     private boolean isNotTheSameAsAtIndex(int column, int row, SmallCell.Type possibleWinner) {

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class GameWatcherTester {
-    BoardUI boardUi = new BoardUI();
+    Board board = new Board();
     SmallCell[][] smallCells;
     GameWatcher gameWatcher;
 
@@ -17,8 +17,8 @@ public class GameWatcherTester {
 
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
-        boardUi.getSmallCells();
-        smallCells = boardUi.getSmallCells();
+        board.getSmallCells();
+        smallCells = board.getSmallCells();
         gameWatcher = new GameWatcher(smallCells);
         smallCells[0][0].setTurnType(SmallCell.Type.CROSS);
         smallCells[1][1].setTurnType(SmallCell.Type.CROSS);
@@ -38,8 +38,8 @@ public class GameWatcherTester {
 
     @Test
     public void testCheckGameDraw() {
-        boardUi.getSmallCells();
-        smallCells = boardUi.getSmallCells();
+        board.getSmallCells();
+        smallCells = board.getSmallCells();
         gameWatcher = new GameWatcher(smallCells);
         smallCells[0][0].setTurnType(SmallCell.Type.CROSS);
         smallCells[0][1].setTurnType(SmallCell.Type.ZERO);

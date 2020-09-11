@@ -14,12 +14,13 @@ public class GameLauncher {
     }
 
     void startGame() {
-        uiCreator = new UICreator(gameRootStage);
-        BoardUI boardUi = new BoardUI();
-        uiCreator.setBoardUi(boardUi);
+
+        Board board = new Board();
+        BoardUI boardUI = new BoardUI(board);
+        uiCreator = new UICreator(gameRootStage,boardUI);
         uiCreator.createUI();
         addButtonFunctions();
-        new WinChecker(boardUi).startChecking();
+        new WinChecker(board).startChecking();
     }
 
     void addButtonFunctions() {

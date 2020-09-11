@@ -13,31 +13,27 @@ import theme.Theme;
 public class UICreator {
     private Theme theme = new ClassicTheme();
     private Line line = new Line();
-    private BoardUI boardUi = new BoardUI();
+    private BoardUI boardUI;
     private Pane rootPane = new Pane();
     private Pane startButton;
     private Pane buttonPane = new Pane();
     private Stage gameRootStage;
 
 
-    UICreator(Stage gameRootStage) {
+    UICreator(Stage gameRootStage, BoardUI boardUI) {
+        this.boardUI = boardUI;
         this.gameRootStage = gameRootStage;
-    }
-
-
-    public void setBoardUi(BoardUI boardUi) {
-        this.boardUi = boardUi;
     }
 
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
         createLine();
         addButtons();
-        rootPane.getChildren().addAll(boardUi.getBoardPane(), line, buttonPane);
+        rootPane.getChildren().addAll(boardUI.getBoardPane(), line, buttonPane);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
-        boardUi.setTheme(theme);
-        boardUi.setTheme(theme);
+        boardUI.setTheme(theme);
+        boardUI.setTheme(theme);
     }
 
     void addButtons() {
@@ -60,7 +56,7 @@ public class UICreator {
         buttonPane.getChildren().add(classicThemeButton);
         classicThemeButton.setOnMouseClicked(event -> {
             theme = new ClassicTheme();
-            boardUi.setTheme(theme);
+            boardUI.setTheme(theme);
         });
     }
 
@@ -71,7 +67,7 @@ public class UICreator {
 
         forestThemeButton.setOnMouseClicked(event -> {
             theme = new ForestTheme();
-            boardUi.setTheme(theme);
+            boardUI.setTheme(theme);
         });
     }
 
