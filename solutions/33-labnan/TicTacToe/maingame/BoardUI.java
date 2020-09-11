@@ -1,5 +1,6 @@
 package maingame;
 
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import theme.Theme;
 
@@ -13,12 +14,14 @@ private Board board;
 
 
 
-BoardUI(Board board, SmallCellUI[][] smallCellUIS, Pane boardPane, Theme theme) {
-    smallCells = board.getSmallCells();
+BoardUI( Board board, Theme theme) {
     this.board=board;
-    this.smallCellUIs = smallCellUIS;
-    this.boardPane = boardPane;
+    this.boardPane = new Pane();
+    smallCells = board.getSmallCells();
+    this.smallCellUIs = createBoardUI();
+
     this.theme = theme;
+
 }
 
     public void setBoard(Board board) {
@@ -34,6 +37,23 @@ BoardUI(Board board, SmallCellUI[][] smallCellUIS, Pane boardPane, Theme theme) 
         }
     }
 }
+
+    private SmallCellUI[][] createBoardUI() {
+        SmallCellUI[][] smallCellUIs = new SmallCellUI[3][3];
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                smallCellUIs[i][j] = createBoardSquare(i, j);
+            }
+        boardPane.relocate(70, 70);
+        return smallCellUIs;
+    }
+
+    private SmallCellUI createBoardSquare(int i, int j) {
+        SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
+        boardPane.getChildren().add(smallCellUI.getSquarePane());
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> board.triggerSquare(smallCells[i][j]));
+        return smallCellUI;
+    }
 
 public void setTheme(Theme theme) {
     this.theme = theme;

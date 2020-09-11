@@ -6,13 +6,20 @@ import theme.Theme;
 
 public class Board {
     private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
-    private SmallCell[][] smallCells;
+    private SmallCell[][] smallCells = new SmallCell[3][3];
     private BoardListener boardChangeListener;
 
-    Board(SmallCell[][] smallCells){
-        this.smallCells = smallCells;
+    Board(){
+        initializeSmallCells();
     }
 
+    private void initializeSmallCells() {
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                smallCells[i][j] = new SmallCell();
+            }
+        }
+    }
     public void onChange(BoardListener boardChangeListener) {
         this.boardChangeListener = boardChangeListener;
     }

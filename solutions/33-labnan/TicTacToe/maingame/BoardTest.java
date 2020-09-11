@@ -5,16 +5,12 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class BoardTest {
-    SmallCell[][] smallCells = new SmallCell[3][3];
-    Board board = new Board(smallCells);
+    SmallCell[][] smallCells;
+    Board board = new Board();
 
 
     private void initializeSmallCells() {
-        for(int i = 0; i<3; i++){
-            for(int j = 0; j<3; j++){
-                smallCells[i][j] = new SmallCell();
-            }
-        }
+        smallCells = board.getSmallCells();
     }
 
 
