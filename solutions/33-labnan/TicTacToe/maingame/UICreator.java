@@ -11,7 +11,7 @@ import theme.Theme;
 
 
 public class UICreator {
-    private Theme theme = new ClassicTheme();
+    private Theme theme;
     private Line line = new Line();
     private BoardUI boardUI;
     private Pane rootPane = new Pane();
@@ -20,9 +20,10 @@ public class UICreator {
     private Stage gameRootStage;
 
 
-    UICreator(Stage gameRootStage, BoardUI boardUI) {
+    UICreator(Stage gameRootStage, BoardUI boardUI, Theme theme) {
         this.boardUI = boardUI;
         this.gameRootStage = gameRootStage;
+        this.theme = theme;
     }
 
     public void createUI() {
@@ -71,6 +72,9 @@ public class UICreator {
         });
     }
 
+    public Theme getTheme() {
+        return theme;
+    }
 
     void createLine() {
         line.setStartX(430);
