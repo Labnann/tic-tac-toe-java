@@ -12,7 +12,7 @@ import maingame.winchecker.AdvancedWinChecker;
 public class GameLauncher {
     private Stage gameRootStage;
     UICreator uiCreator;
-    Pane boardPane  = new Pane();
+
 
     Theme theme = new ClassicTheme();
 
@@ -28,7 +28,8 @@ public class GameLauncher {
     void startGame() {
 
         board = new Board();
-        boardUI = new BoardUI(board,theme);
+        HumanPlayer humanPlayer = new HumanPlayer(board.getSmallCells());
+        boardUI = new BoardUI(board,theme,humanPlayer);
         if(uiCreator!=null)
         theme = uiCreator.getTheme();
         uiCreator = new UICreator(gameRootStage,boardUI,theme);

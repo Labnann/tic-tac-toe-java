@@ -18,7 +18,7 @@ public class BoardTest {
     public void testBoardSquareDoubleTrigger() {
         initializeSmallCells();
         simultaneouslyTrigger(0, 0);
-        Assertions.assertEquals(PlayerMark.CROSS, smallCells[0][0].getTurnType());
+        Assertions.assertEquals(PlayerMark.HUMAN, smallCells[0][0].getTurnType());
     }
 
     private void simultaneouslyTrigger(int i, int j) {
@@ -39,7 +39,7 @@ public class BoardTest {
         board.setStartingTurn(PlayerMark.ZERO);
         simultaneouslyTrigger(0, 1);
         Assertions.assertEquals(PlayerMark.ZERO, smallCells[0][0].getTurnType());
-        Assertions.assertEquals(PlayerMark.CROSS, smallCells[0][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.HUMAN, smallCells[0][1].getTurnType());
     }
 
 

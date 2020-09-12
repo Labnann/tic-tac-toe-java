@@ -15,9 +15,9 @@ public class GameStatusTester {
 
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
-        smallCells[0][0].setTurnType(PlayerMark.CROSS);
-        smallCells[1][1].setTurnType(PlayerMark.CROSS);
-        smallCells[2][2].setTurnType(PlayerMark.CROSS);
+        smallCells[0][0].setTurnType(PlayerMark.HUMAN);
+        smallCells[1][1].setTurnType(PlayerMark.HUMAN);
+        smallCells[2][2].setTurnType(PlayerMark.HUMAN);
 
         Assertions.assertEquals(1, status.getRowChecker()[0].getCount());
         Assertions.assertEquals(1, status.getRowChecker()[1].getCount());
@@ -33,13 +33,13 @@ public class GameStatusTester {
 
     @Test
     public void testCheckGameDraw() {
-        smallCells[0][0].setTurnType(PlayerMark.CROSS);
+        smallCells[0][0].setTurnType(PlayerMark.HUMAN);
         smallCells[0][1].setTurnType(PlayerMark.ZERO);
         smallCells[1][0].setTurnType(PlayerMark.ZERO);
-        smallCells[1][1].setTurnType(PlayerMark.CROSS);
-        smallCells[1][2].setTurnType(PlayerMark.CROSS);
+        smallCells[1][1].setTurnType(PlayerMark.HUMAN);
+        smallCells[1][2].setTurnType(PlayerMark.HUMAN);
         smallCells[2][0].setTurnType(PlayerMark.ZERO);
-        smallCells[2][1].setTurnType(PlayerMark.CROSS);
+        smallCells[2][1].setTurnType(PlayerMark.HUMAN);
         smallCells[2][2].setTurnType(PlayerMark.ZERO);
       //  Assertions.assertTrue(gameWatcher.isDraw());
 

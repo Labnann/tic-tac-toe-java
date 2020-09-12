@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class Board {
-    private PlayerMark currentTurnType = PlayerMark.CROSS;
+    private PlayerMark currentTurnType = PlayerMark.HUMAN;
     private SmallCell[][] smallCells = new SmallCell[3][3];
 
     ArrayList<BoardListener>  boardChangeListeners = new ArrayList<>();
@@ -60,9 +60,9 @@ public class Board {
     }
 
     private void changeTurn() {
-        if (currentTurnType == PlayerMark.CROSS)
+        if (currentTurnType == PlayerMark.HUMAN)
             currentTurnType = PlayerMark.ZERO;
-        else currentTurnType = PlayerMark.CROSS;
+        else currentTurnType = PlayerMark.HUMAN;
     }
 
 }

@@ -34,7 +34,7 @@ public class SmallCellUI {
 
     private void syncWithTheCell() {
         if(smallCell!=null){
-        if (smallCell.getTurnType() == PlayerMark.CROSS)
+        if (smallCell.getTurnType() == PlayerMark.HUMAN)
             text.setText(theme.getCross());
         else if (smallCell.getTurnType() == PlayerMark.ZERO) text.setText(theme.getZero());
         else text.setText("");

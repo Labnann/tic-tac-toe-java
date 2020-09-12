@@ -11,16 +11,18 @@ private Pane boardPane;
 private SmallCellUI[][] smallCellUIs;
 private SmallCell[][] smallCells;
 private Board board;
+Player player;
 
 
 
-BoardUI( Board board, Theme theme) {
+BoardUI( Board board, Theme theme, HumanPlayer player) {
     this.board=board;
     this.boardPane = new Pane();
     smallCells = board.getSmallCells();
     this.smallCellUIs = createBoardUI();
 
     this.theme = theme;
+    this.player = player;
 
 }
 
@@ -51,7 +53,9 @@ BoardUI( Board board, Theme theme) {
     private SmallCellUI createBoardSquare(int i, int j) {
         SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> board.triggerSquare(smallCells[i][j]));
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> {
+            player.move(i,j);
+        });
         return smallCellUI;
     }
 

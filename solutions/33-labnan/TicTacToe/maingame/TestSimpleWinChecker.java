@@ -23,13 +23,13 @@ public class TestSimpleWinChecker {
         initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
         //winChecker.checkWin();
-        Assertions.assertEquals(PlayerMark.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
     }
 
 
     private void populateColumnWithCross(int column) {
         for (int i = 0; i < 3; i++) {
-            smallCellUIS[column][i].triggerSquareAs(PlayerMark.CROSS);
+            smallCellUIS[column][i].triggerSquareAs(PlayerMark.HUMAN);
         }
     }
 
@@ -86,14 +86,14 @@ public class TestSimpleWinChecker {
     }
 
     private void populateFirstRowUnequally() {
-        smallCellUIS[0][0].triggerSquareAs(PlayerMark.CROSS);
-        smallCellUIS[1][0].triggerSquareAs(PlayerMark.CROSS);
+        smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
+        smallCellUIS[1][0].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[2][0].triggerSquareAs(PlayerMark.ZERO);
     }
 
     private void populateFirstColumnUnequally() {
-        smallCellUIS[0][0].triggerSquareAs(PlayerMark.CROSS);
-        smallCellUIS[0][1].triggerSquareAs(PlayerMark.CROSS);
+        smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
+        smallCellUIS[0][1].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[0][2].triggerSquareAs(PlayerMark.ZERO);
     }
 
@@ -107,21 +107,21 @@ public class TestSimpleWinChecker {
     public void doubleWinPreventionTest() {
 
         initializeWinCheckerAndBoardSquares();
-        populateRowWith(0, PlayerMark.CROSS);
+        populateRowWith(0, PlayerMark.HUMAN);
         populateRowWith(1, PlayerMark.ZERO);
        // winChecker.checkWin();
-        Assertions.assertEquals(PlayerMark.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
 
     }
 
     @Test
     public void antiDiagonalWinTest() {
         initializeWinCheckerAndBoardSquares();
-        smallCellUIS[0][2].triggerSquareAs(PlayerMark.CROSS);
-        smallCellUIS[1][1].triggerSquareAs(PlayerMark.CROSS);
-        smallCellUIS[2][0].triggerSquareAs(PlayerMark.CROSS);
+        smallCellUIS[0][2].triggerSquareAs(PlayerMark.HUMAN);
+        smallCellUIS[1][1].triggerSquareAs(PlayerMark.HUMAN);
+        smallCellUIS[2][0].triggerSquareAs(PlayerMark.HUMAN);
         //winChecker.checkWin();
-        Assertions.assertEquals(PlayerMark.CROSS, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
 
     }
 
