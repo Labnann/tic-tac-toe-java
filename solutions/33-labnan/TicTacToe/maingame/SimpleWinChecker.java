@@ -23,7 +23,7 @@ public class SimpleWinChecker implements WinChecker {
         board.addOnChangeListener(this::doOnBoardChange);
     }
 
-    @Override
+
     public void checkWin() {
         checkWinAtColumn();
         checkWinAtAllRows();
@@ -36,7 +36,7 @@ public class SimpleWinChecker implements WinChecker {
     }
 
     @Override
-    public void setOnGameEnd(GameEndListener gameEndListener) {
+    public void addOnGameEnd(GameEndListener gameEndListener) {
         this.gameEndListener = gameEndListener;
     }
 

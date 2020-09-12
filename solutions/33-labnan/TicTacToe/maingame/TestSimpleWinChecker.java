@@ -3,7 +3,7 @@ package maingame;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class TestWinChecker {
+public class TestSimpleWinChecker {
     WinChecker winChecker;
     SmallCell[][] smallCellUIS;
 
@@ -19,7 +19,7 @@ public class TestWinChecker {
     private void checkColumnForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
-        winChecker.checkWin();
+        //winChecker.checkWin();
         Assertions.assertEquals(SmallCell.Type.CROSS, winChecker.getWinner());
     }
 
@@ -61,7 +61,7 @@ public class TestWinChecker {
     private void checkRowForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
-        winChecker.checkWin();
+        //winChecker.checkWin();
         Assertions.assertEquals(SmallCell.Type.ZERO, winChecker.getWinner());
     }
 
@@ -69,7 +69,7 @@ public class TestWinChecker {
     public void notEquallyPopulatedTest() {
         initializeWinCheckerAndBoardSquares();
         populateFirstRowUnequally();
-        winChecker.checkWin();
+       // winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
 
     }
@@ -78,7 +78,7 @@ public class TestWinChecker {
     public void columnUnequallyPopulatedTest() {
         initializeWinCheckerAndBoardSquares();
         populateFirstColumnUnequally();
-        winChecker.checkWin();
+      //  winChecker.checkWin();
         Assertions.assertFalse(winChecker.isGameEnded());
     }
 
@@ -106,7 +106,7 @@ public class TestWinChecker {
         initializeWinCheckerAndBoardSquares();
         populateRowWith(0, SmallCell.Type.CROSS);
         populateRowWith(1, SmallCell.Type.ZERO);
-        winChecker.checkWin();
+       // winChecker.checkWin();
         Assertions.assertEquals(SmallCell.Type.CROSS, winChecker.getWinner());
 
     }
@@ -117,7 +117,7 @@ public class TestWinChecker {
         smallCellUIS[0][2].triggerSquareAs(SmallCell.Type.CROSS);
         smallCellUIS[1][1].triggerSquareAs(SmallCell.Type.CROSS);
         smallCellUIS[2][0].triggerSquareAs(SmallCell.Type.CROSS);
-        winChecker.checkWin();
+        //winChecker.checkWin();
         Assertions.assertEquals(SmallCell.Type.CROSS, winChecker.getWinner());
 
     }
@@ -125,7 +125,7 @@ public class TestWinChecker {
     private void initializeWinCheckerAndBoardSquares() {
         Board board = new Board();
         smallCellUIS = board.getSmallCells();
-        winChecker = new SimpleWinChecker(board);
+        winChecker = new AdvancedWinChecker(new GameStatus(board.getSmallCells()));
     }
 
 

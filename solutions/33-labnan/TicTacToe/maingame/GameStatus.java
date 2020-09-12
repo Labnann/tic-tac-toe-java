@@ -1,6 +1,8 @@
 package maingame;
 
 
+import java.util.ArrayList;
+
 public class GameStatus {
 
     private CheckerLine[] columnLine;
@@ -104,27 +106,52 @@ public class GameStatus {
 
 class CheckerLine {
     private int count = 0;
-    private SmallCell.Type type;
+    private SmallCell.Type playerMark;
     private boolean winnable = true;
 
+    ArrayList<WinnerFoundListener> winnerFoundListeners = new ArrayList<>();
+
+
+
     public void addType(SmallCell.Type type) {
-        if ( count == 3) return;
-        if (this.type == null || this.type == type) {
-            this.type = type;
+        if ( count == 3){
+            return;}
+        if (this.playerMark == null || this.playerMark == type) {
+            this.playerMark = type;
             count++;
+            if(count == 3){doOnWinnerFound();}
         }  else winnable = false;
     }
+
+    public void addWinnerFoundListener(WinnerFoundListener winnerFoundListener){
+        winnerFoundListeners.add(winnerFoundListener);
+    }
+
+    private void doOnWinnerFound(){
+        for(WinnerFoundListener winnerFoundListener: winnerFoundListeners){
+            if(winnerFoundListener == null) return;
+            winnerFoundListener.doOnWinnerFound();
+        }
+    }
+
+
+
+
 
     public boolean isWinnable() {
         return winnable;
     }
 
-    public SmallCell.Type getType() {
-        return type;
+    public SmallCell.Type getPlayerMark() {
+        return playerMark;
     }
 
     public int getCount() {
         return count;
+    }
+
+    public interface WinnerFoundListener{
+        void doOnWinnerFound();
     }
 }
 

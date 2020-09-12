@@ -1,34 +1,77 @@
 package maingame;
 
+import java.util.ArrayList;
+
 public class AdvancedWinChecker implements WinChecker{
 
     GameStatus gameStatus;
+    SmallCell.Type playerMark;
+    ArrayList<GameEndListener> gameEndListeners = new ArrayList<>();
+
+
 
     AdvancedWinChecker(GameStatus gameStatus){
         this.gameStatus = gameStatus;
+        addListenersToCheckers();
 
+    }
+
+    private void addListenersToCheckers() {
+
+        addListenerToVectors();
+        addListenerToDiagonals();
+
+    }
+
+    private void addListenerToDiagonals() {
+        addListenerToLineChecker(gameStatus.getDiagonalChecker());
+        addListenerToLineChecker(gameStatus.getAntiDiagonalChecker());
+    }
+
+    private void addListenerToVectors() {
+        for(int i = 0; i<3; i++){
+            addListenerToLineChecker(gameStatus.getColumnChecker()[i]);
+            addListenerToLineChecker(gameStatus.getRowChecker()[i]);
+        }
+    }
+
+    private void addListenerToLineChecker(CheckerLine checkerLine) {
+       checkerLine.addWinnerFoundListener(() -> {
+           setWinner(checkerLine);
+           doOnGameEnd();
+       });
+    }
+
+    private void doOnGameEnd() {
+        System.out.println("Winner :"+ getWinner());
+        for (GameEndListener gameEndListener: gameEndListeners){
+            if (gameEndListener == null) {
+               return;
+            }
+            gameEndListener.doOnGameEnd();
+        }
+    }
+
+    private void setWinner(CheckerLine checkerLine) {
+
+        if(playerMark ==null)
+        playerMark = checkerLine.getPlayerMark();
     }
 
     @Override
     public boolean isGameEnded() {
-
-        return false;
+        return (getWinner()!=null || gameStatus.getTurnCount()==9);
     }
 
 
-
-    @Override
-    public void checkWin() {
-
-    }
 
     @Override
     public SmallCell.Type getWinner() {
-        return null;
+        return playerMark;
     }
 
     @Override
-    public void setOnGameEnd(GameEndListener gameEndListener) {
-
+    public void addOnGameEnd(GameEndListener gameEndListener) {
+        gameEndListeners.add(gameEndListener);
     }
 }

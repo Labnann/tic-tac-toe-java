@@ -32,7 +32,6 @@ public class GameLauncher {
         uiCreator.createUI();
         addButtonFunctions();
         new SimpleWinChecker(board);
-        new GameStatus(board.getSmallCells());
     }
 
 
