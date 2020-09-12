@@ -17,7 +17,7 @@ public class WinChecker {
     }
 
     public void startChecking() {
-        board.onChange(this::doOnBoardChange);
+        board.addOnChangeListener(this::doOnBoardChange);
     }
 
     public void checkWin() {

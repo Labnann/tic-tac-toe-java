@@ -3,11 +3,14 @@ package maingame;
 import javafx.scene.layout.Pane;
 import theme.Theme;
 
+import java.util.ArrayList;
+
 
 public class Board {
     private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
     private SmallCell[][] smallCells = new SmallCell[3][3];
-    private BoardListener boardChangeListener;
+
+    ArrayList<BoardListener>  boardChangeListeners = new ArrayList<>();
 
     Board(){
         initializeSmallCells();
@@ -20,8 +23,8 @@ public class Board {
             }
         }
     }
-    public void onChange(BoardListener boardChangeListener) {
-        this.boardChangeListener = boardChangeListener;
+    public void addOnChangeListener(BoardListener boardChangeListener) {
+        boardChangeListeners.add(boardChangeListener);
     }
 
 
@@ -40,9 +43,13 @@ public class Board {
     }
 
     private void doOnChange() {
+        for(BoardListener boardChangeListener: boardChangeListeners){
         if (boardChangeListener != null) {
             boardChangeListener.performOnChange();
+            continue;
         }
+        return;
+    }
     }
 
     public SmallCell[][] getSmallCells() {

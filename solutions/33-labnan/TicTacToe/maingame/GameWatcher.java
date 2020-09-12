@@ -1,12 +1,18 @@
 package maingame;
 
+
 public class GameWatcher {
 
-    private CheckerLine[] rowLine;
     private CheckerLine[] columnLine;
+    private CheckerLine[] rowLine;
     private CheckerLine leadingDiagonalLine;
     private CheckerLine antiDiagonalLine;
-    private CheckerLine[] allLines;
+    private SmallCell[][] smallCells;
+
+
+
+
+
 
     GameWatcher(SmallCell[][] smallCells) {
         this.smallCells = smallCells;
@@ -15,70 +21,36 @@ public class GameWatcher {
 
     }
 
-    public CheckerLine[] getAllLines() {
-        return allLines;
-    }
 
-    void initializeLines() {
-        rowLine = new CheckerLine[3];
+
+    private void initializeLines() {
         columnLine = new CheckerLine[3];
-        allLines = new CheckerLine[8];
-        makeReferenceToAllLines();
-    }
-
-    public void makeReferenceToAllLines() {
+        rowLine = new CheckerLine[3];
         for (int i = 0; i < 3; i++) {
-            columnLine[i] = new CheckerLine();
             rowLine[i] = new CheckerLine();
-            this.allLines[i] = rowLine[i];
-            this.allLines[i + rowLine.length] = columnLine[i];
+            columnLine[i] = new CheckerLine();
         }
         leadingDiagonalLine = new CheckerLine();
         antiDiagonalLine = new CheckerLine();
-        this.allLines[rowLine.length + columnLine.length] = leadingDiagonalLine;
-        this.allLines[columnLine.length + rowLine.length + 1] = antiDiagonalLine;
-    }
-
-    public boolean isDraw() {
-        for (CheckerLine i : allLines) {
-            if (i.isWinnable()) return false;
-        }
-        return true;
     }
 
 
-    public CheckerLine[] getRowLine() {
-        return rowLine;
-    }
-
-    public CheckerLine[] getColumnLine() {
-        return columnLine;
-    }
-
-    public CheckerLine getAntiDiagonalLine() {
-        return antiDiagonalLine;
-    }
-
-    public CheckerLine getLeadingDiagonalLine() {
-        return leadingDiagonalLine;
-    }
-
-    SmallCell[][] smallCells;
 
 
     private void readyBoxesItemsForChecking() {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
-                addChecker(j, i, i, j);
+                addChecker(i,j);
             }
         }
 
     }
 
-    private void addChecker(int j, int i, int finalI, int finalJ) {
-        addCheckerAtColumn(smallCells[finalI][finalJ], finalJ);
-        addCheckerAtRow(finalJ, smallCells[finalJ][finalI], rowLine);
-        addCheckerOnDiagonalLine(j, i, smallCells[finalI][finalI]);
+    private void addChecker(int i, int j) {
+
+        addCheckerAtColumn(smallCells[i][j], j);
+        addCheckerAtRow(j, smallCells[j][i], columnLine);
+        addCheckerOnDiagonalLine(j, i, smallCells[i][i]);
         addCheckerOnAntiDiagonalLine(i, j);
     }
 
@@ -99,8 +71,43 @@ public class GameWatcher {
     }
 
     private void addCheckerAtColumn(SmallCell smallCell, int finalJ) {
-        addCheckerAtRow(finalJ, smallCell, columnLine); //Transposed the matrix
+        addCheckerAtRow(finalJ, smallCell, rowLine); //Transposed the matrix
     }
+
+    public Status status(){
+        return new Status(rowLine,columnLine,leadingDiagonalLine,antiDiagonalLine);
+    }
+
+    class Status{
+        CheckerLine[] rowChecker;
+        CheckerLine[] columnChecker;
+        CheckerLine diagonalChecker;
+        CheckerLine antiDiagonalChecker;
+
+        public Status(CheckerLine[] rowChecker, CheckerLine[] columnChecker, CheckerLine diagonalChecker, CheckerLine antiDiagonalChecker) {
+            this.rowChecker = rowChecker;
+            this.columnChecker = columnChecker;
+            this.diagonalChecker = diagonalChecker;
+            this.antiDiagonalChecker = antiDiagonalChecker;
+        }
+
+        public CheckerLine getAntiDiagonalChecker() {
+            return antiDiagonalChecker;
+        }
+
+        public CheckerLine[] getColumnChecker() {
+            return columnChecker;
+        }
+
+        public CheckerLine[] getRowChecker() {
+            return rowChecker;
+        }
+
+        public CheckerLine getDiagonalChecker() {
+            return diagonalChecker;
+        }
+    }
+
 
 
 }
@@ -111,13 +118,11 @@ class CheckerLine {
     private boolean winnable = true;
 
     public void addType(SmallCell.Type type) {
-        if (!winnable || count == 3) return;
-        if (this.type == null) {
+        if ( count == 3) return;
+        if (this.type == null || this.type == type) {
             this.type = type;
             count++;
-        } else if (this.type == type) {
-            count++;
-        } else winnable = false;
+        }  else winnable = false;
     }
 
     public boolean isWinnable() {
@@ -132,3 +137,6 @@ class CheckerLine {
         return count;
     }
 }
+
+
+
