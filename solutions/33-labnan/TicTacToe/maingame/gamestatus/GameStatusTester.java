@@ -1,12 +1,15 @@
-package maingame;
+package maingame.gamestatus;
 
+import maingame.Board;
+import maingame.PlayerMark;
+import maingame.SmallCell;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class GameStatusTester {
     Board board = new Board();
     SmallCell[][] smallCells = board.getSmallCells();
-    GameStatus status = new GameStatus(smallCells);
+    GameStatus status = new GamePlayStatus(smallCells);
 
 
 

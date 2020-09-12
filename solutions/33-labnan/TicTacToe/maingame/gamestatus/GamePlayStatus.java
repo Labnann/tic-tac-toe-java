@@ -1,9 +1,9 @@
-package maingame;
+package maingame.gamestatus;
 
 
-import java.util.ArrayList;
+import maingame.SmallCell;
 
-public class GameStatus {
+public class GamePlayStatus implements GameStatus {
 
     private CheckerLine[] columnLine;
     private CheckerLine[] rowLine;
@@ -15,13 +15,14 @@ public class GameStatus {
 
 
 
-    GameStatus(SmallCell[][] smallCells) {
+    public GamePlayStatus(SmallCell[][] smallCells) {
         this.smallCells = smallCells;
         initializeLines();
         readyBoxesItemsForChecking();
 
     }
 
+    @Override
     public int getTurnCount() {
         return turnCount/2;      //turnCount is doubled so we divide by two, may fix later..
     }
@@ -38,18 +39,22 @@ public class GameStatus {
     }
 
 
+    @Override
     public CheckerLine getAntiDiagonalChecker() {
         return antiDiagonalLine;
     }
 
+    @Override
     public CheckerLine[] getColumnChecker() {
         return columnLine;
     }
 
+    @Override
     public CheckerLine[] getRowChecker() {
         return rowLine;
     }
 
+    @Override
     public CheckerLine getDiagonalChecker() {
         return leadingDiagonalLine;
     }

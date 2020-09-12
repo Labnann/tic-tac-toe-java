@@ -1,4 +1,6 @@
-package maingame;
+package maingame.gamestatus;
+
+import maingame.PlayerMark;
 
 import java.util.ArrayList;
 

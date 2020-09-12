@@ -1,4 +1,4 @@
-package winchecker;
+package maingame.winchecker;
 
 import maingame.PlayerMark;
 

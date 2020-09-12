@@ -2,9 +2,11 @@ package maingame;
 
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import maingame.gamestatus.GamePlayStatus;
+import maingame.gamestatus.GameStatus;
 import theme.ClassicTheme;
 import theme.Theme;
-import winchecker.AdvancedWinChecker;
+import maingame.winchecker.AdvancedWinChecker;
 
 
 public class GameLauncher {
@@ -32,7 +34,7 @@ public class GameLauncher {
         uiCreator = new UICreator(gameRootStage,boardUI,theme);
         uiCreator.createUI();
         addButtonFunctions();
-        GameStatus gameStatus = new GameStatus(board.getSmallCells());
+        GameStatus gameStatus = new GamePlayStatus(board.getSmallCells());
         AdvancedWinChecker advancedWinChecker = new AdvancedWinChecker(gameStatus);
     }
 

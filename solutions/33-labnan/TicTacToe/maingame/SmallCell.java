@@ -2,8 +2,8 @@ package maingame;
 
 import java.util.ArrayList;
 
-class SmallCell {
-    ArrayList<SmallCellChangeListener> smallCellChangeListeners = new ArrayList<>();
+public class SmallCell {
+    private ArrayList<SmallCellChangeListener> smallCellChangeListeners = new ArrayList<>();
     private PlayerMark turnType = null;
     private boolean isTriggered = false;
 
@@ -43,7 +43,7 @@ class SmallCell {
         this.smallCellChangeListeners.add(smallCellChangeListener);
     }
 
-    interface SmallCellChangeListener {
+    public interface SmallCellChangeListener {
         void doOnCellChange();
     }
 }

@@ -1,7 +1,7 @@
-package winchecker;
+package maingame.winchecker;
 
-import maingame.CheckerLine;
-import maingame.GameStatus;
+import maingame.gamestatus.CheckerLine;
+import maingame.gamestatus.GameStatus;
 import maingame.PlayerMark;
 
 import java.util.ArrayList;

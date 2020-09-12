@@ -1,9 +1,10 @@
 package maingame;
 
+import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import winchecker.AdvancedWinChecker;
-import winchecker.WinChecker;
+import maingame.winchecker.AdvancedWinChecker;
+import maingame.winchecker.WinChecker;
 
 public class TestSimpleWinChecker {
     WinChecker winChecker;
@@ -127,7 +128,7 @@ public class TestSimpleWinChecker {
     private void initializeWinCheckerAndBoardSquares() {
         Board board = new Board();
         smallCellUIS = board.getSmallCells();
-        winChecker = new AdvancedWinChecker(new GameStatus(board.getSmallCells()));
+        winChecker = new AdvancedWinChecker(new GamePlayStatus(board.getSmallCells()));
     }
 
 

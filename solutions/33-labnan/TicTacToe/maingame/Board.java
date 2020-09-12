@@ -9,7 +9,7 @@ public class Board {
 
     ArrayList<BoardListener>  boardChangeListeners = new ArrayList<>();
 
-    Board(){
+    public Board(){
         initializeSmallCells();
     }
 
