@@ -1,16 +1,20 @@
-package maingame;
+package winchecker;
+
+import maingame.CheckerLine;
+import maingame.GameStatus;
+import maingame.PlayerMark;
 
 import java.util.ArrayList;
 
 public class AdvancedWinChecker implements WinChecker{
 
     GameStatus gameStatus;
-    SmallCell.Type playerMark;
+    PlayerMark playerMark;
     ArrayList<GameEndListener> gameEndListeners = new ArrayList<>();
 
 
 
-    AdvancedWinChecker(GameStatus gameStatus){
+    public AdvancedWinChecker(GameStatus gameStatus){
         this.gameStatus = gameStatus;
         addListenersToCheckers();
 
@@ -63,10 +67,8 @@ public class AdvancedWinChecker implements WinChecker{
         return (getWinner()!=null || gameStatus.getTurnCount()==9);
     }
 
-
-
     @Override
-    public SmallCell.Type getWinner() {
+    public PlayerMark getWinner() {
         return playerMark;
     }
 

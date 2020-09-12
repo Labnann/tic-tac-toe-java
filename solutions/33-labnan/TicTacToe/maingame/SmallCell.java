@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 class SmallCell {
     ArrayList<SmallCellChangeListener> smallCellChangeListeners = new ArrayList<>();
-    private Type turnType = null;
+    private PlayerMark turnType = null;
     private boolean isTriggered = false;
 
-    public Type getTurnType() {
+    public PlayerMark getTurnType() {
         return turnType;
     }
 
-    public void setTurnType(Type turnType) {
+    public void setTurnType(PlayerMark turnType) {
         if (this.turnType == null)
             this.turnType = turnType;
         doOnTypeChange();
@@ -21,7 +21,7 @@ class SmallCell {
         isTriggered = triggered;
     }
 
-    public void triggerSquareAs(Type turnType){
+    public void triggerSquareAs(PlayerMark turnType){
         if(this.isNotTriggered()){
             this.setTurnType(turnType);
             this.setTriggered(true);
@@ -41,10 +41,6 @@ class SmallCell {
 
     public void addOnSmallCellTrigger(SmallCellChangeListener smallCellChangeListener) {
         this.smallCellChangeListeners.add(smallCellChangeListener);
-    }
-
-    enum Type {
-        ZERO, CROSS
     }
 
     interface SmallCellChangeListener {

@@ -1,6 +1,5 @@
 package maingame;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -19,7 +18,7 @@ public class BoardTest {
     public void testBoardSquareDoubleTrigger() {
         initializeSmallCells();
         simultaneouslyTrigger(0, 0);
-        Assertions.assertEquals(SmallCell.Type.CROSS, smallCells[0][0].getTurnType());
+        Assertions.assertEquals(PlayerMark.CROSS, smallCells[0][0].getTurnType());
     }
 
     private void simultaneouslyTrigger(int i, int j) {
@@ -31,16 +30,16 @@ public class BoardTest {
     public void testBoardSquareSecondTrigger() {
         initializeSmallCells();
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(SmallCell.Type.ZERO, smallCells[0][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.ZERO, smallCells[0][1].getTurnType());
     }
 
     @Test
     public void testSetStartingTurn() {
         initializeSmallCells();
-        board.setStartingTurn(SmallCell.Type.ZERO);
+        board.setStartingTurn(PlayerMark.ZERO);
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(SmallCell.Type.ZERO, smallCells[0][0].getTurnType());
-        Assertions.assertEquals(SmallCell.Type.CROSS, smallCells[0][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.ZERO, smallCells[0][0].getTurnType());
+        Assertions.assertEquals(PlayerMark.CROSS, smallCells[0][1].getTurnType());
     }
 
 

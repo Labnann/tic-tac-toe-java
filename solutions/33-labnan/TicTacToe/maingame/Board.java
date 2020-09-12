@@ -1,13 +1,10 @@
 package maingame;
 
-import javafx.scene.layout.Pane;
-import theme.Theme;
-
 import java.util.ArrayList;
 
 
 public class Board {
-    private SmallCell.Type currentTurnType = SmallCell.Type.CROSS;
+    private PlayerMark currentTurnType = PlayerMark.CROSS;
     private SmallCell[][] smallCells = new SmallCell[3][3];
 
     ArrayList<BoardListener>  boardChangeListeners = new ArrayList<>();
@@ -28,7 +25,7 @@ public class Board {
     }
 
 
-    public void setStartingTurn(SmallCell.Type startingTurnType) {
+    public void setStartingTurn(PlayerMark startingTurnType) {
         this.currentTurnType = startingTurnType;
     }
 
@@ -63,9 +60,9 @@ public class Board {
     }
 
     private void changeTurn() {
-        if (currentTurnType == SmallCell.Type.CROSS)
-            currentTurnType = SmallCell.Type.ZERO;
-        else currentTurnType = SmallCell.Type.CROSS;
+        if (currentTurnType == PlayerMark.CROSS)
+            currentTurnType = PlayerMark.ZERO;
+        else currentTurnType = PlayerMark.CROSS;
     }
 
 }

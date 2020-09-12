@@ -4,6 +4,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import theme.ClassicTheme;
 import theme.Theme;
+import winchecker.AdvancedWinChecker;
 
 
 public class GameLauncher {

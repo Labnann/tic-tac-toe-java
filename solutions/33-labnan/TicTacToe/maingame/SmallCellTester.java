@@ -20,14 +20,14 @@ public class SmallCellTester {
             update();
             Assertions.assertEquals(3, updateValue);
         });
-        smallCell.setTurnType(SmallCell.Type.CROSS);
+        smallCell.setTurnType(PlayerMark.CROSS);
     }
 
     @Test
     public void testBoxGetTypeOnDoubleSet() {
-        smallCell.setTurnType(SmallCell.Type.CROSS);
-        smallCell.setTurnType(SmallCell.Type.ZERO);
-        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
+        smallCell.setTurnType(PlayerMark.CROSS);
+        smallCell.setTurnType(PlayerMark.ZERO);
+        Assertions.assertEquals(PlayerMark.CROSS, smallCell.getTurnType());
     }
 
 
@@ -39,22 +39,22 @@ public class SmallCellTester {
     @Test
     public void getSquareIsTriggeredTest() {
 
-        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
+        smallCell.triggerSquareAs(PlayerMark.CROSS);
         Assertions.assertFalse(smallCell.isNotTriggered());
     }
 
     @Test
     public void getSquarePlaceValueTest() {
         Assertions.assertNull(smallCell.getTurnType());
-        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
-        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
-        smallCell.triggerSquareAs(SmallCell.Type.ZERO);
-        Assertions.assertEquals(SmallCell.Type.CROSS, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMark.CROSS);
+        Assertions.assertEquals(PlayerMark.CROSS, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMark.ZERO);
+        Assertions.assertEquals(PlayerMark.CROSS, smallCell.getTurnType());
         smallCell = new SmallCell();
-        smallCell.triggerSquareAs(SmallCell.Type.ZERO);
-        Assertions.assertEquals(SmallCell.Type.ZERO, smallCell.getTurnType());
-        smallCell.triggerSquareAs(SmallCell.Type.CROSS);
-        Assertions.assertEquals(SmallCell.Type.ZERO, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMark.ZERO);
+        Assertions.assertEquals(PlayerMark.ZERO, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMark.CROSS);
+        Assertions.assertEquals(PlayerMark.ZERO, smallCell.getTurnType());
     }
 
 

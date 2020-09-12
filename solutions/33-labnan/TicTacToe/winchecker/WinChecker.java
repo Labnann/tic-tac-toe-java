@@ -1,10 +1,12 @@
-package maingame;
+package winchecker;
+
+import maingame.PlayerMark;
 
 public interface WinChecker {
     boolean isGameEnded();
 
 
-    SmallCell.Type getWinner();
+    PlayerMark getWinner();
 
     void addOnGameEnd(GameEndListener gameEndListener);
 
