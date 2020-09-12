@@ -35,7 +35,7 @@ class SmallCell {
     private void doOnTypeChange() {
         for (SmallCellChangeListener i : smallCellChangeListeners) {
             if (i == null) break;
-            else i.doOnBoxChange();
+            else i.doOnCellChange();
         }
     }
 
@@ -48,6 +48,6 @@ class SmallCell {
     }
 
     interface SmallCellChangeListener {
-        void doOnBoxChange();
+        void doOnCellChange();
     }
 }

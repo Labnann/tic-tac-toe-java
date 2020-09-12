@@ -1,6 +1,5 @@
 package maingame;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -126,7 +125,7 @@ public class TestWinChecker {
     private void initializeWinCheckerAndBoardSquares() {
         Board board = new Board();
         smallCellUIS = board.getSmallCells();
-        winChecker = new WinChecker(board);
+        winChecker = new SimpleWinChecker(board);
     }
 
 

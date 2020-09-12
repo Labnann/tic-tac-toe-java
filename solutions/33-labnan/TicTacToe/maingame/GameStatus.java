@@ -1,27 +1,30 @@
 package maingame;
 
 
-public class GameWatcher {
+public class GameStatus {
 
     private CheckerLine[] columnLine;
     private CheckerLine[] rowLine;
     private CheckerLine leadingDiagonalLine;
     private CheckerLine antiDiagonalLine;
     private SmallCell[][] smallCells;
+    private int turnCount;
+
+    private void st(){
+        System.out.println(turnCount);
+    }
 
 
-
-
-
-
-    GameWatcher(SmallCell[][] smallCells) {
+    GameStatus(SmallCell[][] smallCells) {
         this.smallCells = smallCells;
         initializeLines();
         readyBoxesItemsForChecking();
 
     }
 
-
+    public int getTurnCount() {
+        return turnCount/2;      //turnCount is doubled so we divide by two, may fix later..
+    }
 
     private void initializeLines() {
         columnLine = new CheckerLine[3];
@@ -32,6 +35,23 @@ public class GameWatcher {
         }
         leadingDiagonalLine = new CheckerLine();
         antiDiagonalLine = new CheckerLine();
+    }
+
+
+    public CheckerLine getAntiDiagonalChecker() {
+        return antiDiagonalLine;
+    }
+
+    public CheckerLine[] getColumnChecker() {
+        return columnLine;
+    }
+
+    public CheckerLine[] getRowChecker() {
+        return rowLine;
+    }
+
+    public CheckerLine getDiagonalChecker() {
+        return leadingDiagonalLine;
     }
 
 
@@ -49,7 +69,7 @@ public class GameWatcher {
     private void addChecker(int i, int j) {
 
         addCheckerAtColumn(smallCells[i][j], j);
-        addCheckerAtRow(j, smallCells[j][i], columnLine);
+        addCheckerAtAVector(j, smallCells[j][i], columnLine);
         addCheckerOnDiagonalLine(j, i, smallCells[i][i]);
         addCheckerOnAntiDiagonalLine(i, j);
     }
@@ -66,46 +86,16 @@ public class GameWatcher {
         }
     }
 
-    private void addCheckerAtRow(int finalJ, SmallCell smallCell, CheckerLine[] rowLine) {
-        smallCell.addOnSmallCellTrigger(() -> rowLine[finalJ].addType(smallCell.getTurnType()));
+    private void addCheckerAtAVector(int finalJ, SmallCell smallCell, CheckerLine[] rowLine) {
+        smallCell.addOnSmallCellTrigger(() -> {
+            rowLine[finalJ].addType(smallCell.getTurnType());
+            turnCount++;
+            st();
+        });
     }
 
     private void addCheckerAtColumn(SmallCell smallCell, int finalJ) {
-        addCheckerAtRow(finalJ, smallCell, rowLine); //Transposed the matrix
-    }
-
-    public Status status(){
-        return new Status(rowLine,columnLine,leadingDiagonalLine,antiDiagonalLine);
-    }
-
-    class Status{
-        CheckerLine[] rowChecker;
-        CheckerLine[] columnChecker;
-        CheckerLine diagonalChecker;
-        CheckerLine antiDiagonalChecker;
-
-        public Status(CheckerLine[] rowChecker, CheckerLine[] columnChecker, CheckerLine diagonalChecker, CheckerLine antiDiagonalChecker) {
-            this.rowChecker = rowChecker;
-            this.columnChecker = columnChecker;
-            this.diagonalChecker = diagonalChecker;
-            this.antiDiagonalChecker = antiDiagonalChecker;
-        }
-
-        public CheckerLine getAntiDiagonalChecker() {
-            return antiDiagonalChecker;
-        }
-
-        public CheckerLine[] getColumnChecker() {
-            return columnChecker;
-        }
-
-        public CheckerLine[] getRowChecker() {
-            return rowChecker;
-        }
-
-        public CheckerLine getDiagonalChecker() {
-            return diagonalChecker;
-        }
+        addCheckerAtAVector(finalJ, smallCell, rowLine); //Transposed the matrix
     }
 
 

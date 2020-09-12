@@ -31,7 +31,8 @@ public class GameLauncher {
         uiCreator = new UICreator(gameRootStage,boardUI,theme);
         uiCreator.createUI();
         addButtonFunctions();
-        new WinChecker(board).startChecking();
+        new SimpleWinChecker(board);
+        new GameStatus(board.getSmallCells());
     }
 
 

@@ -3,11 +3,11 @@ package maingame;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class GameWatcherTester {
+public class GameStatusTester {
     Board board = new Board();
     SmallCell[][] smallCells = board.getSmallCells();
-    GameWatcher gameWatcher = new GameWatcher(smallCells);
-    GameWatcher.Status status = gameWatcher.status();
+    GameStatus status = new GameStatus(smallCells);
+
 
 
     @Test
