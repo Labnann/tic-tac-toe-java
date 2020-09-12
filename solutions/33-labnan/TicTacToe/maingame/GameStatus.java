@@ -12,9 +12,7 @@ public class GameStatus {
     private SmallCell[][] smallCells;
     private int turnCount;
 
-    private void st(){
-        System.out.println(turnCount);
-    }
+
 
 
     GameStatus(SmallCell[][] smallCells) {
@@ -92,7 +90,6 @@ public class GameStatus {
         smallCell.addOnSmallCellTrigger(() -> {
             rowLine[finalJ].addType(smallCell.getTurnType());
             turnCount++;
-            st();
         });
     }
 

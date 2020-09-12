@@ -10,7 +10,7 @@ public class GameLauncher {
     private Stage gameRootStage;
     UICreator uiCreator;
     Pane boardPane  = new Pane();
-    private SmallCell[][] smallCells = new SmallCell[3][3];
+
     Theme theme = new ClassicTheme();
 
     Board board;
@@ -31,7 +31,8 @@ public class GameLauncher {
         uiCreator = new UICreator(gameRootStage,boardUI,theme);
         uiCreator.createUI();
         addButtonFunctions();
-        new SimpleWinChecker(board);
+        GameStatus gameStatus = new GameStatus(board.getSmallCells());
+        AdvancedWinChecker advancedWinChecker = new AdvancedWinChecker(gameStatus);
     }
 
 
