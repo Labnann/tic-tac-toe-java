@@ -1,5 +1,6 @@
-package maingame;
+package maingame.player;
 
+import maingame.Board;
 import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

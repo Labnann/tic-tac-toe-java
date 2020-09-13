@@ -1,4 +1,7 @@
-package maingame;
+package maingame.player;
+
+import maingame.PlayerMark;
+import maingame.SmallCell;
 
 import java.util.ArrayList;
 

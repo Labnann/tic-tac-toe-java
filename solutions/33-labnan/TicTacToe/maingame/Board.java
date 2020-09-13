@@ -56,7 +56,7 @@ public class Board {
 
 
 
-    interface BoardListener {
+    public interface BoardListener {
         void performOnChange();
     }
 
