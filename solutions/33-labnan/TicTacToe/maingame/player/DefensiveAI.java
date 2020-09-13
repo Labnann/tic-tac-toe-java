@@ -1,5 +1,6 @@
 package maingame.player;
 
+import maingame.PlayerMark;
 import maingame.SmallCell;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
@@ -36,7 +37,7 @@ public class DefensiveAI implements AI {
         CheckerLine checkerLine;
         for(int i = 0; i<3; i++){
             checkerLine = gameStatus.getRowChecker()[i];
-            if(checkerLine.getPlayerMark()==PLAYER_MARK)
+            if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
             if(checkerLine.getCount()==2&&checkerLine.isWinnable()){
                return winAtRow(i);
             }
@@ -44,20 +45,20 @@ public class DefensiveAI implements AI {
 
         for(int i = 0; i<3; i++){
             checkerLine = gameStatus.getColumnChecker()[i];
-            if(checkerLine.getPlayerMark()==PLAYER_MARK)
+            if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
             if(checkerLine.getCount()==2&&checkerLine.isWinnable()){
                 return winAtColumn(i);
             }
         }
 
         checkerLine = gameStatus.getDiagonalChecker();
-        if(checkerLine.getPlayerMark()==PLAYER_MARK)
+        if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
         if(checkerLine.isWinnable() && checkerLine.getCount()==2){
             return winAtDiagonal();
         }
 
         checkerLine = gameStatus.getAntiDiagonalChecker();
-        if(checkerLine.getPlayerMark()==PLAYER_MARK)
+        if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
         if(checkerLine.isWinnable() && checkerLine.getCount()==2){
             return winAtAntiDiagonal();
         }
