@@ -7,22 +7,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ClassicTheme implements Theme {
-
+public class HighContrastTheme implements Theme {
 
     private Text text;
 
     public void setSquarePane(Pane squarePane) {
-        squarePane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, null, null)));
         squarePane.setPrefSize(100, 100);
     }
 
     public void setBoardPane(Pane boardPane) {
-        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+        boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
     }
 
     public void setRootPane(Pane rootPane){
-        rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        rootPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, null, null)));
     }
 
 

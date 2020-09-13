@@ -9,7 +9,7 @@ public interface WinChecker {
     PlayerMark getWinner();
 
     void addOnGameEnd(GameEndListener gameEndListener);
-
+    void startChecking();
 
     interface GameEndListener {
         void doOnGameEnd();

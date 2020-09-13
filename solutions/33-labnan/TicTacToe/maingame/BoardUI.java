@@ -32,7 +32,7 @@ BoardUI( Board board, Theme theme, Human player) {
     }
 
     private void adjustWithTheme() {
-    theme.setPane(boardPane);
+    theme.setBoardPane(boardPane);
     for (SmallCellUI[] i : smallCellUIs) {
         for (SmallCellUI j : i) {
             j.setTheme(theme);

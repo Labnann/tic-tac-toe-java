@@ -28,42 +28,57 @@ public class DefensiveAI implements AI {
     }
 
     private void move(){
-
-        position = findMove();
+        findMove();
         smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(PLAYER_MARK);
     }
 
-    private Position findMove() {
+    private void findMove() {
+        position = null;
+        checkRows();
+        checkColumns();
+        checkDiagonal();
+        checkAntiDiagonal();
+        if(position==null)
+            position = randomAI.findMove();
+    }
+
+    private void checkAntiDiagonal() {
+        CheckerLine checkerLine;
+        checkerLine = gameStatus.getAntiDiagonalChecker();
+        if(checkerLineHasWinner(checkerLine)){
+             winAtAntiDiagonal();
+        }
+    }
+
+    private void checkDiagonal() {
+        CheckerLine checkerLine;
+        checkerLine = gameStatus.getDiagonalChecker();
+        if(checkerLineHasWinner(checkerLine)){
+            winAtDiagonal();
+        }
+    }
+
+    private void checkColumns() {
+        CheckerLine checkerLine;
+        for(int i = 0; i<3; i++){
+            checkerLine = gameStatus.getColumnChecker()[i];
+            if(checkerLineHasWinner(checkerLine)){
+                 winAtColumn(i);
+            }
+        }
+    }
+
+    private void checkRows() {
         CheckerLine checkerLine;
         for(int i = 0; i<3; i++){
             checkerLine = gameStatus.getRowChecker()[i];
-            if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
-            if(checkerLine.getCount()==2&&checkerLine.isWinnable()){
-               return winAtRow(i);
-            }
-        }
+            if(checkerLineHasWinner(checkerLine)){
+                winAtRow(i);
+            }}
+    }
 
-        for(int i = 0; i<3; i++){
-            checkerLine = gameStatus.getColumnChecker()[i];
-            if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
-            if(checkerLine.getCount()==2&&checkerLine.isWinnable()){
-                return winAtColumn(i);
-            }
-        }
-
-        checkerLine = gameStatus.getDiagonalChecker();
-        if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
-        if(checkerLine.isWinnable() && checkerLine.getCount()==2){
-            return winAtDiagonal();
-        }
-
-        checkerLine = gameStatus.getAntiDiagonalChecker();
-        if(checkerLine.getPlayerMark()==PlayerMark.HUMAN)
-        if(checkerLine.isWinnable() && checkerLine.getCount()==2){
-            return winAtAntiDiagonal();
-        }
-    return randomAI.findMove();
-
+    private boolean checkerLineHasWinner(CheckerLine checkerLine) {
+        return checkerLine.getPlayerMark() == PlayerMark.HUMAN && checkerLine.getCount() == 2 && checkerLine.isWinnable();
     }
 
     /*
@@ -77,44 +92,36 @@ public class DefensiveAI implements AI {
     y = 2 - x
      */
 
-    private Position winAtAntiDiagonal() {
+    private void winAtAntiDiagonal() {
         for(int i = 0; i<3; i++){
-            if(smallCells[i][2-i].isNotTriggered()){
-                return new Position(i,2-i);
-            }
+            findUntriggeredPosition(i, 2-i);
         }
-        return null;
     }
 
-    private Position winAtDiagonal() {
+    private void winAtDiagonal() {
         for(int i = 0; i<3; i++){
-            if(smallCells[i][i].isNotTriggered()){
-                return new Position(i,i);
-            }
+            findUntriggeredPosition(i, i);
         }
-        return null;
-
     }
 
 
-    private Position winAtRow(int columnNum) {
+    private void winAtRow(int columnNum) {
         for(int rowNum = 0; rowNum<3; rowNum++){
-            if(smallCells[rowNum][columnNum].isNotTriggered()){
-                return new Position(rowNum,columnNum);
-            }
+            findUntriggeredPosition(rowNum, columnNum);
         }
-        return null;
+    }
+
+    private void winAtColumn(int rowNum) {
+        for(int columnNum = 0; columnNum<3; columnNum++){
+            findUntriggeredPosition(rowNum, columnNum);
+        }
 
     }
 
-    private Position winAtColumn(int rowNum) {
-        for(int columnNum = 0; columnNum<3; columnNum++){
-            if(smallCells[rowNum][columnNum].isNotTriggered()){
-                return new Position(rowNum,columnNum);
-            }
+    private void findUntriggeredPosition(int rowNum, int columnNum) {
+        if (smallCells[rowNum][columnNum].isNotTriggered()) {
+            position = new Position(rowNum, columnNum);
         }
-        return null;
-
     }
 
 

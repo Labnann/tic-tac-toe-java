@@ -7,6 +7,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import theme.ClassicTheme;
 import theme.ForestTheme;
+import theme.HighContrastTheme;
 import theme.Theme;
 
 
@@ -37,6 +38,8 @@ public class UICreator {
         gameRootStage.show();
         boardUI.setTheme(theme);
         boardUI.setTheme(theme);
+        theme.setRootPane(rootPane);
+
     }
 
     void addButtons() {
@@ -45,10 +48,11 @@ public class UICreator {
         configureDefensiveAIStartButton();
         configureForestThemeButton();
         configureClassicThemeButton();
-
+        configureHighContrastThemeButton();
 
 
     }
+
 
     private void configureRandomAIStartButton() {
         randomAIStartButton = createButton("Start with Random AI");
@@ -73,8 +77,21 @@ public class UICreator {
         classicThemeButton.setOnMouseClicked(event -> {
             theme = new ClassicTheme();
             boardUI.setTheme(theme);
+            theme.setRootPane(rootPane);
         });
     }
+
+    private void configureHighContrastThemeButton() {
+        Pane classicThemeButton = createButton("Theme: High Contrast");
+        classicThemeButton.relocate(50, 350);
+        buttonPane.getChildren().add(classicThemeButton);
+        classicThemeButton.setOnMouseClicked(event -> {
+            theme = new HighContrastTheme();
+            boardUI.setTheme(theme);
+            theme.setRootPane(rootPane);
+        });
+    }
+
 
     private void configureForestThemeButton() {
         Pane forestThemeButton = createButton("Theme: Forest");
@@ -84,6 +101,7 @@ public class UICreator {
         forestThemeButton.setOnMouseClicked(event -> {
             theme = new ForestTheme();
             boardUI.setTheme(theme);
+            theme.setRootPane(rootPane);
         });
     }
 

@@ -16,16 +16,22 @@ public class ForestTheme implements Theme {
         squarePane.setPrefSize(100, 100);
     }
 
-    public void setPane(Pane boardPane) {
+    public void setBoardPane(Pane boardPane) {
         boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
     }
 
 
 
 
-    public void setText(Text text) {
+    public void setMark(Text text) {
         this.text = text;
         manageInnerText();
+    }
+
+    @Override
+    public void setRootPane(Pane rootPane) {
+        rootPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
+
     }
 
 

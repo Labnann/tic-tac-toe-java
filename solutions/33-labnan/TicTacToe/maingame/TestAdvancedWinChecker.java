@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import maingame.winchecker.AdvancedWinChecker;
 import maingame.winchecker.WinChecker;
 
-public class TestSimpleWinChecker {
+public class TestAdvancedWinChecker {
     WinChecker winChecker;
     SmallCell[][] smallCellUIS;
 
@@ -120,7 +120,6 @@ public class TestSimpleWinChecker {
         smallCellUIS[0][2].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[1][1].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[2][0].triggerSquareAs(PlayerMark.HUMAN);
-        //winChecker.checkWin();
         Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
 
     }
@@ -129,6 +128,7 @@ public class TestSimpleWinChecker {
         Board board = new Board();
         smallCellUIS = board.getSmallCells();
         winChecker = new AdvancedWinChecker(new GamePlayStatus(board.getSmallCells()));
+        winChecker.startChecking();
     }
 
 

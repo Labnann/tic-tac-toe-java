@@ -4,6 +4,7 @@ import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
 import maingame.player.*;
 import maingame.winchecker.AdvancedWinChecker;
+import maingame.winchecker.WinChecker;
 
 public class GameStarter{
     AI randomAI, defensiveAI;

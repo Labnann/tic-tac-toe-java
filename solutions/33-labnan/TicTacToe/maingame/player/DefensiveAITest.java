@@ -108,9 +108,11 @@ public class DefensiveAITest {
         smallCells = board.getSmallCells();
         human = new HumanPlayer(smallCells);
         defensiveAI = new DefensiveAI(human,smallCells,new GamePlayStatus(smallCells));
+        defensiveAI.start();
         final int[] triggered = {0};
         board.addOnChangeListener(() -> triggered[0]++);
-        Assertions.assertEquals(1,triggered[0]);
+        human.placeMark(0,0);
+        Assertions.assertEquals(2,triggered[0]);
     }
 
 

@@ -23,7 +23,7 @@ public class CheckerLine {
         }  else winnable = false;
     }
 
-    public void addWinnerFoundListener(WinnerFoundListener winnerFoundListener){
+    public void addDoOnWinnerFound(WinnerFoundListener winnerFoundListener){
         winnerFoundListeners.add(winnerFoundListener);
     }
 

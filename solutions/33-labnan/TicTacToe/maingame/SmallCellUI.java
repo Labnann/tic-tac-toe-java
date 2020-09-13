@@ -13,6 +13,7 @@ public class SmallCellUI {
     private SmallCell smallCell;
     private Pane squarePane = new Pane();
 
+
     public SmallCellUI(int xAxisIndex, int yAxisIndex, SmallCell smallCell) {
         squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
         squarePane.getChildren().addAll(text);
@@ -29,7 +30,7 @@ public class SmallCellUI {
     private void adjustWithTheme() {
         syncWithTheCell();
         theme.setSquarePane(squarePane);
-        theme.setText(text);
+        theme.setMark(text);
     }
 
     private void syncWithTheCell() {

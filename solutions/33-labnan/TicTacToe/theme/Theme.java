@@ -10,8 +10,10 @@ public interface Theme {
 
     void setSquarePane(Pane squarePane);
 
-    void setPane(Pane boardPane);
+    void setBoardPane(Pane boardPane);
 
-    void setText(Text text);
+    void setMark(Text text);
+
+    void setRootPane(Pane rootPane);
 
 }

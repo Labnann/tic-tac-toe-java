@@ -21,6 +21,7 @@ public class AdvancedWinChecker implements WinChecker{
 
     }
 
+    @Override
     public void startChecking(){
         addListenersToCheckers();
     }
@@ -45,7 +46,7 @@ public class AdvancedWinChecker implements WinChecker{
     }
 
     private void addListenerToLineChecker(CheckerLine checkerLine) {
-       checkerLine.addWinnerFoundListener(() -> {
+       checkerLine.addDoOnWinnerFound(() -> {
            setWinner(checkerLine);
            doOnGameEnd();
        });
