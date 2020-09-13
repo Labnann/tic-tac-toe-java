@@ -1,12 +1,13 @@
 package maingame;
 
+import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class PlayerTester {
     Board board = new Board();
     Human human = new HumanPlayer(board.getSmallCells());
-    AI ai = new RandomAI(human,board.getSmallCells());
+    AI ai = new RandomAI(human,board.getSmallCells(),new GamePlayStatus(board.getSmallCells()));
     int triggerCount = 0;
     @Test
     public void testRandomAI(){

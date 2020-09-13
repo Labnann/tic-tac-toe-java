@@ -31,5 +31,14 @@ public class HumanPlayer implements Human{
         onMakeMoveListeners.add(onMakeMoveListener);
     }
 
+    @Override
+    public void removeListener(OnMakeMoveListener onMakeMoveListener) {
+        onMakeMoveListeners.remove(onMakeMoveListener);
+    }
 
+
+    @Override
+    public void celebrateWinning() {
+        System.out.println("\"A mare machine can't defeat me. Muhahahahaha\", says the mortal.");
+    }
 }

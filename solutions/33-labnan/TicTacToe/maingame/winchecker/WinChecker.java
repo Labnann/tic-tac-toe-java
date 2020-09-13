@@ -10,6 +10,7 @@ public interface WinChecker {
 
     void addOnGameEnd(GameEndListener gameEndListener);
 
+
     interface GameEndListener {
         void doOnGameEnd();
     }

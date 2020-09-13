@@ -1,9 +1,9 @@
 package maingame;
 
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
+import maingame.winchecker.WinChecker;
 import theme.ClassicTheme;
 import theme.Theme;
 import maingame.winchecker.AdvancedWinChecker;
@@ -28,8 +28,10 @@ public class GameLauncher {
     void startGame() {
 
         board = new Board();
+        GameStatus gameStatus = new GamePlayStatus(board.getSmallCells());
+        AdvancedWinChecker advancedWinChecker = new AdvancedWinChecker(gameStatus);
         HumanPlayer humanPlayer = new HumanPlayer(board.getSmallCells());
-        AI ai = new RandomAI(humanPlayer,board.getSmallCells());
+        AI ai = new RandomAI(humanPlayer,board.getSmallCells(),gameStatus);
         ai.start();
         boardUI = new BoardUI(board,theme,humanPlayer);
         if(uiCreator!=null)
@@ -37,8 +39,9 @@ public class GameLauncher {
         uiCreator = new UICreator(gameRootStage,boardUI,theme);
         uiCreator.createUI();
         addButtonFunctions();
-        GameStatus gameStatus = new GamePlayStatus(board.getSmallCells());
-        AdvancedWinChecker advancedWinChecker = new AdvancedWinChecker(gameStatus);
+
+
+
     }
 
 

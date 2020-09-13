@@ -14,6 +14,7 @@ public class AdvancedWinChecker implements WinChecker{
 
 
 
+
     public AdvancedWinChecker(GameStatus gameStatus){
         this.gameStatus = gameStatus;
         addListenersToCheckers();
@@ -71,6 +72,7 @@ public class AdvancedWinChecker implements WinChecker{
     public PlayerMark getWinner() {
         return playerMark;
     }
+
 
     @Override
     public void addOnGameEnd(GameEndListener gameEndListener) {
