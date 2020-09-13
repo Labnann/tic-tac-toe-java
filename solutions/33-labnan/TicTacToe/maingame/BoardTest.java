@@ -30,15 +30,15 @@ public class BoardTest {
     public void testBoardSquareSecondTrigger() {
         initializeSmallCells();
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(PlayerMark.ZERO, smallCells[0][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.AI, smallCells[0][1].getTurnType());
     }
 
     @Test
     public void testSetStartingTurn() {
         initializeSmallCells();
-        board.setStartingTurn(PlayerMark.ZERO);
+        board.setStartingTurn(PlayerMark.AI);
         simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(PlayerMark.ZERO, smallCells[0][0].getTurnType());
+        Assertions.assertEquals(PlayerMark.AI, smallCells[0][0].getTurnType());
         Assertions.assertEquals(PlayerMark.HUMAN, smallCells[0][1].getTurnType());
     }
 

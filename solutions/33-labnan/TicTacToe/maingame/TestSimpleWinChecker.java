@@ -41,7 +41,7 @@ public class TestSimpleWinChecker {
 
     private void populateRowWithZero(int row) {
         for (int i = 0; i < 3; i++) {
-            smallCellUIS[i][row].triggerSquareAs(PlayerMark.ZERO);
+            smallCellUIS[i][row].triggerSquareAs(PlayerMark.AI);
         }
     }
 
@@ -65,7 +65,7 @@ public class TestSimpleWinChecker {
         initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
         //winChecker.checkWin();
-        Assertions.assertEquals(PlayerMark.ZERO, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMark.AI, winChecker.getWinner());
     }
 
     @Test
@@ -88,13 +88,13 @@ public class TestSimpleWinChecker {
     private void populateFirstRowUnequally() {
         smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[1][0].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[2][0].triggerSquareAs(PlayerMark.ZERO);
+        smallCellUIS[2][0].triggerSquareAs(PlayerMark.AI);
     }
 
     private void populateFirstColumnUnequally() {
         smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
         smallCellUIS[0][1].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[0][2].triggerSquareAs(PlayerMark.ZERO);
+        smallCellUIS[0][2].triggerSquareAs(PlayerMark.AI);
     }
 
     private void populateAntiDiagonals(PlayerMark turnType) {
@@ -108,7 +108,7 @@ public class TestSimpleWinChecker {
 
         initializeWinCheckerAndBoardSquares();
         populateRowWith(0, PlayerMark.HUMAN);
-        populateRowWith(1, PlayerMark.ZERO);
+        populateRowWith(1, PlayerMark.AI);
        // winChecker.checkWin();
         Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
 

@@ -10,7 +10,6 @@ public class SmallCellTester {
     @Test
     public void testBoxListening() {
 
-
         smallCell.addOnSmallCellTrigger(() -> {
             update();
             Assertions.assertEquals(1, updateValue);
@@ -26,7 +25,7 @@ public class SmallCellTester {
     @Test
     public void testBoxGetTypeOnDoubleSet() {
         smallCell.setTurnType(PlayerMark.HUMAN);
-        smallCell.setTurnType(PlayerMark.ZERO);
+        smallCell.setTurnType(PlayerMark.AI);
         Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
     }
 
@@ -48,13 +47,13 @@ public class SmallCellTester {
         Assertions.assertNull(smallCell.getTurnType());
         smallCell.triggerSquareAs(PlayerMark.HUMAN);
         Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
-        smallCell.triggerSquareAs(PlayerMark.ZERO);
+        smallCell.triggerSquareAs(PlayerMark.AI);
         Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
         smallCell = new SmallCell();
-        smallCell.triggerSquareAs(PlayerMark.ZERO);
-        Assertions.assertEquals(PlayerMark.ZERO, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMark.AI);
+        Assertions.assertEquals(PlayerMark.AI, smallCell.getTurnType());
         smallCell.triggerSquareAs(PlayerMark.HUMAN);
-        Assertions.assertEquals(PlayerMark.ZERO, smallCell.getTurnType());
+        Assertions.assertEquals(PlayerMark.AI, smallCell.getTurnType());
     }
 
 

@@ -34,13 +34,13 @@ public class GameStatusTester {
     @Test
     public void testCheckGameDraw() {
         smallCells[0][0].setTurnType(PlayerMark.HUMAN);
-        smallCells[0][1].setTurnType(PlayerMark.ZERO);
-        smallCells[1][0].setTurnType(PlayerMark.ZERO);
+        smallCells[0][1].setTurnType(PlayerMark.AI);
+        smallCells[1][0].setTurnType(PlayerMark.AI);
         smallCells[1][1].setTurnType(PlayerMark.HUMAN);
         smallCells[1][2].setTurnType(PlayerMark.HUMAN);
-        smallCells[2][0].setTurnType(PlayerMark.ZERO);
+        smallCells[2][0].setTurnType(PlayerMark.AI);
         smallCells[2][1].setTurnType(PlayerMark.HUMAN);
-        smallCells[2][2].setTurnType(PlayerMark.ZERO);
+        smallCells[2][2].setTurnType(PlayerMark.AI);
       //  Assertions.assertTrue(gameWatcher.isDraw());
 
 

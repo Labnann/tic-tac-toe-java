@@ -1,5 +1,5 @@
 package maingame;
 
 public enum PlayerMark {
-    ZERO, HUMAN
+    AI, HUMAN
 }

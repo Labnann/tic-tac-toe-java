@@ -36,7 +36,7 @@ public class SmallCellUI {
         if(smallCell!=null){
         if (smallCell.getTurnType() == PlayerMark.HUMAN)
             text.setText(theme.getCross());
-        else if (smallCell.getTurnType() == PlayerMark.ZERO) text.setText(theme.getZero());
+        else if (smallCell.getTurnType() == PlayerMark.AI) text.setText(theme.getZero());
         else text.setText("");
 
         }

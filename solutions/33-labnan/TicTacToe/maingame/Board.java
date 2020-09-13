@@ -61,7 +61,7 @@ public class Board {
 
     private void changeTurn() {
         if (currentTurnType == PlayerMark.HUMAN)
-            currentTurnType = PlayerMark.ZERO;
+            currentTurnType = PlayerMark.AI;
         else currentTurnType = PlayerMark.HUMAN;
     }
 

@@ -1,6 +1,5 @@
 package maingame;
 
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import theme.Theme;
 
@@ -11,11 +10,11 @@ private Pane boardPane;
 private SmallCellUI[][] smallCellUIs;
 private SmallCell[][] smallCells;
 private Board board;
-Player player;
+private Human player;
 
 
 
-BoardUI( Board board, Theme theme, HumanPlayer player) {
+BoardUI( Board board, Theme theme, Human player) {
     this.board=board;
     this.boardPane = new Pane();
     smallCells = board.getSmallCells();
@@ -53,9 +52,7 @@ BoardUI( Board board, Theme theme, HumanPlayer player) {
     private SmallCellUI createBoardSquare(int i, int j) {
         SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> {
-            player.move(i,j);
-        });
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(i,j));
         return smallCellUI;
     }
 
