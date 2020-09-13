@@ -22,19 +22,24 @@ public class RandomAI implements AI{
     private void listenToHuman() {
         onMakeMoveListener = () -> {
             if(gameStatus.getTurnCount()!=9)
+                System.out.println("Whatt");
             move();
         };
         humanPlayer.addOnMakeMoveListener(onMakeMoveListener);
     }
 
-    private void move() {
+    private void move(){
+        smallCells[findMove().getColumnNum()][findMove().getRowNum()].triggerSquareAs(PLAYER_MARK);
+    }
+
+    Position findMove() {
+        System.out.println("random! ");
        int r1 = makeRandomNumberIn1To3();
        int r2 = makeRandomNumberIn1To3();
        if(smallCells[r1][r2].isNotTriggered()){
-           smallCells[r1][r2].triggerSquareAs(PLAYER_MARK);
-           return;
+           return new Position(r1,r2);
        }
-       move();
+       return findMove();
     }
 
     private int makeRandomNumberIn1To3(){
@@ -45,7 +50,7 @@ public class RandomAI implements AI{
         humanPlayer.removeListener(onMakeMoveListener);
     }
 
-    @Override
+
     public void celebrateWinning() {
         System.out.println("\"One day we will destroy all of you, mare HuManS!\", says your machine");
     }

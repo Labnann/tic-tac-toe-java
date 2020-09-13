@@ -42,13 +42,14 @@ public class UICreator {
         configureStartButton();
         configureForestThemeButton();
         configureClassicThemeButton();
-        buttonPane.getChildren().addAll(startButton);
+
 
     }
 
     private void configureStartButton() {
         startButton = createButton("Start");
         startButton.relocate(50, 200);
+        buttonPane.getChildren().addAll(startButton);
     }
 
     private void configureClassicThemeButton() {

@@ -16,7 +16,9 @@ public class HumanPlayer implements Human{
 
     @Override
     public void placeMark(int x, int y) {
-        smallCells[x][y].triggerSquareAs(PlayerMark.HUMAN);
+      if  (!smallCells[x][y].triggerSquareAs(PlayerMark.HUMAN)){
+          return;
+      }
         doOnMove();
     }
 
@@ -40,7 +42,6 @@ public class HumanPlayer implements Human{
     }
 
 
-    @Override
     public void celebrateWinning() {
         System.out.println("\"A mare machine can't defeat me. Muhahahahaha\", says the mortal.");
     }

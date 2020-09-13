@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
 import maingame.player.AI;
+import maingame.player.DefensiveAI;
 import maingame.player.HumanPlayer;
 import maingame.player.RandomAI;
 import theme.ClassicTheme;
@@ -33,7 +34,7 @@ public class GameLauncher {
         GameStatus gameStatus = new GamePlayStatus(board.getSmallCells());
         AdvancedWinChecker advancedWinChecker = new AdvancedWinChecker(gameStatus);
         HumanPlayer humanPlayer = new HumanPlayer(board.getSmallCells());
-        AI ai = new RandomAI(humanPlayer,board.getSmallCells(),gameStatus);
+        AI ai = new DefensiveAI(humanPlayer,board.getSmallCells(),gameStatus);
         ai.start();
         boardUI = new BoardUI(board,theme,humanPlayer);
         if(uiCreator!=null)

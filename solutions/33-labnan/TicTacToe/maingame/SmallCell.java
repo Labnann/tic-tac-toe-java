@@ -21,11 +21,13 @@ public class SmallCell {
         isTriggered = triggered;
     }
 
-    public void triggerSquareAs(PlayerMark turnType){
-        if(this.isNotTriggered()){
+    public boolean triggerSquareAs(PlayerMark turnType){
+        boolean changed;
+        if(changed = this.isNotTriggered()){
             this.setTurnType(turnType);
             this.setTriggered(true);
         }
+        return changed;
     }
 
     public boolean isNotTriggered() {
