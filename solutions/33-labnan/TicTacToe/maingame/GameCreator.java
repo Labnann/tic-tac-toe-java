@@ -1,10 +1,8 @@
 package maingame;
 
 import javafx.stage.Stage;
-import maingame.gamestatus.GameStatus;
-import maingame.player.*;
-import theme.ClassicTheme;
-import theme.Theme;
+import maingame.theme.ClassicTheme;
+import maingame.theme.Theme;
 
 
 public class GameCreator {

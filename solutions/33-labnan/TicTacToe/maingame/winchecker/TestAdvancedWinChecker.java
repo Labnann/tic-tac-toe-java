@@ -1,5 +1,8 @@
-package maingame;
+package maingame.winchecker;
 
+import maingame.Board;
+import maingame.PlayerMark;
+import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

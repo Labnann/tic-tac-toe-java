@@ -2,7 +2,7 @@ package maingame;
 
 import javafx.scene.layout.Pane;
 import maingame.player.Human;
-import theme.Theme;
+import maingame.theme.Theme;
 
 public class BoardUI {
 

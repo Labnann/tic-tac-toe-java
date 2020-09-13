@@ -5,10 +5,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import theme.ClassicTheme;
-import theme.ForestTheme;
-import theme.HighContrastTheme;
-import theme.Theme;
+import maingame.theme.ClassicTheme;
+import maingame.theme.ForestTheme;
+import maingame.theme.HighContrastTheme;
+import maingame.theme.Theme;
 
 
 public class UICreator {

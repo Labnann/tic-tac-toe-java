@@ -1,4 +1,4 @@
-package theme;
+package maingame.theme;
 
  interface CrossMark {
      Object getCrossMark();

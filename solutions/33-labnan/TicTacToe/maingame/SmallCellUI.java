@@ -2,8 +2,8 @@ package maingame;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import theme.ForestTheme;
-import theme.Theme;
+import maingame.theme.ForestTheme;
+import maingame.theme.Theme;
 
 
 public class SmallCellUI {

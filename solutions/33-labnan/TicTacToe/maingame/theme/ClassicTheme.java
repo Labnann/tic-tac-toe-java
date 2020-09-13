@@ -1,4 +1,4 @@
-package theme;
+package maingame.theme;
 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -7,33 +7,29 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ForestTheme implements Theme {
+public class ClassicTheme implements Theme {
+
 
     private Text text;
 
     public void setSquarePane(Pane squarePane) {
-        squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
+        squarePane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         squarePane.setPrefSize(100, 100);
     }
 
     public void setBoardPane(Pane boardPane) {
-        boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
+        boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
-
+    public void setRootPane(Pane rootPane){
+        rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+    }
 
 
     public void setMark(Text text) {
         this.text = text;
         manageInnerText();
     }
-
-    @Override
-    public void setRootPane(Pane rootPane) {
-        rootPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
-
-    }
-
 
     private void manageInnerText() {
         text.toFront();
@@ -44,12 +40,12 @@ public class ForestTheme implements Theme {
 
     @Override
     public String getZero() {
-        return "🍊";
+        return "O";
     }
 
     @Override
     public String getCross() {
-        return "🌸";
+        return "X";
     }
 
 }
