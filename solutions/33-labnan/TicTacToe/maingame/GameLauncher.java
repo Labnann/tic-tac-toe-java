@@ -29,6 +29,8 @@ public class GameLauncher {
 
         board = new Board();
         HumanPlayer humanPlayer = new HumanPlayer(board.getSmallCells());
+        AI ai = new RandomAI(humanPlayer,board.getSmallCells());
+        ai.start();
         boardUI = new BoardUI(board,theme,humanPlayer);
         if(uiCreator!=null)
         theme = uiCreator.getTheme();

@@ -35,7 +35,7 @@ public class Board {
         if (smallCell.isNotTriggered()) {
             smallCell.triggerSquareAs(currentTurnType);
             changeTurn();
-            doOnChange();
+
         }
     }
 
