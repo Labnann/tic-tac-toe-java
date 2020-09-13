@@ -10,7 +10,7 @@ public interface Theme {
 
     void setSquarePane(Pane squarePane);
 
-    void setBoardPane(Pane boardPane);
+    void setPane(Pane boardPane);
 
     void setText(Text text);
 

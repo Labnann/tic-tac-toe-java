@@ -15,9 +15,11 @@ public class UICreator {
     private Line line = new Line();
     private BoardUI boardUI;
     private Pane rootPane = new Pane();
-    private Pane startButton;
+    private Pane randomAIStartButton;
+    private Pane defensiveAIStartButton;
     private Pane buttonPane = new Pane();
     private Stage gameRootStage;
+
 
 
     UICreator(Stage gameRootStage, BoardUI boardUI, Theme theme) {
@@ -39,17 +41,29 @@ public class UICreator {
 
     void addButtons() {
         buttonPane.relocate(450, 0);
-        configureStartButton();
+        configureRandomAIStartButton();
+        configureDefensiveAIStartButton();
         configureForestThemeButton();
         configureClassicThemeButton();
 
 
+
     }
 
-    private void configureStartButton() {
-        startButton = createButton("Start");
-        startButton.relocate(50, 200);
-        buttonPane.getChildren().addAll(startButton);
+    private void configureRandomAIStartButton() {
+        randomAIStartButton = createButton("Start with Random AI");
+        randomAIStartButton.relocate(50, 100);
+        buttonPane.getChildren().addAll(randomAIStartButton);
+    }
+
+    private void configureDefensiveAIStartButton() {
+        defensiveAIStartButton = createButton("Start with Defensive AI");
+        defensiveAIStartButton.relocate(50, 150);
+        buttonPane.getChildren().addAll(defensiveAIStartButton);
+    }
+
+    public Pane getDefensiveAIStartButton() {
+        return defensiveAIStartButton;
     }
 
     private void configureClassicThemeButton() {
@@ -86,8 +100,8 @@ public class UICreator {
         line.setFill(Color.BLACK);
     }
 
-    public Pane getStartButton() {
-        return startButton;
+    public Pane getRandomAIStartButton() {
+        return randomAIStartButton;
     }
 
     private Pane createButton(String buttonText) {

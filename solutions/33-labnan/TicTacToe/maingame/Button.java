@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 public class Button {
     Pane pane = new Pane();
     Text text = new Text();
-    Rectangle rectangle = new Rectangle(220, 40);
+    Rectangle rectangle = new Rectangle(220, 30);
 
     Button(String buttonText) {
         configText(buttonText);
@@ -17,7 +17,7 @@ public class Button {
     }
 
     private void configText(String buttonText) {
-        text.setFont(new Font("Arial", 30));
+        text.setFont(new Font("Arial", 20));
         text.setText(buttonText);
         text.setFill(Color.WHITE);
         text.relocate(5, 5);
