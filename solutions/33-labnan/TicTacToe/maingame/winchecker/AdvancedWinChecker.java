@@ -17,8 +17,12 @@ public class AdvancedWinChecker implements WinChecker{
 
     public AdvancedWinChecker(GameStatus gameStatus){
         this.gameStatus = gameStatus;
-        addListenersToCheckers();
 
+
+    }
+
+    public void startChecking(){
+        addListenersToCheckers();
     }
 
     private void addListenersToCheckers() {

@@ -7,9 +7,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        GameLauncher gameLauncher = new GameLauncher();
-        gameLauncher.setGameRootStage(primaryStage);
-        gameLauncher.startGame();
+        GameCreator gameCreator = new GameCreator();
+        gameCreator.setGameRootStage(primaryStage);
+        gameCreator.createGame();
     }
 }
 

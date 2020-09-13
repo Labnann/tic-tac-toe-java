@@ -22,18 +22,18 @@ public class RandomAI implements AI{
     private void listenToHuman() {
         onMakeMoveListener = () -> {
             if(gameStatus.getTurnCount()!=9)
-                System.out.println("Whatt");
             move();
         };
         humanPlayer.addOnMakeMoveListener(onMakeMoveListener);
     }
 
     private void move(){
-        smallCells[findMove().getColumnNum()][findMove().getRowNum()].triggerSquareAs(PLAYER_MARK);
+        Position position = findMove();
+        System.out.println("Moving at : [ "+ position.getRowNum() +" ] [ "+position.getColumnNum()+ " ]");
+        smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(PLAYER_MARK);
     }
 
     Position findMove() {
-        System.out.println("random! ");
        int r1 = makeRandomNumberIn1To3();
        int r2 = makeRandomNumberIn1To3();
        if(smallCells[r1][r2].isNotTriggered()){
@@ -46,7 +46,7 @@ public class RandomAI implements AI{
         return (int) ((Math.random()*10)%3);
     }
 
-    private void stop(){
+    public void stop(){
         humanPlayer.removeListener(onMakeMoveListener);
     }
 

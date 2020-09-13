@@ -4,7 +4,6 @@ import maingame.Board;
 import maingame.PlayerMark;
 import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
-import maingame.gamestatus.GameStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -101,6 +100,17 @@ public class DefensiveAITest {
         human.placeMark(0,2);
         Assertions.assertEquals(PlayerMark.AI,smallCells[1][1].getTurnType());
 
+    }
+
+    @Test
+    public void randomWorksTest(){
+        Board board = new Board();
+        smallCells = board.getSmallCells();
+        human = new HumanPlayer(smallCells);
+        defensiveAI = new DefensiveAI(human,smallCells,new GamePlayStatus(smallCells));
+        final int[] triggered = {0};
+        board.addOnChangeListener(() -> triggered[0]++);
+        Assertions.assertEquals(1,triggered[0]);
     }
 
 

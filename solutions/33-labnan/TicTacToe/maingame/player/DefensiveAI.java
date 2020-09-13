@@ -123,4 +123,9 @@ public class DefensiveAI implements AI {
             listenToHuman();
     }
 
+    @Override
+    public void stop(){
+        humanPlayer.removeListener(onMakeMoveListener);
+    }
+
 }
