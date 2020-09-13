@@ -17,6 +17,7 @@ public class Board {
         for(int i = 0; i<3; i++){
             for(int j = 0; j<3; j++){
                 smallCells[i][j] = new SmallCell();
+                smallCells[i][j].addOnSmallCellTrigger(this::doOnChange);
             }
         }
     }
