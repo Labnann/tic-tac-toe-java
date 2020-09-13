@@ -1,6 +1,7 @@
 package maingame.theme;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public interface Theme {
@@ -15,5 +16,7 @@ public interface Theme {
     void setMark(Text text);
 
     void setRootPane(Pane rootPane);
+
+    Paint getLineColor();
 
 }

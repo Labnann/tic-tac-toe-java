@@ -13,7 +13,6 @@ import maingame.theme.Theme;
 
 public class UICreator {
     private Theme theme;
-    private Line line = new Line();
     private BoardUI boardUI;
     private Pane rootPane = new Pane();
     private Pane randomAIStartButton;
@@ -31,9 +30,9 @@ public class UICreator {
 
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
-        createLine();
+        createLine(new Point(430,30), new Point(430,430));
         addButtons();
-        rootPane.getChildren().addAll(boardUI.getBoardPane(), line, buttonPane);
+        rootPane.getChildren().addAll(boardUI.getBoardPane(), buttonPane);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
         boardUI.setTheme(theme);
@@ -109,13 +108,15 @@ public class UICreator {
         return theme;
     }
 
-    void createLine() {
-        line.setStartX(430);
-        line.setStartY(30);
-        line.setEndX(430);
-        line.setEndY(430);
+    void createLine(Point start, Point end) {
+        Line line = new Line();
+        line.setStartX(start.getX());
+        line.setStartY(start.getY());
+        line.setEndX(end.getX());
+        line.setEndY(end.getY());
         line.setStrokeWidth(7);
-        line.setFill(Color.BLACK);
+        line.setFill(theme.getLineColor());
+        rootPane.getChildren().add(line);
     }
 
     public Pane getRandomAIStartButton() {
@@ -126,5 +127,21 @@ public class UICreator {
         return new Button(buttonText).getPane();
     }
 
-}
 
+
+}
+ class Point{
+    private int x,y;
+    Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+}

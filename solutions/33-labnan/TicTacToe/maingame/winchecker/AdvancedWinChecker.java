@@ -3,6 +3,7 @@ package maingame.winchecker;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
 import maingame.PlayerMark;
+import maingame.player.Player;
 
 import java.util.ArrayList;
 
@@ -12,13 +13,8 @@ public class AdvancedWinChecker implements WinChecker{
     PlayerMark playerMark;
     ArrayList<GameEndListener> gameEndListeners = new ArrayList<>();
 
-
-
-
     public AdvancedWinChecker(GameStatus gameStatus){
         this.gameStatus = gameStatus;
-
-
     }
 
     @Override
@@ -53,7 +49,6 @@ public class AdvancedWinChecker implements WinChecker{
     }
 
     private void doOnGameEnd() {
-        System.out.println("Winner :"+ getWinner());
         for (GameEndListener gameEndListener: gameEndListeners){
             if (gameEndListener == null) {
                return;
@@ -63,7 +58,6 @@ public class AdvancedWinChecker implements WinChecker{
     }
 
     private void setWinner(CheckerLine checkerLine) {
-
         if(playerMark ==null)
         playerMark = checkerLine.getPlayerMark();
     }
@@ -83,4 +77,8 @@ public class AdvancedWinChecker implements WinChecker{
     public void addOnGameEnd(GameEndListener gameEndListener) {
         gameEndListeners.add(gameEndListener);
     }
+}
+
+class WinResult{
+
 }

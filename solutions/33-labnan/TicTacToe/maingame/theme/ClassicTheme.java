@@ -4,6 +4,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -29,6 +30,11 @@ public class ClassicTheme implements Theme {
     public void setMark(Text text) {
         this.text = text;
         manageInnerText();
+    }
+
+    @Override
+    public Paint getLineColor() {
+        return Color.BLACK;
     }
 
     private void manageInnerText() {

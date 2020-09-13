@@ -31,11 +31,11 @@ public class GamePlayStatus implements GameStatus {
         columnLine = new CheckerLine[3];
         rowLine = new CheckerLine[3];
         for (int i = 0; i < 3; i++) {
-            rowLine[i] = new CheckerLine();
-            columnLine[i] = new CheckerLine();
+            rowLine[i] = new CheckerLine(CheckerLine.LineType.ROW);
+            columnLine[i] = new CheckerLine(CheckerLine.LineType.COLUMN);
         }
-        leadingDiagonalLine = new CheckerLine();
-        antiDiagonalLine = new CheckerLine();
+        leadingDiagonalLine = new CheckerLine(CheckerLine.LineType.ANTI_DIAGONAL);
+        antiDiagonalLine = new CheckerLine(CheckerLine.LineType.DIAGONAL);
     }
 
 

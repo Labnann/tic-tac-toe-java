@@ -8,6 +8,14 @@ public class CheckerLine {
     private int count = 0;
     private PlayerMark playerMark;
     private boolean winnable = true;
+    private LineType LINE_TYPE;
+    CheckerLine(LineType LINE_TYPE){
+        this.LINE_TYPE = LINE_TYPE;
+    }
+
+    public LineType getLINE_TYPE() {
+        return LINE_TYPE;
+    }
 
     ArrayList<WinnerFoundListener> winnerFoundListeners = new ArrayList<>();
 
@@ -35,7 +43,9 @@ public class CheckerLine {
     }
 
 
-
+   enum LineType{
+       ROW, COLUMN, ANTI_DIAGONAL, DIAGONAL
+   }
 
 
     public boolean isWinnable() {
