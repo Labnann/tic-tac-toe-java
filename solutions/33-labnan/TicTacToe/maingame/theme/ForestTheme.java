@@ -45,6 +45,8 @@ public class ForestTheme implements Theme {
 
     @Override
      public void setAIMark(Pane squarePane) {
+        System.out.println("Set! F AI");
+        squarePane.getChildren().clear();
         Text text = new Text("🍊");
         manageInnerText(text);
         manageInnerText(text);
@@ -53,6 +55,8 @@ public class ForestTheme implements Theme {
 
     @Override
     public void setHumanMark(Pane squarePane) {
+        System.out.println("Set! F HU");
+        squarePane.getChildren().clear();
         Text text = new Text("🌸");
         manageInnerText(text);
         manageInnerText(text);

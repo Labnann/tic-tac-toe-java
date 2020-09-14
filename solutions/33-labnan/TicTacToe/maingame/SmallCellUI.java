@@ -28,8 +28,9 @@ public class SmallCellUI {
 
 
     private void adjustWithTheme() {
-        syncWithTheCell();
+
         theme.setSquarePane(squarePane);
+        syncWithTheCell();
        // theme.setMark(text);
     }
 
@@ -39,7 +40,6 @@ public class SmallCellUI {
            theme.setHumanMark(squarePane);
         else if (smallCell.getTurnType() == PlayerMark.AI) theme.setAIMark(squarePane);
         else text.setText("");
-
         }
 
     }

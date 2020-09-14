@@ -44,19 +44,22 @@ public class HighContrastTheme implements Theme {
 
     @Override
     public void setAIMark(Pane squarePane) {
-        //AI will be white
+        squarePane.getChildren().clear();
+        System.out.println("Setting AI -_-");
         squarePane.setBackground(createBackground(Color.WHITE));
 
     }
 
     @Override
     public void setHumanMark(Pane squarePane) {
-        //Human will be black
+        squarePane.getChildren().clear();
+        System.out.println("Setting Hooman -_-");
         squarePane.setBackground(createBackground(Color.BLACK));
 
     }
 
     private Background createBackground(Color color) {
+        System.out.println("creating "+color+"  -_-");
         return new Background(new BackgroundFill(color, null, null));
     }
 

@@ -46,6 +46,7 @@ public class ClassicTheme implements Theme {
 
     @Override
     public void setAIMark(Pane squarePane) {
+        squarePane.getChildren().clear();
         Text text = new Text("O");
         manageInnerText(text);
         manageInnerText(text);
@@ -54,6 +55,7 @@ public class ClassicTheme implements Theme {
 
     @Override
     public void setHumanMark(Pane squarePane) {
+        squarePane.getChildren().clear();
         Text text = new Text("X");
         manageInnerText(text);
         manageInnerText(text);
