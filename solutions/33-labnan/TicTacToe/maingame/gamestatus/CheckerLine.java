@@ -1,5 +1,6 @@
 package maingame.gamestatus;
 
+import maingame.LineType;
 import maingame.PlayerMark;
 
 import java.util.ArrayList;
@@ -9,8 +10,15 @@ public class CheckerLine {
     private PlayerMark playerMark;
     private boolean winnable = true;
     private LineType LINE_TYPE;
-    CheckerLine(LineType LINE_TYPE){
+    private int checkerAt;
+
+    CheckerLine(LineType LINE_TYPE, int checkerAt){
         this.LINE_TYPE = LINE_TYPE;
+        this.checkerAt = checkerAt;
+    }
+
+    public int getCheckerAt() {
+        return checkerAt;
     }
 
     public LineType getLINE_TYPE() {
@@ -41,11 +49,6 @@ public class CheckerLine {
             winnerFoundListener.doOnWinnerFound();
         }
     }
-
-
-   enum LineType{
-       ROW, COLUMN, ANTI_DIAGONAL, DIAGONAL
-   }
 
 
     public boolean isWinnable() {

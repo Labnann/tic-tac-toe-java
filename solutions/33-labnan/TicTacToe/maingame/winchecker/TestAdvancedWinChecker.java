@@ -106,16 +106,6 @@ public class TestAdvancedWinChecker {
         smallCellUIS[2][0].triggerSquareAs(turnType);
     }
 
-    @Test
-    public void doubleWinPreventionTest() {
-
-        initializeWinCheckerAndBoardSquares();
-        populateRowWith(0, PlayerMark.HUMAN);
-        populateRowWith(1, PlayerMark.AI);
-       // winChecker.checkWin();
-        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
-
-    }
 
     @Test
     public void antiDiagonalWinTest() {

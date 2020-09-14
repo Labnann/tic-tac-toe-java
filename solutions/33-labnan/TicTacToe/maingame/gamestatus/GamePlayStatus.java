@@ -1,6 +1,7 @@
 package maingame.gamestatus;
 
 
+import maingame.LineType;
 import maingame.SmallCell;
 
 public class GamePlayStatus implements GameStatus {
@@ -31,11 +32,11 @@ public class GamePlayStatus implements GameStatus {
         columnLine = new CheckerLine[3];
         rowLine = new CheckerLine[3];
         for (int i = 0; i < 3; i++) {
-            rowLine[i] = new CheckerLine(CheckerLine.LineType.ROW);
-            columnLine[i] = new CheckerLine(CheckerLine.LineType.COLUMN);
+            rowLine[i] = new CheckerLine(LineType.ROW,i);
+            columnLine[i] = new CheckerLine(LineType.COLUMN,i);
         }
-        leadingDiagonalLine = new CheckerLine(CheckerLine.LineType.ANTI_DIAGONAL);
-        antiDiagonalLine = new CheckerLine(CheckerLine.LineType.DIAGONAL);
+        leadingDiagonalLine = new CheckerLine(LineType.DIAGONAL,0);
+        antiDiagonalLine = new CheckerLine(LineType.ANTI_DIAGONAL,0);
     }
 
 
