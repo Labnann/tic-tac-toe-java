@@ -83,7 +83,7 @@ public class DefensiveAITest {
         initialize();
         i++;
         defensiveAI.start();
-        human.placeMark(i,0);
+        smallCells[i][0].triggerSquareAs(PlayerMark.HUMAN);
         human.placeMark(i,2);
         Assertions.assertEquals(smallCells[i][1].getTurnType(),PlayerMark.AI);
 
