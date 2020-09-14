@@ -2,24 +2,35 @@ package maingame.player;
 
 import maingame.PlayerMark;
 import maingame.SmallCell;
+import maingame.winchecker.WinChecker;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class HumanPlayer implements Human{
 
     ArrayList<OnMakeMoveListener> onMakeMoveListeners = new ArrayList<>();
 
     SmallCell[][] smallCells;
-    public HumanPlayer(SmallCell[][] smallCells){
+    WinChecker winChecker;
+    public HumanPlayer(SmallCell[][] smallCells, WinChecker winChecker){
         this.smallCells = smallCells;
+        this.winChecker = winChecker;
     }
 
     @Override
     public void placeMark(int x, int y) {
+        if(winChecker.isGameEnded()) return;
       if  (!smallCells[x][y].triggerSquareAs(PlayerMark.HUMAN)){
           return;
       }
-        doOnMove();
+      try {
+          doOnMove();
+      }
+      catch (ConcurrentModificationException exception){
+          System.out.println("Let's just forget it >.>");
+      }
+
     }
 
     private void doOnMove() {
@@ -38,6 +49,7 @@ public class HumanPlayer implements Human{
 
     @Override
     public void removeListener(OnMakeMoveListener onMakeMoveListener) {
+        if(onMakeMoveListener!=null)
         onMakeMoveListeners.remove(onMakeMoveListener);
     }
 

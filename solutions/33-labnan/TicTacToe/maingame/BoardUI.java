@@ -1,8 +1,11 @@
 package maingame;
 
+import javafx.event.EventType;
 import javafx.scene.layout.Pane;
 import maingame.player.Human;
 import maingame.theme.Theme;
+
+import java.awt.event.MouseEvent;
 
 public class BoardUI {
 
@@ -40,6 +43,7 @@ BoardUI( Board board, Theme theme, Human player) {
     }
 }
 
+
     private SmallCellUI[][] createBoardUI() {
         SmallCellUI[][] smallCellUIs = new SmallCellUI[3][3];
         for (int i = 0; i < 3; i++)
@@ -50,12 +54,15 @@ BoardUI( Board board, Theme theme, Human player) {
         return smallCellUIs;
     }
 
+
     private SmallCellUI createBoardSquare(int i, int j) {
         SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
         smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(i,j));
         return smallCellUI;
     }
+
+
 
 public void setTheme(Theme theme) {
     this.theme = theme;

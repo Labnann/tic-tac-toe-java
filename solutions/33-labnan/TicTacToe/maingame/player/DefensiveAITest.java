@@ -4,6 +4,9 @@ import maingame.Board;
 import maingame.PlayerMark;
 import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
+import maingame.gamestatus.GameStatus;
+import maingame.winchecker.AdvancedWinChecker;
+import maingame.winchecker.WinChecker;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -73,7 +76,7 @@ public class DefensiveAITest {
         initialize();
         i++;
         defensiveAI.start();
-        human.placeMark(i,0);
+        smallCells[i][0].triggerSquareAs(PlayerMark.HUMAN);
         human.placeMark(i,2);
         Assertions.assertEquals(smallCells[i][1].getTurnType(),PlayerMark.AI);
 
@@ -106,8 +109,9 @@ public class DefensiveAITest {
     public void randomWorksTest(){
         Board board = new Board();
         smallCells = board.getSmallCells();
-        human = new HumanPlayer(smallCells);
-        defensiveAI = new DefensiveAI(human,smallCells,new GamePlayStatus(smallCells));
+        GameStatus gameStatus = new GamePlayStatus(smallCells);
+        human = new HumanPlayer(smallCells, new AdvancedWinChecker(gameStatus));
+        defensiveAI = new DefensiveAI(human,smallCells,gameStatus);
         defensiveAI.start();
         final int[] triggered = {0};
         board.addOnChangeListener(() -> triggered[0]++);
@@ -118,7 +122,9 @@ public class DefensiveAITest {
 
     void initialize(){
        smallCells = new Board().getSmallCells();
-       human = new HumanPlayer(smallCells);
-       defensiveAI = new DefensiveAI(human,smallCells,new GamePlayStatus(smallCells));
+       GameStatus gameStatus = new GamePlayStatus(smallCells);
+       WinChecker winChecker = new AdvancedWinChecker(gameStatus);
+       human = new HumanPlayer(smallCells,winChecker);
+       defensiveAI = new DefensiveAI(human,smallCells,gameStatus);
     }
 }

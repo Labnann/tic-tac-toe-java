@@ -34,10 +34,12 @@ public class GameStarter{
     void start() {
         board = new Board();
         gameStatus = new GamePlayStatus(board.getSmallCells());
-        humanPlayer = new HumanPlayer(board.getSmallCells());
         winChecker = new AdvancedWinChecker(gameStatus);
+        humanPlayer = new HumanPlayer(board.getSmallCells(),winChecker);
+
         winChecker.startChecking();
         randomAI = new RandomAI(humanPlayer,board.getSmallCells(),gameStatus);
+        defensiveAI = new DefensiveAI(humanPlayer,board.getSmallCells(),gameStatus);
         randomAI.start();
     }
 
@@ -47,10 +49,13 @@ public class GameStarter{
 
     void useDefensiveAI(){
         randomAI.stop();
-        defensiveAI = new DefensiveAI(humanPlayer,board.getSmallCells(),gameStatus);
         defensiveAI.start();
      }
 
+     void stopAI(){
+        randomAI.stop();
+        defensiveAI.stop();
+     }
 
 
 

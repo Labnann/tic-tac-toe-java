@@ -13,12 +13,12 @@ public class ForestTheme implements Theme {
 
 
     public void setSquarePane(Pane squarePane) {
-        squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
+        squarePane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
         squarePane.setPrefSize(100, 100);
     }
 
     public void setBoardPane(Pane boardPane) {
-        boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
+        boardPane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
     }
 
 
@@ -45,7 +45,6 @@ public class ForestTheme implements Theme {
 
     @Override
      public void setAIMark(Pane squarePane) {
-        System.out.println("Set! F AI");
         squarePane.getChildren().clear();
         Text text = new Text("🍊");
         manageInnerText(text);
@@ -55,7 +54,6 @@ public class ForestTheme implements Theme {
 
     @Override
     public void setHumanMark(Pane squarePane) {
-        System.out.println("Set! F HU");
         squarePane.getChildren().clear();
         Text text = new Text("🌸");
         manageInnerText(text);
@@ -66,7 +64,7 @@ public class ForestTheme implements Theme {
 
     @Override
     public Paint getLineColor() {
-        return Color.LIGHTGREEN;
+        return Color.DARKGREEN;
     }
 
 }
