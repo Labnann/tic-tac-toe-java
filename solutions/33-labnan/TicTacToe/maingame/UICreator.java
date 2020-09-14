@@ -23,6 +23,7 @@ public class UICreator {
     private Pane buttonPane = new Pane();
     private Stage gameRootStage;
     private Line winnerLine;
+    private Line separatorLine;
     GameStarter gameStarter;
 
 
@@ -76,7 +77,7 @@ public class UICreator {
     }
 
     private void createSeparatorLine() {
-        createLine(new Point(430,30), new Point(430,430),theme.getLineColor());
+        separatorLine = createLine(new Point(430,30), new Point(430,430),theme.getLineColor());
     }
 
 
@@ -116,6 +117,7 @@ public class UICreator {
             theme = new ClassicTheme();
             boardUI.setTheme(theme);
             theme.setRootPane(rootPane);
+            separatorLine.setStroke(theme.getLineColor());
             if(winnerLine!=null)
                 winnerLine.setStroke(theme.getLineColor());
         });
@@ -129,6 +131,7 @@ public class UICreator {
             theme = new HighContrastTheme();
             boardUI.setTheme(theme);
             theme.setRootPane(rootPane);
+            separatorLine.setStroke(theme.getLineColor());
             if(winnerLine!=null)
                 winnerLine.setStroke(theme.getLineColor());
         });
@@ -144,6 +147,7 @@ public class UICreator {
             theme = new ForestTheme();
             boardUI.setTheme(theme);
             theme.setRootPane(rootPane);
+            separatorLine.setStroke(theme.getLineColor());
             if(winnerLine!=null)
             winnerLine.setStroke(theme.getLineColor());
         });

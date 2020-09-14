@@ -49,10 +49,4 @@ public class RandomAI implements AI{
         humanPlayer.removeListener(onMakeMoveListener);
     }
 
-
-    public void celebrateWinning() {
-        System.out.println("\"One day we will destroy all of you, mare HuManS!\", says your machine");
-    }
-
-
 }
