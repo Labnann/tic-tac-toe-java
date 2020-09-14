@@ -13,16 +13,16 @@ public class HighContrastTheme implements Theme {
     private Text text;
 
     public void setSquarePane(Pane squarePane) {
-        squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, null, null)));
+        squarePane.setBackground(createBackground(Color.DARKGRAY));
         squarePane.setPrefSize(100, 100);
     }
 
     public void setBoardPane(Pane boardPane) {
-        boardPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+        boardPane.setBackground(createBackground(Color.LIGHTGRAY));
     }
 
     public void setRootPane(Pane rootPane){
-        rootPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, null, null)));
+        rootPane.setBackground(createBackground(Color.DARKGRAY));
     }
 
     @Override
@@ -31,25 +31,33 @@ public class HighContrastTheme implements Theme {
     }
 
     public void setMark(Text text) {
-        this.text = text;
-        manageInnerText();
+        manageInnerText(text);
     }
 
-    private void manageInnerText() {
+    private void manageInnerText(Text text) {
         text.toFront();
         Font textFont = new Font("Arial Black Bold", 60);
+        text.setOpacity(0);
         text.relocate(25, 5);
         text.setFont(textFont);
     }
 
     @Override
-    public String getZero() {
-        return "O";
+    public void setAIMark(Pane squarePane) {
+        //AI will be white
+        squarePane.setBackground(createBackground(Color.WHITE));
+
     }
 
     @Override
-    public String getCross() {
-        return "X";
+    public void setHumanMark(Pane squarePane) {
+        //Human will be black
+        squarePane.setBackground(createBackground(Color.BLACK));
+
+    }
+
+    private Background createBackground(Color color) {
+        return new Background(new BackgroundFill(color, null, null));
     }
 
 }

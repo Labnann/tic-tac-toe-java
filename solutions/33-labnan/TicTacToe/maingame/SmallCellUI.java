@@ -30,14 +30,14 @@ public class SmallCellUI {
     private void adjustWithTheme() {
         syncWithTheCell();
         theme.setSquarePane(squarePane);
-        theme.setMark(text);
+       // theme.setMark(text);
     }
 
     private void syncWithTheCell() {
         if(smallCell!=null){
         if (smallCell.getTurnType() == PlayerMark.HUMAN)
-            text.setText(theme.getCross());
-        else if (smallCell.getTurnType() == PlayerMark.AI) text.setText(theme.getZero());
+           theme.setHumanMark(squarePane);
+        else if (smallCell.getTurnType() == PlayerMark.AI) theme.setAIMark(squarePane);
         else text.setText("");
 
         }

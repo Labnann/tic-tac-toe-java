@@ -28,8 +28,7 @@ public class ClassicTheme implements Theme {
 
 
     public void setMark(Text text) {
-        this.text = text;
-        manageInnerText();
+        manageInnerText(text);
     }
 
     @Override
@@ -37,21 +36,28 @@ public class ClassicTheme implements Theme {
         return Color.BLACK;
     }
 
-    private void manageInnerText() {
+    private void manageInnerText(Text text) {
         text.toFront();
         Font textFont = new Font("Arial Black Bold", 60);
+        text.setOpacity(1);
         text.relocate(25, 5);
         text.setFont(textFont);
     }
 
     @Override
-    public String getZero() {
-        return "O";
+    public void setAIMark(Pane squarePane) {
+        Text text = new Text("O");
+        manageInnerText(text);
+        manageInnerText(text);
+        squarePane.getChildren().add(text);
     }
 
     @Override
-    public String getCross() {
-        return "X";
+    public void setHumanMark(Pane squarePane) {
+        Text text = new Text("X");
+        manageInnerText(text);
+        manageInnerText(text);
+        squarePane.getChildren().add(text);
     }
 
 }

@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class ForestTheme implements Theme {
 
-    private Text text;
+
 
     public void setSquarePane(Pane squarePane) {
         squarePane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
@@ -25,8 +25,7 @@ public class ForestTheme implements Theme {
 
 
     public void setMark(Text text) {
-        this.text = text;
-        manageInnerText();
+        manageInnerText(text);
     }
 
     @Override
@@ -36,22 +35,30 @@ public class ForestTheme implements Theme {
     }
 
 
-    private void manageInnerText() {
+    private void manageInnerText(Text text) {
         text.toFront();
         Font textFont = new Font("Arial Black Bold", 60);
+        text.setOpacity(1);
         text.relocate(25, 5);
         text.setFont(textFont);
     }
 
     @Override
-    public String getZero() {
-        return "🍊";
+     public void setAIMark(Pane squarePane) {
+        Text text = new Text("🍊");
+        manageInnerText(text);
+        manageInnerText(text);
+        squarePane.getChildren().add(text);
     }
 
     @Override
-    public String getCross() {
-        return "🌸";
+    public void setHumanMark(Pane squarePane) {
+        Text text = new Text("🌸");
+        manageInnerText(text);
+        manageInnerText(text);
+        squarePane.getChildren().add(text);
     }
+
 
     @Override
     public Paint getLineColor() {

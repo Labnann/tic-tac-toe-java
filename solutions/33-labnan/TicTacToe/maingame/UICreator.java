@@ -59,32 +59,28 @@ public class UICreator {
         int endX = 320;
         int endY = 300;
         int factor = 110;
+        Paint color = Color.RED;
         if(winResult.getLineType()==LineType.ROW){
-            createLine(new Point(startX,startY+ factor*winResult.getWinAt()+1),new Point(startX+endX,startY+ factor*winResult.getWinAt()+1),Color.BLUE);
+            createLine(new Point(startX,startY+ factor*winResult.getWinAt()+1),new Point(startX+endX,startY+ factor*winResult.getWinAt()+1),color);
         }
         if(winResult.getLineType()==LineType.COLUMN){
-            createLine(new Point(startY+ factor*winResult.getWinAt()+1,startX),new Point(startY+ factor*winResult.getWinAt()+1,startX+endX),Color.BLUE);
+            createLine(new Point(startY+ factor*winResult.getWinAt()+1,startX),new Point(startY+ factor*winResult.getWinAt()+1,startX+endX),color);
         }
         if(winResult.getLineType()==LineType.DIAGONAL){
-            createLine(new Point(startX,startY-45), new Point(endX+50,endY+70),Color.BLUE);
+            createLine(new Point(startX,startY-45), new Point(endX+50,endY+70),color);
         }
         if(winResult.getLineType()==LineType.ANTI_DIAGONAL){
             int i = 10;
             int j = 40-30;
-            createLine(new Point(startX+15,endY+70+20), new Point(endX+40,startY-30),Color.BLUE);
+            createLine(new Point(startX+15,endY+70+20), new Point(endX+40,startY-30),color);
         }
 
     }
 
     private void createLines() {
         createLine(new Point(430,30), new Point(430,430),theme.getLineColor());
-        //createLine(new Point());
-        createWinBars();
     }
 
-    private void createWinBars() {
-        createLine(new Point(60,120), new Point(250,120),theme.getLineColor());
-    }
 
     void addButtons() {
         buttonPane.relocate(450, 0);
@@ -163,6 +159,7 @@ public class UICreator {
         line.setEndY(end.getY());
         line.setStrokeWidth(7);
         line.setFill(color);
+        System.out.println(line.getFill());
         line.toFront();
         rootPane.getChildren().add(line);
     }
