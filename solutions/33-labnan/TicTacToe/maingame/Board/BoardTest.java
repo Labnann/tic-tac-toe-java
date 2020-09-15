@@ -1,5 +1,8 @@
-package maingame;
+package maingame.Board;
 
+import maingame.Board.Board;
+import maingame.PlayerMark;
+import maingame.Position;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

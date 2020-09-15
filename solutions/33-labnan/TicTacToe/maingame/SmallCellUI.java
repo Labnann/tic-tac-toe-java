@@ -2,6 +2,7 @@ package maingame;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import maingame.Board.SmallCell;
 import maingame.theme.ForestTheme;
 import maingame.theme.Theme;
 

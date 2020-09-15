@@ -1,8 +1,8 @@
 package maingame.gamestatus;
 
-import maingame.Board;
+import maingame.Board.Board;
 import maingame.PlayerMark;
-import maingame.SmallCell;
+import maingame.Board.SmallCell;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

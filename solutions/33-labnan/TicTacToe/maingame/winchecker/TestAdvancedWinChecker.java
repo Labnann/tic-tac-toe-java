@@ -1,9 +1,8 @@
 package maingame.winchecker;
 
-import maingame.Board;
+import maingame.Board.Board;
 import maingame.PlayerMark;
 import maingame.Position;
-import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -24,7 +23,6 @@ public class TestAdvancedWinChecker {
     private void checkColumnForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
-        //winChecker.checkWin();
         Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
     }
 
@@ -94,7 +92,6 @@ public class TestAdvancedWinChecker {
     public void diagonalWinTest(){
         initializeWinCheckerAndBoardSquares();
         populateDiagonals(PlayerMark.HUMAN);
-        System.out.println(winChecker.getWinner());
         Assertions.assertEquals(PlayerMark.HUMAN,winChecker.getWinResult().getWinner());
     }
 

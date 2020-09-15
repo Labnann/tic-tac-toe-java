@@ -1,11 +1,10 @@
 package maingame;
 
-import javafx.event.EventType;
 import javafx.scene.layout.Pane;
+import maingame.Board.Board;
+import maingame.Board.SmallCell;
 import maingame.player.Human;
 import maingame.theme.Theme;
-
-import java.awt.event.MouseEvent;
 
 public class BoardUI {
 

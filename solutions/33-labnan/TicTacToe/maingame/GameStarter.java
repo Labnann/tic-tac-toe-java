@@ -1,5 +1,6 @@
 package maingame;
 
+import maingame.Board.Board;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
 import maingame.player.*;

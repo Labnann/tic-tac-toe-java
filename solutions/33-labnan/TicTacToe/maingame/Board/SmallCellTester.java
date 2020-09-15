@@ -1,5 +1,7 @@
-package maingame;
+package maingame.Board;
 
+import maingame.Board.SmallCell;
+import maingame.PlayerMark;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

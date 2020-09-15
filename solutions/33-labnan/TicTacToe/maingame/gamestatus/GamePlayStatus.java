@@ -1,9 +1,9 @@
 package maingame.gamestatus;
 
 
-import maingame.Board;
+import maingame.Board.Board;
 import maingame.LineType;
-import maingame.SmallCell;
+import maingame.Board.SmallCell;
 
 public class GamePlayStatus implements GameStatus {
 

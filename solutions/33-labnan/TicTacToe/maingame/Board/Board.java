@@ -1,4 +1,7 @@
-package maingame;
+package maingame.Board;
+
+import maingame.PlayerMark;
+import maingame.Position;
 
 import java.util.ArrayList;
 
