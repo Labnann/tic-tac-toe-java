@@ -3,7 +3,7 @@ package maingame.player;
 import maingame.PlayerMark;
 
 public interface Human extends Player{
-    PlayerMark PLAYER_MARK = PlayerMark.HUMAN;
+    PlayerMark playermark = PlayerMark.HUMAN;
     void placeMark(int x, int y);
     void addOnMakeMoveListener(OnMakeMoveListener onMakeMoveListener);
 

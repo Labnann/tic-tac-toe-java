@@ -2,6 +2,7 @@ package maingame.player;
 
 import maingame.Board;
 import maingame.PlayerMark;
+import maingame.Position;
 import maingame.SmallCell;
 import maingame.winchecker.WinChecker;
 
@@ -12,26 +13,21 @@ public class HumanPlayer implements Human{
 
     ArrayList<OnMakeMoveListener> onMakeMoveListeners = new ArrayList<>();
 
-    SmallCell[][] smallCells;
+    
+    Board board;
     WinChecker winChecker;
     public HumanPlayer(Board board, WinChecker winChecker){
-        this.smallCells = board.getSmallCells();
         this.winChecker = winChecker;
+        this.board = board;
     }
 
     @Override
     public void placeMark(int x, int y) {
         if(winChecker.isGameEnded()){ return;}
-      if  (!smallCells[x][y].triggerSquareAs(PlayerMark.HUMAN)){
-          return;
-      }
-      try {
-          doOnMove();
-      }
-      catch (ConcurrentModificationException exception){
-          System.out.println("Let's just forget it >.>");
-      }
-
+        if(board.getMarkAtPosition(new Position(x,y))!=null) return;
+        board.triggerSquareAt(new Position(x,y),playermark);
+      try { doOnMove();}
+      catch (ConcurrentModificationException exception){ System.out.println("Let's just forget it >.>"); }
     }
 
     private void doOnMove() {

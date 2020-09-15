@@ -2,7 +2,6 @@ package maingame.player;
 
 import maingame.Board;
 import maingame.Position;
-import maingame.SmallCell;
 import maingame.gamestatus.GameStatus;
 
 public class RandomAI implements AI{

@@ -3,7 +3,6 @@ package maingame.player;
 import maingame.Board;
 import maingame.PlayerMark;
 import maingame.Position;
-import maingame.SmallCell;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
 

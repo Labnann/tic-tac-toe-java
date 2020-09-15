@@ -7,7 +7,6 @@ public class BoardTest {
 
     Board board = new Board();
 
-
     private void simultaneouslyTrigger(int i, int j, PlayerMark playerMark) {
         board.triggerSquareAt(new Position(0,i),playerMark);
         board.triggerSquareAt(new Position(0,j), playerMark);
