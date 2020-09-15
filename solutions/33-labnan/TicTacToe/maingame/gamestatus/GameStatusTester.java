@@ -32,7 +32,7 @@ public class GameStatusTester {
     }
 
     @Test
-    public void testDraw() {
+    public void testCount() {
         board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
         board.triggerSquareAt(new Position(0,1),PlayerMark.HUMAN);
         board.triggerSquareAt(new Position(1,0),PlayerMark.HUMAN);
@@ -41,6 +41,6 @@ public class GameStatusTester {
         board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
         board.triggerSquareAt(new Position(2,1),PlayerMark.HUMAN);
         board.triggerSquareAt(new Position(2,2),PlayerMark.HUMAN);
-
+        Assertions.assertEquals(status.getTurnCount(),8);
     }
 }
