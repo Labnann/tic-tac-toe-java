@@ -3,7 +3,6 @@ package maingame.player;
 import maingame.Board;
 import maingame.PlayerMark;
 import maingame.Position;
-import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
 import maingame.winchecker.AdvancedWinChecker;
@@ -12,7 +11,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class DefensiveAITest {
-    SmallCell[][] smallCells;
     Board board;
     Human human;
     DefensiveAI defensiveAI;
@@ -102,13 +100,13 @@ public class DefensiveAITest {
     public void antiDiagonalTest(){
         initialize();
         defensiveAI.start();
-        smallCells[2][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
         human.placeMark(0,2);
         Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
         initialize();
         defensiveAI.start();
-        smallCells[2][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
         human.placeMark(0,2);
         Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
@@ -117,7 +115,6 @@ public class DefensiveAITest {
     @Test
     public void randomWorksTest(){
         board = new Board();
-        smallCells = board.getSmallCells();
         GameStatus gameStatus = new GamePlayStatus(board);
         human = new HumanPlayer(board, new AdvancedWinChecker(gameStatus));
         defensiveAI = new DefensiveAI(human,board,gameStatus);
@@ -131,10 +128,9 @@ public class DefensiveAITest {
 
     void initialize(){
         board = new Board();
-       smallCells = board.getSmallCells();
-       GameStatus gameStatus = new GamePlayStatus(board);
-       WinChecker winChecker = new AdvancedWinChecker(gameStatus);
-       human = new HumanPlayer(board,winChecker);
-       defensiveAI = new DefensiveAI(human,board,gameStatus);
+        GameStatus gameStatus = new GamePlayStatus(board);
+        WinChecker winChecker = new AdvancedWinChecker(gameStatus);
+        human = new HumanPlayer(board,winChecker);
+        defensiveAI = new DefensiveAI(human,board,gameStatus);
     }
 }
