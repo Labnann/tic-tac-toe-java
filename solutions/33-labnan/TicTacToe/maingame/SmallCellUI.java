@@ -9,7 +9,7 @@ import maingame.theme.Theme;
 
 public class SmallCellUI {
 
-    private Theme theme = new ForestTheme();// = new ForestTheme();
+    private Theme theme = new ForestTheme();
     private Text text = new Text();
     private SmallCell smallCell;
     private Pane squarePane = new Pane();

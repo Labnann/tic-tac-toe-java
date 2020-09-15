@@ -4,24 +4,22 @@ package maingame.gamestatus;
 import maingame.Board.Board;
 import maingame.LineType;
 import maingame.Board.SmallCell;
+import maingame.Position;
 
 public class GamePlayStatus implements GameStatus {
 
-    private CheckerLine[] columnLine;
-    private CheckerLine[] rowLine;
+    private CheckerLine[] columnLines;
+    private CheckerLine[] rowLines;
     private CheckerLine leadingDiagonalLine;
     private CheckerLine antiDiagonalLine;
-    private SmallCell[][] smallCells;
     private int turnCount;
-
-
+    Board board;
 
 
     public GamePlayStatus(Board board) {
-        this.smallCells = board.getSmallCells();
+        this.board= board;
         initializeLines();
-        readyBoxesItemsForChecking();
-
+        readyPositionsForChecking();
     }
 
     @Override
@@ -30,11 +28,11 @@ public class GamePlayStatus implements GameStatus {
     }
 
     private void initializeLines() {
-        columnLine = new CheckerLine[3];
-        rowLine = new CheckerLine[3];
+        columnLines = new CheckerLine[3];
+        rowLines = new CheckerLine[3];
         for (int i = 0; i < 3; i++) {
-            rowLine[i] = new CheckerLine(LineType.ROW,i);
-            columnLine[i] = new CheckerLine(LineType.COLUMN,i);
+            rowLines[i] = new CheckerLine(LineType.ROW,i);
+            columnLines[i] = new CheckerLine(LineType.COLUMN,i);
         }
         leadingDiagonalLine = new CheckerLine(LineType.DIAGONAL,0);
         antiDiagonalLine = new CheckerLine(LineType.ANTI_DIAGONAL,0);
@@ -48,12 +46,12 @@ public class GamePlayStatus implements GameStatus {
 
     @Override
     public CheckerLine[] getColumnChecker() {
-        return columnLine;
+        return columnLines;
     }
 
     @Override
     public CheckerLine[] getRowChecker() {
-        return rowLine;
+        return rowLines;
     }
 
     @Override
@@ -64,47 +62,55 @@ public class GamePlayStatus implements GameStatus {
 
 
 
-    private void readyBoxesItemsForChecking() {
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                addChecker(i,j);
+    private void readyPositionsForChecking() {
+        for (int column = 0; column < 3; column++) {
+            for (int row = 0; row < 3; row++) {
+                addCheckerAtPosition(new Position(row,column));
             }
         }
 
     }
 
-    private void addChecker(int i, int j) {
-
-        addCheckerAtColumn(smallCells[i][j], j);
-        addCheckerAtAVector(j, smallCells[j][i], columnLine);
-        addCheckerOnDiagonalLine(j, i, smallCells[i][i]);
-        addCheckerOnAntiDiagonalLine(i, j);
+    private void addCheckerAtPosition(Position position) {
+        addCheckersToNonDiagonals(position);
+        addCheckerOnDiagonalLine(position);
+        addCheckerOnAntiDiagonalLine(position);
     }
 
-    private void addCheckerOnAntiDiagonalLine(int i, int j) {
-        if (i == 2 - j) {
-            smallCells[i][j].addOnSmallCellTrigger(() -> antiDiagonalLine.addType(smallCells[i][j].getTurnType()));
+    private void addCheckersToNonDiagonals(Position position) {
+        addCheckerAtLineOnPosition(position, rowLines[position.getColumnNum()]); //selecting row according to position
+        addCheckerAtLineOnPosition(position, columnLines[position.getRowNum()]); //selecting column according to position
+    }
+
+    private void addCheckerOnAntiDiagonalLine(Position position) {
+        SmallCell smallCell = board.getSmallCellAt(position);
+        if (positionIsOnAntiDiagonal(position)) {
+            smallCell.addOnSmallCellTrigger(() -> antiDiagonalLine.addType(smallCell.getTurnType()));
         }
     }
 
-    private void addCheckerOnDiagonalLine(int j, int i, SmallCell smallCell) {
-        if (i == j) {
+    private boolean positionIsOnAntiDiagonal(Position position) {
+        return position.getRowNum()== 2 -position.getColumnNum();
+    }
+
+    private void addCheckerOnDiagonalLine(Position position) {
+        SmallCell smallCell = board.getSmallCellAt(position);
+        if (positionIsOnLeadingDiagonal(position)) {
             smallCell.addOnSmallCellTrigger(() -> leadingDiagonalLine.addType(smallCell.getTurnType()));
         }
     }
 
-    private void addCheckerAtAVector(int finalJ, SmallCell smallCell, CheckerLine[] rowLine) {
+    private boolean positionIsOnLeadingDiagonal(Position position) {
+        return position.getColumnNum() == position.getRowNum();
+    }
+
+    private void addCheckerAtLineOnPosition(Position position, CheckerLine line) {
+        SmallCell smallCell = board.getSmallCellAt(position);
         smallCell.addOnSmallCellTrigger(() -> {
-            rowLine[finalJ].addType(smallCell.getTurnType());
+           line.addType(smallCell.getTurnType());
             turnCount++;
         });
     }
-
-    private void addCheckerAtColumn(SmallCell smallCell, int finalJ) {
-        addCheckerAtAVector(finalJ, smallCell, rowLine); //Transposed the matrix
-    }
-
-
 
 }
 

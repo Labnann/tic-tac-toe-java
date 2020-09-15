@@ -11,7 +11,6 @@ public class BoardUI {
 Theme theme;
 private Pane boardPane;
 private SmallCellUI[][] smallCellUIs;
-private SmallCell[][] smallCells;
 private Board board;
 private Human player;
 
@@ -20,7 +19,6 @@ private Human player;
 BoardUI( Board board, Theme theme, Human player) {
     this.board=board;
     this.boardPane = new Pane();
-    smallCells = board.getSmallCells();
     this.smallCellUIs = createBoardUI();
 
     this.theme = theme;
