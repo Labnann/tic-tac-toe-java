@@ -1,5 +1,7 @@
 package maingame;
 
+import maingame.player.Human;
+import maingame.player.Player;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -14,32 +16,34 @@ public class BoardTest {
 
 
 
-    @Test
-    public void testBoardSquareDoubleTrigger() {
-        initializeSmallCells();
-        simultaneouslyTrigger(0, 0);
-        Assertions.assertEquals(PlayerMark.HUMAN, smallCells[0][0].getTurnType());
-    }
 
-    private void simultaneouslyTrigger(int i, int j) {
-        board.triggerSquare(smallCells[0][i]);
-        board.triggerSquare(smallCells[0][j]);
+    private void simultaneouslyTrigger(int i, int j, PlayerMark playerMark) {
+        board.triggerSquare(new Position(0,i),playerMark);
+        board.triggerSquare(new Position(0,j), playerMark);
     }
 
     @Test
-    public void testBoardSquareSecondTrigger() {
+    public void testBoardChangeListener(){
         initializeSmallCells();
-        simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(PlayerMark.AI, smallCells[0][1].getTurnType());
+        final int[] count = {0};
+        board.addOnChangeListener(() -> count[0]++);
+        board.triggerSquare(new Position(0,0),PlayerMark.AI);
+        Assertions.assertEquals(1,count[0]);
     }
 
     @Test
-    public void testSetStartingTurn() {
+    public void testAITrigger() {
         initializeSmallCells();
-        board.setStartingTurn(PlayerMark.AI);
-        simultaneouslyTrigger(0, 1);
-        Assertions.assertEquals(PlayerMark.AI, smallCells[0][0].getTurnType());
-        Assertions.assertEquals(PlayerMark.HUMAN, smallCells[0][1].getTurnType());
+        simultaneouslyTrigger(0, 1,PlayerMark.AI);
+        Assertions.assertEquals(PlayerMark.AI, board.getMarkAtPosition(new Position(0,1)));
+    }
+
+    @Test
+    public void testHumanTrigger() {
+        initializeSmallCells();
+        simultaneouslyTrigger(0, 1,PlayerMark.HUMAN);
+        Assertions.assertEquals(PlayerMark.HUMAN,board.getMarkAtPosition(new Position(0,1)));
+        Assertions.assertNull(board.getMarkAtPosition(new Position(2, 2)));
     }
 
 

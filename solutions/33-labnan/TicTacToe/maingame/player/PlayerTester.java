@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Assertions;
 
 public class PlayerTester {
     Board board = new Board();
-    GameStatus gamestatus = new GamePlayStatus(board.getSmallCells());
-    Human human = new HumanPlayer(board.getSmallCells(),new AdvancedWinChecker(gamestatus));
-    AI ai = new RandomAI(human,board.getSmallCells(),gamestatus);
+    GameStatus gamestatus = new GamePlayStatus(board);
+    Human human = new HumanPlayer(board,new AdvancedWinChecker(gamestatus));
+    AI ai = new RandomAI(human,board,gamestatus);
     int triggerCount = 0;
     @Test
     public void testRandomAI(){

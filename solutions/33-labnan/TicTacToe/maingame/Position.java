@@ -1,4 +1,4 @@
-package maingame.player;
+package maingame;
 
 public class Position {
     private int rowNum;
@@ -12,7 +12,7 @@ public class Position {
         return columnNum;
     }
 
-    Position(int rowNum, int columnNum){
+    public Position(int rowNum, int columnNum){
         this.rowNum = rowNum;
         this.columnNum = columnNum;
     }

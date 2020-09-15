@@ -1,6 +1,8 @@
 package maingame.player;
 
+import maingame.Board;
 import maingame.PlayerMark;
+import maingame.Position;
 import maingame.SmallCell;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
@@ -12,11 +14,11 @@ public class DefensiveAI implements AI {
     SmallCell[][] smallCells;
     GameStatus gameStatus;
     Human.OnMakeMoveListener onMakeMoveListener;
-    public DefensiveAI(Human humanPlayer, SmallCell[][] smallCells, GameStatus gameStatus){
-        randomAI = new RandomAI(humanPlayer,smallCells,gameStatus);
+    public DefensiveAI(Human humanPlayer, Board board, GameStatus gameStatus){
+        randomAI = new RandomAI(humanPlayer,board,gameStatus);
+        smallCells = board.getSmallCells();
         this.humanPlayer = humanPlayer;
         this.gameStatus = gameStatus;
-        this.smallCells = smallCells;
     }
 
     private void listenToHuman() {

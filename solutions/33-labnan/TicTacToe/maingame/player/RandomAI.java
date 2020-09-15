@@ -1,5 +1,7 @@
 package maingame.player;
 
+import maingame.Board;
+import maingame.Position;
 import maingame.SmallCell;
 import maingame.gamestatus.GameStatus;
 
@@ -8,9 +10,9 @@ public class RandomAI implements AI{
     SmallCell[][] smallCells;
     Human.OnMakeMoveListener onMakeMoveListener;
     GameStatus gameStatus;
-    public RandomAI(Human humanPlayer, SmallCell[][] smallCells, GameStatus gameStatus){
+    public RandomAI(Human humanPlayer, Board board, GameStatus gameStatus){
+        smallCells = board.getSmallCells();
         this.humanPlayer = humanPlayer;
-        this.smallCells = smallCells;
         this.gameStatus = gameStatus;
 
     }

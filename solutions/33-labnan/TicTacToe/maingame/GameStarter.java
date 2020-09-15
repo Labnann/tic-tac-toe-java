@@ -33,13 +33,13 @@ public class GameStarter{
 
     void start() {
         board = new Board();
-        gameStatus = new GamePlayStatus(board.getSmallCells());
+        gameStatus = new GamePlayStatus(board);
         winChecker = new AdvancedWinChecker(gameStatus);
-        humanPlayer = new HumanPlayer(board.getSmallCells(),winChecker);
+        humanPlayer = new HumanPlayer(board,winChecker);
 
         winChecker.startChecking();
-        randomAI = new RandomAI(humanPlayer,board.getSmallCells(),gameStatus);
-        defensiveAI = new DefensiveAI(humanPlayer,board.getSmallCells(),gameStatus);
+        randomAI = new RandomAI(humanPlayer,board,gameStatus);
+        defensiveAI = new DefensiveAI(humanPlayer,board,gameStatus);
         randomAI.start();
     }
 

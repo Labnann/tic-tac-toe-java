@@ -1,6 +1,7 @@
 package maingame.gamestatus;
 
 
+import maingame.Board;
 import maingame.LineType;
 import maingame.SmallCell;
 
@@ -16,8 +17,8 @@ public class GamePlayStatus implements GameStatus {
 
 
 
-    public GamePlayStatus(SmallCell[][] smallCells) {
-        this.smallCells = smallCells;
+    public GamePlayStatus(Board board) {
+        this.smallCells = board.getSmallCells();
         initializeLines();
         readyBoxesItemsForChecking();
 

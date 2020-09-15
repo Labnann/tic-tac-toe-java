@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 
 public class Board {
-    private PlayerMark currentTurnType = PlayerMark.HUMAN;
     private SmallCell[][] smallCells = new SmallCell[3][3];
 
     ArrayList<BoardListener>  boardChangeListeners = new ArrayList<>();
@@ -25,18 +24,17 @@ public class Board {
         boardChangeListeners.add(boardChangeListener);
     }
 
-
-    public void setStartingTurn(PlayerMark startingTurnType) {
-        this.currentTurnType = startingTurnType;
+    public PlayerMark getMarkAtPosition(Position position){
+        return smallCells[position.getRowNum()][position.getColumnNum()].getTurnType();
     }
 
 
 
-    public void triggerSquare(SmallCell smallCell) {
-        if (smallCell.isNotTriggered()) {
-            smallCell.triggerSquareAs(currentTurnType);
-            changeTurn();
 
+    public void triggerSquare(Position position, PlayerMark playerMark) {
+        SmallCell smallCell = smallCells[position.getRowNum()][position.getColumnNum()];
+        if (smallCell.isNotTriggered()) {
+            smallCell.triggerSquareAs(playerMark);
         }
     }
 
@@ -58,12 +56,6 @@ public class Board {
 
     public interface BoardListener {
         void performOnChange();
-    }
-
-    private void changeTurn() {
-        if (currentTurnType == PlayerMark.HUMAN)
-            currentTurnType = PlayerMark.AI;
-        else currentTurnType = PlayerMark.HUMAN;
     }
 
 }

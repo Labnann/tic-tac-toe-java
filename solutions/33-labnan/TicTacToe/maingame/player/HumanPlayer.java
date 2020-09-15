@@ -1,5 +1,6 @@
 package maingame.player;
 
+import maingame.Board;
 import maingame.PlayerMark;
 import maingame.SmallCell;
 import maingame.winchecker.WinChecker;
@@ -13,8 +14,8 @@ public class HumanPlayer implements Human{
 
     SmallCell[][] smallCells;
     WinChecker winChecker;
-    public HumanPlayer(SmallCell[][] smallCells, WinChecker winChecker){
-        this.smallCells = smallCells;
+    public HumanPlayer(Board board, WinChecker winChecker){
+        this.smallCells = board.getSmallCells();
         this.winChecker = winChecker;
     }
 

@@ -120,7 +120,7 @@ public class TestAdvancedWinChecker {
     private void initializeWinCheckerAndBoardSquares() {
         Board board = new Board();
         smallCellUIS = board.getSmallCells();
-        winChecker = new AdvancedWinChecker(new GamePlayStatus(board.getSmallCells()));
+        winChecker = new AdvancedWinChecker(new GamePlayStatus(board));
         winChecker.startChecking();
     }
 

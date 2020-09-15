@@ -88,8 +88,6 @@ public class UICreator {
         configureForestThemeButton();
         configureClassicThemeButton();
         configureHighContrastThemeButton();
-
-
     }
 
 

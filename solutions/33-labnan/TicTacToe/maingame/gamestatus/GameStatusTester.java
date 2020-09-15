@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class GameStatusTester {
     Board board = new Board();
     SmallCell[][] smallCells = board.getSmallCells();
-    GameStatus status = new GamePlayStatus(smallCells);
+    GameStatus status = new GamePlayStatus(board);
 
 
 

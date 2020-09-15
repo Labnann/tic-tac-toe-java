@@ -2,6 +2,7 @@ package maingame.player;
 
 import maingame.Board;
 import maingame.PlayerMark;
+import maingame.Position;
 import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class DefensiveAITest {
     SmallCell[][] smallCells;
+    Board board;
     Human human;
     DefensiveAI defensiveAI;
 
@@ -19,21 +21,25 @@ public class DefensiveAITest {
     public void defensiveAIatDiagonalTest(){
         initialize();
         defensiveAI.start();
-        smallCells[0][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare(new Position(0,0),PlayerMark.HUMAN);
         human.placeMark(1,1);
-        Assertions.assertEquals(smallCells[2][2].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(board.getMarkAtPosition(new Position(2,2)),PlayerMark.AI);
 
         initialize();
         defensiveAI.start();
-        smallCells[1][1].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare(new Position(1,1),PlayerMark.HUMAN);
         human.placeMark(2,2);
-        Assertions.assertEquals(smallCells[0][0].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(board.getMarkAtPosition(new Position(0,0)),PlayerMark.AI);
 
         initialize();
         defensiveAI.start();
-        smallCells[0][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare(new Position(0,0),PlayerMark.HUMAN);
         human.placeMark(2,2);
-        Assertions.assertEquals(smallCells[1][1].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,1),PlayerMark.AI);
+    }
+
+    PlayerMark getMarkAtPosition(int row, int col){
+        return board.getMarkAtPosition(new Position(row,col));
     }
 
     @Test
@@ -41,25 +47,28 @@ public class DefensiveAITest {
         initialize();
         int i = 0;
         defensiveAI.start();
-        smallCells[0][i].triggerSquareAs(PlayerMark.HUMAN);
+
+        board.triggerSquare(new Position(0,i),PlayerMark.HUMAN);
         human.placeMark(2,i);
-        Assertions.assertEquals(smallCells[1][i].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
 
 
         initialize();
         i++;
         defensiveAI.start();
-        smallCells[0][i].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare(new Position(0,i),PlayerMark.HUMAN);
         human.placeMark(2,i);
-        Assertions.assertEquals(smallCells[1][i].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
+
 
 
         initialize();
         i++;
         defensiveAI.start();
-        smallCells[0][i].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare(new Position(0,i),PlayerMark.HUMAN);
         human.placeMark(2,i);
-        Assertions.assertEquals(smallCells[1][i].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
+
 
 
     }
@@ -68,25 +77,25 @@ public class DefensiveAITest {
         initialize();
         int i = 0;
         defensiveAI.start();
-        smallCells[i][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare( new Position(i,0),PlayerMark.HUMAN);
         human.placeMark(i,2);
-        Assertions.assertEquals(smallCells[i][1].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
 
 
         initialize();
         i++;
         defensiveAI.start();
-        smallCells[i][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquare( new Position(i,0),PlayerMark.HUMAN);
         human.placeMark(i,2);
-        Assertions.assertEquals(smallCells[i][1].getTurnType(),PlayerMark.AI);
+        Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
 
         initialize();
         i++;
         defensiveAI.start();
-        smallCells[i][0].triggerSquareAs(PlayerMark.HUMAN);
-        human.placeMark(i,2);
-        Assertions.assertEquals(smallCells[i][1].getTurnType(),PlayerMark.AI);
 
+        board.triggerSquare( new Position(i,0),PlayerMark.HUMAN);
+        human.placeMark(i,2);
+        Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
     }
 
     @Test
@@ -95,23 +104,23 @@ public class DefensiveAITest {
         defensiveAI.start();
         smallCells[2][0].triggerSquareAs(PlayerMark.HUMAN);
         human.placeMark(0,2);
-        Assertions.assertEquals(PlayerMark.AI,smallCells[1][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
         initialize();
         defensiveAI.start();
         smallCells[2][0].triggerSquareAs(PlayerMark.HUMAN);
         human.placeMark(0,2);
-        Assertions.assertEquals(PlayerMark.AI,smallCells[1][1].getTurnType());
+        Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
     }
 
     @Test
     public void randomWorksTest(){
-        Board board = new Board();
+        board = new Board();
         smallCells = board.getSmallCells();
-        GameStatus gameStatus = new GamePlayStatus(smallCells);
-        human = new HumanPlayer(smallCells, new AdvancedWinChecker(gameStatus));
-        defensiveAI = new DefensiveAI(human,smallCells,gameStatus);
+        GameStatus gameStatus = new GamePlayStatus(board);
+        human = new HumanPlayer(board, new AdvancedWinChecker(gameStatus));
+        defensiveAI = new DefensiveAI(human,board,gameStatus);
         defensiveAI.start();
         final int[] triggered = {0};
         board.addOnChangeListener(() -> triggered[0]++);
@@ -121,10 +130,11 @@ public class DefensiveAITest {
 
 
     void initialize(){
-       smallCells = new Board().getSmallCells();
-       GameStatus gameStatus = new GamePlayStatus(smallCells);
+        board = new Board();
+       smallCells = board.getSmallCells();
+       GameStatus gameStatus = new GamePlayStatus(board);
        WinChecker winChecker = new AdvancedWinChecker(gameStatus);
-       human = new HumanPlayer(smallCells,winChecker);
-       defensiveAI = new DefensiveAI(human,smallCells,gameStatus);
+       human = new HumanPlayer(board,winChecker);
+       defensiveAI = new DefensiveAI(human,board,gameStatus);
     }
 }
