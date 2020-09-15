@@ -13,6 +13,8 @@ public class Position {
     }
 
     public Position(int rowNum, int columnNum){
+        if(rowNum>2||columnNum>2||rowNum<0||columnNum<0)
+            throw new IllegalArgumentException("Scope of rowNumber and columnNumber is 0 to 2");
         this.rowNum = rowNum;
         this.columnNum = columnNum;
     }
