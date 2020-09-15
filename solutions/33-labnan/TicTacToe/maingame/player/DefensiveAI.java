@@ -11,14 +11,14 @@ public class DefensiveAI implements AI {
     RandomAI randomAI;
     Position position;
     Human humanPlayer;
-    SmallCell[][] smallCells;
     GameStatus gameStatus;
     Human.OnMakeMoveListener onMakeMoveListener;
+    Board board;
     public DefensiveAI(Human humanPlayer, Board board, GameStatus gameStatus){
         randomAI = new RandomAI(humanPlayer,board,gameStatus);
-        smallCells = board.getSmallCells();
         this.humanPlayer = humanPlayer;
         this.gameStatus = gameStatus;
+        this.board = board;
     }
 
     private void listenToHuman() {
@@ -31,7 +31,7 @@ public class DefensiveAI implements AI {
 
     private void move(){
         findMove();
-        smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(PLAYER_MARK);
+        board.triggerSquareAt(position,playerMark);
     }
 
     private void findMove() {
@@ -121,8 +121,9 @@ public class DefensiveAI implements AI {
     }
 
     private void findUntriggeredPosition(int rowNum, int columnNum) {
-        if (smallCells[rowNum][columnNum].isNotTriggered()) {
-            position = new Position(rowNum, columnNum);
+        Position checkingPosition = new Position(rowNum,columnNum);
+        if (board.getMarkAtPosition(checkingPosition)==null) {
+            position = checkingPosition;
         }
     }
 

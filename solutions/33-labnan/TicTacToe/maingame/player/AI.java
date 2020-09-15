@@ -3,7 +3,7 @@ package maingame.player;
 import maingame.PlayerMark;
 
 public interface AI extends Player{
-    PlayerMark PLAYER_MARK = PlayerMark.AI;
+    PlayerMark playerMark = PlayerMark.AI;
     void start();
     void stop();
 }

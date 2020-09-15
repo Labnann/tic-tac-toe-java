@@ -1,7 +1,5 @@
 package maingame;
 
-import maingame.player.Human;
-import maingame.player.Player;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -18,8 +16,8 @@ public class BoardTest {
 
 
     private void simultaneouslyTrigger(int i, int j, PlayerMark playerMark) {
-        board.triggerSquare(new Position(0,i),playerMark);
-        board.triggerSquare(new Position(0,j), playerMark);
+        board.triggerSquareAt(new Position(0,i),playerMark);
+        board.triggerSquareAt(new Position(0,j), playerMark);
     }
 
     @Test
@@ -27,7 +25,7 @@ public class BoardTest {
         initializeSmallCells();
         final int[] count = {0};
         board.addOnChangeListener(() -> count[0]++);
-        board.triggerSquare(new Position(0,0),PlayerMark.AI);
+        board.triggerSquareAt(new Position(0,0),PlayerMark.AI);
         Assertions.assertEquals(1,count[0]);
     }
 

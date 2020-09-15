@@ -31,7 +31,7 @@ public class Board {
 
 
 
-    public void triggerSquare(Position position, PlayerMark playerMark) {
+    public void triggerSquareAt(Position position, PlayerMark playerMark) {
         SmallCell smallCell = smallCells[position.getRowNum()][position.getColumnNum()];
         if (smallCell.isNotTriggered()) {
             smallCell.triggerSquareAs(playerMark);

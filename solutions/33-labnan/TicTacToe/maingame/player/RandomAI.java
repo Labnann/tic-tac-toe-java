@@ -31,7 +31,7 @@ public class RandomAI implements AI{
 
     private void move(){
         Position position = findMove();
-        smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(PLAYER_MARK);
+        smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(playerMark);
     }
 
     Position findMove() {
