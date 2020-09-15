@@ -32,7 +32,9 @@ public class Board {
     }
 
 
-
+    public SmallCell getSmallCellAt(Position position){
+        return smallCells[position.getRowNum()][position.getColumnNum()];
+    }
 
     public void triggerSquareAt(Position position, PlayerMark playerMark) {
         SmallCell smallCell = smallCells[position.getRowNum()][position.getColumnNum()];

@@ -15,8 +15,8 @@ public class SmallCellUI {
     private Pane squarePane = new Pane();
 
 
-    public SmallCellUI(int xAxisIndex, int yAxisIndex, SmallCell smallCell) {
-        squarePane.relocate((xAxisIndex * 110), (yAxisIndex * 110));
+    public SmallCellUI(Position position, SmallCell smallCell) {
+        squarePane.relocate((position.getRowNum()* 110), (position.getColumnNum()* 110));
         squarePane.getChildren().addAll(text);
         this.smallCell = smallCell;
         smallCell.addOnSmallCellTrigger(this::syncWithTheCell);
@@ -32,7 +32,6 @@ public class SmallCellUI {
 
         theme.setSquarePane(squarePane);
         syncWithTheCell();
-       // theme.setMark(text);
     }
 
     private void syncWithTheCell() {

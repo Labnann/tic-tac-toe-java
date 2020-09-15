@@ -28,6 +28,8 @@ BoardUI( Board board, Theme theme, Human player) {
 
 }
 
+
+
     public void setBoard(Board board) {
         this.board = board;
         adjustWithTheme();
@@ -47,17 +49,17 @@ BoardUI( Board board, Theme theme, Human player) {
         SmallCellUI[][] smallCellUIs = new SmallCellUI[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                smallCellUIs[i][j] = createBoardSquare(i, j);
+                smallCellUIs[i][j] = createBoardSquare(new Position(i,j));
             }
         boardPane.relocate(70, 70);
         return smallCellUIs;
     }
 
 
-    private SmallCellUI createBoardSquare(int row, int column) {
-        SmallCellUI smallCellUI = new SmallCellUI(row, column,smallCells[row][column]);
+    private SmallCellUI createBoardSquare(Position position) {
+        SmallCellUI smallCellUI = new SmallCellUI(position,board.getSmallCellAt(position));
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(new Position(row,column)));
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(position));
         return smallCellUI;
     }
 
@@ -74,9 +76,6 @@ public void setTheme(Theme theme) {
 public Pane getBoardPane() {
     return boardPane;
 }
-
-
-
 
 
 }
