@@ -2,7 +2,6 @@ package maingame;
 
 import javafx.scene.layout.Pane;
 import maingame.Board.Board;
-import maingame.Board.SmallCell;
 import maingame.player.Human;
 import maingame.theme.Theme;
 

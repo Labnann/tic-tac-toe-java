@@ -3,21 +3,21 @@ package maingame.gamestatus;
 import maingame.Board.Board;
 import maingame.PlayerMark;
 import maingame.Board.SmallCell;
+import maingame.Position;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class GameStatusTester {
     Board board = new Board();
-    SmallCell[][] smallCells = board.getSmallCells();
     GameStatus status = new GamePlayStatus(board);
 
 
 
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
-        smallCells[0][0].setTurnType(PlayerMark.HUMAN);
-        smallCells[1][1].setTurnType(PlayerMark.HUMAN);
-        smallCells[2][2].setTurnType(PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,2),PlayerMark.HUMAN);
 
         Assertions.assertEquals(1, status.getRowChecker()[0].getCount());
         Assertions.assertEquals(1, status.getRowChecker()[1].getCount());
@@ -32,17 +32,15 @@ public class GameStatusTester {
     }
 
     @Test
-    public void testCheckGameDraw() {
-        smallCells[0][0].setTurnType(PlayerMark.HUMAN);
-        smallCells[0][1].setTurnType(PlayerMark.AI);
-        smallCells[1][0].setTurnType(PlayerMark.AI);
-        smallCells[1][1].setTurnType(PlayerMark.HUMAN);
-        smallCells[1][2].setTurnType(PlayerMark.HUMAN);
-        smallCells[2][0].setTurnType(PlayerMark.AI);
-        smallCells[2][1].setTurnType(PlayerMark.HUMAN);
-        smallCells[2][2].setTurnType(PlayerMark.AI);
-      //  Assertions.assertTrue(gameWatcher.isDraw());
-
+    public void testDraw() {
+        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,2),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,2),PlayerMark.HUMAN);
 
     }
 }
