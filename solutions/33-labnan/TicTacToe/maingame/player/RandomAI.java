@@ -7,13 +7,14 @@ import maingame.gamestatus.GameStatus;
 
 public class RandomAI implements AI{
     Human humanPlayer;
-    SmallCell[][] smallCells;
     Human.OnMakeMoveListener onMakeMoveListener;
     GameStatus gameStatus;
+    Board board;
+
     public RandomAI(Human humanPlayer, Board board, GameStatus gameStatus){
-        smallCells = board.getSmallCells();
         this.humanPlayer = humanPlayer;
         this.gameStatus = gameStatus;
+        this.board = board;
 
     }
 
@@ -31,14 +32,15 @@ public class RandomAI implements AI{
 
     private void move(){
         Position position = findMove();
-        smallCells[position.getRowNum()][position.getColumnNum()].triggerSquareAs(playerMark);
+        board.triggerSquareAt(position,playerMark);
     }
 
     Position findMove() {
        int r1 = makeRandomNumberIn1To3();
        int r2 = makeRandomNumberIn1To3();
-       if(smallCells[r1][r2].isNotTriggered()){
-           return new Position(r1,r2);
+       Position checkingPosition = new Position(r1,r2);
+       if(board.getMarkAtPosition(checkingPosition)==null){
+           return checkingPosition;
        }
        return findMove();
     }
