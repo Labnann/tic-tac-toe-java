@@ -45,18 +45,9 @@ public class Board {
 
     private void doOnChange() {
         for(BoardListener boardChangeListener: boardChangeListeners){
-        if (boardChangeListener != null) {
             boardChangeListener.performOnChange();
-            continue;
         }
-        return;
     }
-    }
-
-    public SmallCell[][] getSmallCells() {
-        return smallCells;
-    }
-
 
 
     public interface BoardListener {

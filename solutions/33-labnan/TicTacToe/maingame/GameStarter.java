@@ -53,7 +53,7 @@ public class GameStarter{
         defensiveAI.start();
      }
 
-     void stopAI(){
+     public void stopAI(){
         randomAI.stop();
         defensiveAI.stop();
      }

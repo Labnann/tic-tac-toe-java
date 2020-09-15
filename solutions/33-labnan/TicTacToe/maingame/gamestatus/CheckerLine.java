@@ -29,9 +29,11 @@ public class CheckerLine {
 
 
 
-    public void addType(PlayerMark type) {
+    public void mark(PlayerMark type) {
         if ( count == 3){
-            return;}
+            return;
+        }
+
         if (this.playerMark == null || this.playerMark == type) {
             this.playerMark = type;
             count++;

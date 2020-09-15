@@ -85,7 +85,7 @@ public class GamePlayStatus implements GameStatus {
     private void addCheckerOnAntiDiagonalLine(Position position) {
         SmallCell smallCell = board.getSmallCellAt(position);
         if (positionIsOnAntiDiagonal(position)) {
-            smallCell.addOnSmallCellTrigger(() -> antiDiagonalLine.addType(smallCell.getTurnType()));
+            smallCell.addOnSmallCellTrigger(() -> antiDiagonalLine.mark(smallCell.getTurnType()));
         }
     }
 
@@ -96,7 +96,7 @@ public class GamePlayStatus implements GameStatus {
     private void addCheckerOnDiagonalLine(Position position) {
         SmallCell smallCell = board.getSmallCellAt(position);
         if (positionIsOnLeadingDiagonal(position)) {
-            smallCell.addOnSmallCellTrigger(() -> leadingDiagonalLine.addType(smallCell.getTurnType()));
+            smallCell.addOnSmallCellTrigger(() -> leadingDiagonalLine.mark(smallCell.getTurnType()));
         }
     }
 
@@ -107,7 +107,7 @@ public class GamePlayStatus implements GameStatus {
     private void addCheckerAtLineOnPosition(Position position, CheckerLine line) {
         SmallCell smallCell = board.getSmallCellAt(position);
         smallCell.addOnSmallCellTrigger(() -> {
-           line.addType(smallCell.getTurnType());
+           line.mark(smallCell.getTurnType());
             turnCount++;
         });
     }

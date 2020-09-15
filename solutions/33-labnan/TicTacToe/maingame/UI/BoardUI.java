@@ -1,7 +1,8 @@
-package maingame;
+package maingame.UI;
 
 import javafx.scene.layout.Pane;
 import maingame.Board.Board;
+import maingame.Position;
 import maingame.player.Human;
 import maingame.theme.Theme;
 
@@ -15,7 +16,7 @@ private Human player;
 
 
 
-BoardUI( Board board, Theme theme, Human player) {
+public BoardUI( Board board, Theme theme, Human player) {
     this.board=board;
     this.boardPane = new Pane();
     this.smallCellUIs = createBoardUI();

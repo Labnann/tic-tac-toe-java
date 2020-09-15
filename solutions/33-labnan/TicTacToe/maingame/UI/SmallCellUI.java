@@ -1,8 +1,10 @@
-package maingame;
+package maingame.UI;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import maingame.Board.SmallCell;
+import maingame.PlayerMark;
+import maingame.Position;
 import maingame.theme.ForestTheme;
 import maingame.theme.Theme;
 

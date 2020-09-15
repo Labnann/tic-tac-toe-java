@@ -1,6 +1,8 @@
 package maingame;
 
 import javafx.stage.Stage;
+import maingame.UI.BoardUI;
+import maingame.UI.UICreator;
 import maingame.theme.ClassicTheme;
 import maingame.theme.Theme;
 

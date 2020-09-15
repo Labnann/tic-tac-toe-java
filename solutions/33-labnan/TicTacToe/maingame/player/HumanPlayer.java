@@ -30,9 +30,6 @@ public class HumanPlayer implements Human{
 
     private void doOnMove() {
         for(OnMakeMoveListener onMakeMoveListener : onMakeMoveListeners){
-            if (onMakeMoveListener == null) {
-                return;
-            }
             onMakeMoveListener.doOnMove();
         }
     }

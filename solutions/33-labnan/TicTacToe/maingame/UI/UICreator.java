@@ -1,11 +1,12 @@
-package maingame;
+package maingame.UI;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import maingame.GameStarter;
+import maingame.LineType;
 import maingame.theme.ClassicTheme;
 import maingame.theme.ForestTheme;
 import maingame.theme.HighContrastTheme;
@@ -28,7 +29,7 @@ public class UICreator {
 
 
 
-    UICreator(Stage gameRootStage, BoardUI boardUI, Theme theme, GameStarter gameStarter) {
+    public UICreator(Stage gameRootStage, BoardUI boardUI, Theme theme, GameStarter gameStarter) {
         this.boardUI = boardUI;
         this.gameRootStage = gameRootStage;
         this.theme = theme;
@@ -61,7 +62,7 @@ public class UICreator {
         int endY = 300;
         int factor = 110;
         Paint color = theme.getLineColor();
-        if(winResult.getLineType()==LineType.ROW){
+        if(winResult.getLineType()== LineType.ROW){
             winnerLine = createLine(new Point(startX,startY+ factor*winResult.getWinAt()+1),new Point(startX+endX,startY+ factor*winResult.getWinAt()+1),color);
         }
         if(winResult.getLineType()==LineType.COLUMN){
