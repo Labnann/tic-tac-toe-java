@@ -13,7 +13,7 @@ public class HumanPlayer implements Human{
 
     ArrayList<OnMakeMoveListener> onMakeMoveListeners = new ArrayList<>();
 
-    
+
     Board board;
     WinChecker winChecker;
     public HumanPlayer(Board board, WinChecker winChecker){
@@ -22,10 +22,10 @@ public class HumanPlayer implements Human{
     }
 
     @Override
-    public void placeMark(int x, int y) {
+    public void placeMark(Position position) {
         if(winChecker.isGameEnded()){ return;}
-        if(board.getMarkAtPosition(new Position(x,y))!=null) return;
-        board.triggerSquareAt(new Position(x,y),playermark);
+        if(board.getMarkAtPosition(position)!=null) return;
+        board.triggerSquareAt(position,playermark);
       try { doOnMove();}
       catch (ConcurrentModificationException exception){ System.out.println("Let's just forget it >.>"); }
     }

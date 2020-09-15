@@ -55,10 +55,10 @@ BoardUI( Board board, Theme theme, Human player) {
     }
 
 
-    private SmallCellUI createBoardSquare(int i, int j) {
-        SmallCellUI smallCellUI = new SmallCellUI(i, j,smallCells[i][j]);
+    private SmallCellUI createBoardSquare(int row, int column) {
+        SmallCellUI smallCellUI = new SmallCellUI(row, column,smallCells[row][column]);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(i,j));
+        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(new Position(row,column)));
         return smallCellUI;
     }
 

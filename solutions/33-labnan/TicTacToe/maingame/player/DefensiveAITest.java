@@ -20,19 +20,19 @@ public class DefensiveAITest {
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        human.placeMark(1,1);
+        human.placeMark(new Position(1,1));
         Assertions.assertEquals(board.getMarkAtPosition(new Position(2,2)),PlayerMark.AI);
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
-        human.placeMark(2,2);
+        human.placeMark(new Position(2,2));
         Assertions.assertEquals(board.getMarkAtPosition(new Position(0,0)),PlayerMark.AI);
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        human.placeMark(2,2);
+        human.placeMark(new Position(2,2));
         Assertions.assertEquals(getMarkAtPosition(1,1),PlayerMark.AI);
     }
 
@@ -47,7 +47,7 @@ public class DefensiveAITest {
         defensiveAI.start();
 
         board.triggerSquareAt(new Position(0,i),PlayerMark.HUMAN);
-        human.placeMark(2,i);
+        human.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
 
 
@@ -55,7 +55,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,i),PlayerMark.HUMAN);
-        human.placeMark(2,i);
+        human.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
 
 
@@ -64,7 +64,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,i),PlayerMark.HUMAN);
-        human.placeMark(2,i);
+        human.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i),PlayerMark.AI);
 
 
@@ -76,7 +76,7 @@ public class DefensiveAITest {
         int i = 0;
         defensiveAI.start();
         board.triggerSquareAt( new Position(i,0),PlayerMark.HUMAN);
-        human.placeMark(i,2);
+        human.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
 
 
@@ -84,7 +84,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt( new Position(i,0),PlayerMark.HUMAN);
-        human.placeMark(i,2);
+        human.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
 
         initialize();
@@ -92,7 +92,7 @@ public class DefensiveAITest {
         defensiveAI.start();
 
         board.triggerSquareAt( new Position(i,0),PlayerMark.HUMAN);
-        human.placeMark(i,2);
+        human.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1),PlayerMark.AI);
     }
 
@@ -101,13 +101,13 @@ public class DefensiveAITest {
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
-        human.placeMark(0,2);
+        human.placeMark(new Position(0,2));
         Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
-        human.placeMark(0,2);
+        human.placeMark(new Position(0,2));
         Assertions.assertEquals(PlayerMark.AI,getMarkAtPosition(1,1));
 
     }
@@ -121,7 +121,7 @@ public class DefensiveAITest {
         defensiveAI.start();
         final int[] triggered = {0};
         board.addOnChangeListener(() -> triggered[0]++);
-        human.placeMark(0,0);
+        human.placeMark(new Position(0,0));
         Assertions.assertEquals(2,triggered[0]);
     }
 

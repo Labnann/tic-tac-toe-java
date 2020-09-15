@@ -1,6 +1,7 @@
 package maingame.player;
 
 import maingame.Board;
+import maingame.Position;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
 import maingame.winchecker.AdvancedWinChecker;
@@ -17,7 +18,7 @@ public class PlayerTester {
     public void testRandomAI(){
         ai.start();
         board.addOnChangeListener(() -> triggerCount++);
-        human.placeMark(1,2);
+        human.placeMark(new Position(1,2));
         Assertions.assertEquals(2,triggerCount);
 
     }
