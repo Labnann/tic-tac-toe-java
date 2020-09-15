@@ -1,9 +1,7 @@
 package maingame.player;
 
 import maingame.Board;
-import maingame.PlayerMark;
 import maingame.Position;
-import maingame.SmallCell;
 import maingame.winchecker.WinChecker;
 
 import java.util.ArrayList;

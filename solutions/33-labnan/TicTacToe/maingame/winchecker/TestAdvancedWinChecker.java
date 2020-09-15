@@ -2,16 +2,15 @@ package maingame.winchecker;
 
 import maingame.Board;
 import maingame.PlayerMark;
+import maingame.Position;
 import maingame.SmallCell;
 import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import maingame.winchecker.AdvancedWinChecker;
-import maingame.winchecker.WinChecker;
 
 public class TestAdvancedWinChecker {
     WinChecker winChecker;
-    SmallCell[][] smallCellUIS;
+    Board board;
 
 
     @Test
@@ -32,28 +31,16 @@ public class TestAdvancedWinChecker {
 
     private void populateColumnWithCross(int column) {
         for (int i = 0; i < 3; i++) {
-            smallCellUIS[column][i].triggerSquareAs(PlayerMark.HUMAN);
-        }
-    }
-
-    private void populateColumn(int column, PlayerMark turnType) {
-        for (int i = 0; i < 3; i++) {
-            smallCellUIS[column][i].triggerSquareAs(turnType);
+            board.triggerSquareAt(new Position(column,i),PlayerMark.HUMAN);
         }
     }
 
     private void populateRowWithZero(int row) {
         for (int i = 0; i < 3; i++) {
-            smallCellUIS[i][row].triggerSquareAs(PlayerMark.AI);
+            board.triggerSquareAt(new Position(row,i),PlayerMark.AI);
         }
     }
 
-
-    private void populateRowWith(int row, PlayerMark turnType) {
-        for (int i = 0; i < 3; i++) {
-            smallCellUIS[i][row].triggerSquareAs(turnType);
-        }
-    }
 
 
     @Test
@@ -67,15 +54,13 @@ public class TestAdvancedWinChecker {
     private void checkRowForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
-        //winChecker.checkWin();
         Assertions.assertEquals(PlayerMark.AI, winChecker.getWinner());
     }
 
     @Test
     public void notEquallyPopulatedTest() {
         initializeWinCheckerAndBoardSquares();
-        populateFirstRowUnequally();
-       // winChecker.checkWin();
+        populateFirstColumnUnequally();
         Assertions.assertFalse(winChecker.isGameEnded());
 
     }
@@ -83,43 +68,49 @@ public class TestAdvancedWinChecker {
     @Test
     public void columnUnequallyPopulatedTest() {
         initializeWinCheckerAndBoardSquares();
-        populateFirstColumnUnequally();
-      //  winChecker.checkWin();
+        populateRowCUnequally();
         Assertions.assertFalse(winChecker.isGameEnded());
     }
 
-    private void populateFirstRowUnequally() {
-        smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[1][0].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[2][0].triggerSquareAs(PlayerMark.AI);
-    }
-
     private void populateFirstColumnUnequally() {
-        smallCellUIS[0][0].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[0][1].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[0][2].triggerSquareAs(PlayerMark.AI);
+        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,0),PlayerMark.AI);
     }
 
-    private void populateAntiDiagonals(PlayerMark turnType) {
-        smallCellUIS[0][2].triggerSquareAs(turnType);
-        smallCellUIS[1][1].triggerSquareAs(turnType);
-        smallCellUIS[2][0].triggerSquareAs(turnType);
+    private void populateRowCUnequally() {
+        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,2),PlayerMark.AI);
+    }
+
+    private void populateDiagonals(PlayerMark turnType) {
+        board.triggerSquareAt(new Position(0,0),turnType);
+        board.triggerSquareAt(new Position(1,1),turnType);
+        board.triggerSquareAt(new Position(2,2),turnType);
+    }
+
+    @Test
+    public void diagonalWinTest(){
+        initializeWinCheckerAndBoardSquares();
+        populateDiagonals(PlayerMark.HUMAN);
+        System.out.println(winChecker.getWinner());
+        Assertions.assertEquals(PlayerMark.HUMAN,winChecker.getWinResult().getWinner());
     }
 
 
     @Test
     public void antiDiagonalWinTest() {
         initializeWinCheckerAndBoardSquares();
-        smallCellUIS[0][2].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[1][1].triggerSquareAs(PlayerMark.HUMAN);
-        smallCellUIS[2][0].triggerSquareAs(PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,2),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
         Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
 
     }
 
     private void initializeWinCheckerAndBoardSquares() {
-        Board board = new Board();
-        smallCellUIS = board.getSmallCells();
+        board = new Board();
         winChecker = new AdvancedWinChecker(new GamePlayStatus(board));
         winChecker.startChecking();
     }
