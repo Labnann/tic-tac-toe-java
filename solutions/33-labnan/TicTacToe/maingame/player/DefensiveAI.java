@@ -1,7 +1,9 @@
 package maingame.player;
 
 import maingame.Board.Board;
-import maingame.PlayerMarkEnum;
+import maingame.PlayerMark.CrossMark;
+import maingame.PlayerMark.PlayerMark;
+import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
@@ -11,6 +13,7 @@ public class DefensiveAI implements AI {
     Position position;
     Human humanPlayer;
     GameStatus gameStatus;
+    PlayerMark playerMark = new ZeroMark();
     Human.OnMakeMoveListener onMakeMoveListener;
     Board board;
     public DefensiveAI(Human humanPlayer, Board board, GameStatus gameStatus){
@@ -18,6 +21,10 @@ public class DefensiveAI implements AI {
         this.humanPlayer = humanPlayer;
         this.gameStatus = gameStatus;
         this.board = board;
+    }
+
+    public void setPlayerMark(PlayerMark playerMark) {
+        this.playerMark = playerMark;
     }
 
     private void listenToHuman() {
@@ -30,7 +37,7 @@ public class DefensiveAI implements AI {
 
     private void move(){
         findMove();
-        board.triggerSquareAt(position, PLAYER_MARK_ENUM);
+        board.triggerSquareAt(position, playerMark);
     }
 
     private void findMove() {
@@ -78,8 +85,9 @@ public class DefensiveAI implements AI {
             }}
     }
 
+
     private boolean checkerLineHasWinner(CheckerLine checkerLine) {
-        return checkerLine.getPlayerMarkEnum() == PlayerMarkEnum.HUMAN && checkerLine.getCount() == 2 && checkerLine.isWinnable();
+        return checkerLine.getPlayerMark() instanceof CrossMark && checkerLine.getCount() == 2 && checkerLine.isWinnable();
     }
 
     /*

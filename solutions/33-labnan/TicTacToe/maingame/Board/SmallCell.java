@@ -1,21 +1,21 @@
 package maingame.Board;
 
-import maingame.PlayerMarkEnum;
+import maingame.PlayerMark.PlayerMark;
 
 import java.util.ArrayList;
 
 public class SmallCell {
     private ArrayList<SmallCellChangeListener> smallCellChangeListeners = new ArrayList<>();
-    private PlayerMarkEnum mark = null;
+    private PlayerMark playerMark;
     private boolean isTriggered = false;
 
-    public PlayerMarkEnum getMark() {
-        return mark;
+    public PlayerMark getPlayerMark() {
+        return playerMark;
     }
 
-    public void setMark(PlayerMarkEnum mark) {
-        if (this.mark == null)
-            this.mark = mark;
+    public void setPlayerMark(PlayerMark playerMark) {
+        if (this.playerMark == null)
+            this.playerMark = playerMark;
         doOnTypeChange();
     }
 
@@ -23,9 +23,9 @@ public class SmallCell {
         isTriggered = triggered;
     }
 
-    public void triggerSquareAs(PlayerMarkEnum turnType){
+    public void triggerSquareAs(PlayerMark playerMark){
         if(this.isNotTriggered()){
-            this.setMark(turnType);
+            this.setPlayerMark(playerMark);
             this.setTriggered(true);
         }
     }

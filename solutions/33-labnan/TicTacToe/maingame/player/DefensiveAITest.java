@@ -1,7 +1,9 @@
 package maingame.player;
 
 import maingame.Board.Board;
-import maingame.PlayerMarkEnum;
+import maingame.PlayerMark.CrossMark;
+import maingame.PlayerMark.PlayerMark;
+import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
 import maingame.gamestatus.GamePlayStatus;
 import maingame.gamestatus.GameStatus;
@@ -19,24 +21,24 @@ public class DefensiveAITest {
     public void defensiveAIatDiagonalTest(){
         initialize();
         defensiveAI.start();
-        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,0), new CrossMark());
         human.placeMark(new Position(1,1));
-        Assertions.assertEquals(board.getMarkAtPosition(new Position(2,2)), PlayerMarkEnum.AI);
+        Assertions.assertEquals(board.getMarkAtPosition(new Position(2,2)).getType(), new ZeroMark().getType());
 
         initialize();
         defensiveAI.start();
-        board.triggerSquareAt(new Position(1,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,1), new CrossMark());
         human.placeMark(new Position(2,2));
-        Assertions.assertEquals(board.getMarkAtPosition(new Position(0,0)), PlayerMarkEnum.AI);
+        Assertions.assertEquals(board.getMarkAtPosition(new Position(0,0)).getType(), new ZeroMark().getType());
 
         initialize();
         defensiveAI.start();
-        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,0), new CrossMark());
         human.placeMark(new Position(2,2));
-        Assertions.assertEquals(getMarkAtPosition(1,1), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,1).getType(), new ZeroMark().getType());
     }
 
-    PlayerMarkEnum getMarkAtPosition(int row, int col){
+    PlayerMark getMarkAtPosition(int row, int col){
         return board.getMarkAtPosition(new Position(row,col));
     }
 
@@ -46,26 +48,26 @@ public class DefensiveAITest {
         int i = 0;
         defensiveAI.start();
 
-        board.triggerSquareAt(new Position(0,i), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,i), new CrossMark());
         human.placeMark(new Position(2,i));
-        Assertions.assertEquals(getMarkAtPosition(1,i), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
         initialize();
         i++;
         defensiveAI.start();
-        board.triggerSquareAt(new Position(0,i), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,i), new CrossMark());
         human.placeMark(new Position(2,i));
-        Assertions.assertEquals(getMarkAtPosition(1,i), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
 
         initialize();
         i++;
         defensiveAI.start();
-        board.triggerSquareAt(new Position(0,i), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,i), new CrossMark());
         human.placeMark(new Position(2,i));
-        Assertions.assertEquals(getMarkAtPosition(1,i), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
 
@@ -75,40 +77,40 @@ public class DefensiveAITest {
         initialize();
         int i = 0;
         defensiveAI.start();
-        board.triggerSquareAt( new Position(i,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt( new Position(i,0), new CrossMark());
         human.placeMark(new Position(i,2));
-        Assertions.assertEquals(getMarkAtPosition(i,1), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
 
 
         initialize();
         i++;
         defensiveAI.start();
-        board.triggerSquareAt( new Position(i,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt( new Position(i,0), new CrossMark());
         human.placeMark(new Position(i,2));
-        Assertions.assertEquals(getMarkAtPosition(i,1), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
 
         initialize();
         i++;
         defensiveAI.start();
 
-        board.triggerSquareAt( new Position(i,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt( new Position(i,0), new CrossMark());
         human.placeMark(new Position(i,2));
-        Assertions.assertEquals(getMarkAtPosition(i,1), PlayerMarkEnum.AI);
+        Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
     }
 
     @Test
     public void antiDiagonalTest(){
         initialize();
         defensiveAI.start();
-        board.triggerSquareAt(new Position(2,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,0), new CrossMark());
         human.placeMark(new Position(0,2));
-        Assertions.assertEquals(PlayerMarkEnum.AI,getMarkAtPosition(1,1));
+        Assertions.assertEquals(new ZeroMark().getType(),getMarkAtPosition(1,1).getType());
 
         initialize();
         defensiveAI.start();
-        board.triggerSquareAt(new Position(2,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,0), new CrossMark());
         human.placeMark(new Position(0,2));
-        Assertions.assertEquals(PlayerMarkEnum.AI,getMarkAtPosition(1,1));
+        Assertions.assertEquals(new ZeroMark().getType(),getMarkAtPosition(1,1).getType());
 
     }
 

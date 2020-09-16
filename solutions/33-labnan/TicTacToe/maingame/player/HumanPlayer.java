@@ -1,6 +1,8 @@
 package maingame.player;
 
 import maingame.Board.Board;
+import maingame.PlayerMark.CrossMark;
+import maingame.PlayerMark.PlayerMark;
 import maingame.Position;
 import maingame.winchecker.WinChecker;
 
@@ -14,16 +16,21 @@ public class HumanPlayer implements Human{
 
     Board board;
     WinChecker winChecker;
+    PlayerMark playerMark = new CrossMark();
     public HumanPlayer(Board board, WinChecker winChecker){
         this.winChecker = winChecker;
         this.board = board;
+    }
+
+    public void setPlayerMark(PlayerMark playerMark) {
+        this.playerMark = playerMark;
     }
 
     @Override
     public void placeMark(Position position) {
         if(winChecker.isGameEnded()){ return;}
         if(board.getMarkAtPosition(position)!=null) return;
-        board.triggerSquareAt(position, PLAYERMARK);
+        board.triggerSquareAt(position, playerMark);
       try { doOnMove();}
       catch (ConcurrentModificationException exception){ System.out.println("Let's just forget it >.>"); }
     }

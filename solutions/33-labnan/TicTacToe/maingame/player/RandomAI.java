@@ -1,6 +1,8 @@
 package maingame.player;
 
 import maingame.Board.Board;
+import maingame.PlayerMark.PlayerMark;
+import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
 import maingame.gamestatus.GameStatus;
 
@@ -9,12 +11,17 @@ public class RandomAI implements AI{
     Human.OnMakeMoveListener onMakeMoveListener;
     GameStatus gameStatus;
     Board board;
+    PlayerMark playerMark = new ZeroMark();
 
     public RandomAI(Human humanPlayer, Board board, GameStatus gameStatus){
         this.humanPlayer = humanPlayer;
         this.gameStatus = gameStatus;
         this.board = board;
 
+    }
+
+    public void setPlayerMark(PlayerMark playerMark) {
+        this.playerMark = playerMark;
     }
 
     public void start(){
@@ -31,7 +38,7 @@ public class RandomAI implements AI{
 
     private void move(){
         Position position = findMove();
-        board.triggerSquareAt(position, PLAYER_MARK_ENUM);
+        board.triggerSquareAt(position, playerMark);
     }
 
     Position findMove() {

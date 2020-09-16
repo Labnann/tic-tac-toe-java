@@ -1,6 +1,7 @@
 package maingame.Board;
 
-import maingame.PlayerMarkEnum;
+import maingame.PlayerMark.CrossMark;
+import maingame.PlayerMark.ZeroMark;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -20,14 +21,14 @@ public class SmallCellTester {
             update();
             Assertions.assertEquals(3, updateValue);
         });
-        smallCell.setMark(PlayerMarkEnum.HUMAN);
+        smallCell.setPlayerMark(new CrossMark());
     }
 
     @Test
     public void testBoxGetTypeOnDoubleSet() {
-        smallCell.setMark(PlayerMarkEnum.HUMAN);
-        smallCell.setMark(PlayerMarkEnum.AI);
-        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
+        smallCell.setPlayerMark(new CrossMark());
+        smallCell.setPlayerMark(new ZeroMark());
+        Assertions.assertTrue( smallCell.getPlayerMark() instanceof CrossMark);
     }
 
 
@@ -39,22 +40,22 @@ public class SmallCellTester {
     @Test
     public void getSquareIsTriggeredTest() {
 
-        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
+        smallCell.triggerSquareAs(new CrossMark());
         Assertions.assertFalse(smallCell.isNotTriggered());
     }
 
     @Test
     public void getSquarePlaceValueTest() {
-        Assertions.assertNull(smallCell.getMark());
-        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
-        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
-        smallCell.triggerSquareAs(PlayerMarkEnum.AI);
-        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
+        Assertions.assertNull(smallCell.getPlayerMark());
+        smallCell.triggerSquareAs(new CrossMark());
+        Assertions.assertTrue( smallCell.getPlayerMark() instanceof CrossMark);
+        smallCell.triggerSquareAs(new ZeroMark());
+        Assertions.assertTrue( smallCell.getPlayerMark() instanceof CrossMark);
         smallCell = new SmallCell();
-        smallCell.triggerSquareAs(PlayerMarkEnum.AI);
-        Assertions.assertEquals(PlayerMarkEnum.AI, smallCell.getMark());
-        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
-        Assertions.assertEquals(PlayerMarkEnum.AI, smallCell.getMark());
+        smallCell.triggerSquareAs(new ZeroMark());
+        Assertions.assertTrue( smallCell.getPlayerMark() instanceof ZeroMark);
+        smallCell.triggerSquareAs(new CrossMark());
+        Assertions.assertTrue( smallCell.getPlayerMark() instanceof ZeroMark);
     }
 
 

@@ -3,7 +3,8 @@ package maingame.UI;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import maingame.Board.SmallCell;
-import maingame.PlayerMarkEnum;
+import maingame.PlayerMark.CrossMark;
+import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
 import maingame.theme.ForestTheme;
 import maingame.theme.Theme;
@@ -45,9 +46,9 @@ public class SmallCellUI {
         }
 
     private void createMarkUI() {
-        if (smallCell.getMark() == PlayerMarkEnum.HUMAN) {
+        if (smallCell.getPlayerMark() instanceof CrossMark) {
            markUI = new CrossMarkUI(theme,squarePane);
-        } else if (smallCell.getMark() == PlayerMarkEnum.AI) {
+        } else if (smallCell.getPlayerMark() instanceof ZeroMark) {
             markUI = new ZeroMarkUI(theme,squarePane);
         }
     }
