@@ -9,10 +9,10 @@ import maingame.theme.Theme;
 
 public class GameCreator {
     private Stage gameRootStage;
-    UICreator uiCreator;
-    Theme theme = new ClassicTheme();
-    BoardUI boardUI;
-    GameStarter gameStarter;
+    private UICreator uiCreator;
+    private Theme theme = new ClassicTheme();
+    private BoardUI boardUI;
+    private GameStarter gameStarter;
 
 
     public void setGameRootStage(Stage gameRootStage) {
