@@ -9,20 +9,21 @@ import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
 
 public class DefensiveAI implements AI {
-    RandomAI randomAI;
-    Position position;
-    Human humanPlayer;
-    GameStatus gameStatus;
-    PlayerMark playerMark = new ZeroMark();
-    Human.OnMakeMoveListener onMakeMoveListener;
-    Board board;
-    public DefensiveAI(Human humanPlayer, Board board, GameStatus gameStatus){
-        randomAI = new RandomAI(humanPlayer,board,gameStatus);
-        this.humanPlayer = humanPlayer;
+    private RandomAI randomAI;
+    private Position position;
+    private ListenablePlayer listenablePlayerPlayer;
+    private GameStatus gameStatus;
+    private PlayerMark playerMark = new ZeroMark();
+    private ListenablePlayer.OnMakeMoveListener onMakeMoveListener;
+    private Board board;
+    public DefensiveAI(ListenablePlayer listenablePlayerPlayer, Board board, GameStatus gameStatus){
+        randomAI = new RandomAI(listenablePlayerPlayer,board,gameStatus);
+        this.listenablePlayerPlayer = listenablePlayerPlayer;
         this.gameStatus = gameStatus;
         this.board = board;
     }
 
+    @Override
     public void setPlayerMark(PlayerMark playerMark) {
         this.playerMark = playerMark;
     }
@@ -32,7 +33,7 @@ public class DefensiveAI implements AI {
             if(gameStatus.getTurnCount()!=9)
                 move();
         };
-        humanPlayer.addOnMakeMoveListener(onMakeMoveListener);
+        listenablePlayerPlayer.addOnMakeMoveListener(onMakeMoveListener);
     }
 
     private void move(){
@@ -142,7 +143,7 @@ public class DefensiveAI implements AI {
 
     @Override
     public void stop(){
-        humanPlayer.removeListener(onMakeMoveListener);
+        listenablePlayerPlayer.removeListener(onMakeMoveListener);
     }
 
 }

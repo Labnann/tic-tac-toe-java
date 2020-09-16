@@ -9,7 +9,7 @@ import maingame.winchecker.WinChecker;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
-public class HumanPlayer implements Human{
+public class ListenablePlayerPlayer implements ListenablePlayer {
 
     ArrayList<OnMakeMoveListener> onMakeMoveListeners = new ArrayList<>();
 
@@ -17,11 +17,13 @@ public class HumanPlayer implements Human{
     Board board;
     WinChecker winChecker;
     PlayerMark playerMark = new CrossMark();
-    public HumanPlayer(Board board, WinChecker winChecker){
+    public ListenablePlayerPlayer(Board board, WinChecker winChecker){
         this.winChecker = winChecker;
         this.board = board;
     }
 
+
+    @Override
     public void setPlayerMark(PlayerMark playerMark) {
         this.playerMark = playerMark;
     }

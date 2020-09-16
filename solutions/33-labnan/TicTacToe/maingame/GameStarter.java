@@ -9,7 +9,7 @@ import maingame.winchecker.WinChecker;
 
 public class GameStarter{
     AI randomAI, defensiveAI;
-    private Human humanPlayer;
+    private ListenablePlayer listenablePlayerPlayer;
     private Board board;
     private GameStatus gameStatus;
     WinChecker winChecker;
@@ -20,8 +20,8 @@ public class GameStarter{
 
 
 
-    public Human getHumanPlayer() {
-        return humanPlayer;
+    public ListenablePlayer getListenablePlayerPlayer() {
+        return listenablePlayerPlayer;
     }
 
 
@@ -36,11 +36,11 @@ public class GameStarter{
         board = new Board();
         gameStatus = new GamePlayStatus(board);
         winChecker = new AdvancedWinChecker(gameStatus);
-        humanPlayer = new HumanPlayer(board,winChecker);
+        listenablePlayerPlayer = new ListenablePlayerPlayer(board,winChecker);
 
         winChecker.startChecking();
-        randomAI = new RandomAI(humanPlayer,board,gameStatus);
-        defensiveAI = new DefensiveAI(humanPlayer,board,gameStatus);
+        randomAI = new RandomAI(listenablePlayerPlayer,board,gameStatus);
+        defensiveAI = new DefensiveAI(listenablePlayerPlayer,board,gameStatus);
         randomAI.start();
     }
 

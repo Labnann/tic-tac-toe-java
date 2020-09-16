@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class DefensiveAITest {
     Board board;
-    Human human;
+    ListenablePlayer listenablePlayer;
     DefensiveAI defensiveAI;
 
     @Test
@@ -22,19 +22,19 @@ public class DefensiveAITest {
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,0), new CrossMark());
-        human.placeMark(new Position(1,1));
+        listenablePlayer.placeMark(new Position(1,1));
         Assertions.assertEquals(board.getMarkAtPosition(new Position(2,2)).getType(), new ZeroMark().getType());
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(1,1), new CrossMark());
-        human.placeMark(new Position(2,2));
+        listenablePlayer.placeMark(new Position(2,2));
         Assertions.assertEquals(board.getMarkAtPosition(new Position(0,0)).getType(), new ZeroMark().getType());
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,0), new CrossMark());
-        human.placeMark(new Position(2,2));
+        listenablePlayer.placeMark(new Position(2,2));
         Assertions.assertEquals(getMarkAtPosition(1,1).getType(), new ZeroMark().getType());
     }
 
@@ -49,7 +49,7 @@ public class DefensiveAITest {
         defensiveAI.start();
 
         board.triggerSquareAt(new Position(0,i), new CrossMark());
-        human.placeMark(new Position(2,i));
+        listenablePlayer.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
@@ -57,7 +57,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,i), new CrossMark());
-        human.placeMark(new Position(2,i));
+        listenablePlayer.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
@@ -66,7 +66,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt(new Position(0,i), new CrossMark());
-        human.placeMark(new Position(2,i));
+        listenablePlayer.placeMark(new Position(2,i));
         Assertions.assertEquals(getMarkAtPosition(1,i).getType(), new ZeroMark().getType());
 
 
@@ -78,7 +78,7 @@ public class DefensiveAITest {
         int i = 0;
         defensiveAI.start();
         board.triggerSquareAt( new Position(i,0), new CrossMark());
-        human.placeMark(new Position(i,2));
+        listenablePlayer.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
 
 
@@ -86,7 +86,7 @@ public class DefensiveAITest {
         i++;
         defensiveAI.start();
         board.triggerSquareAt( new Position(i,0), new CrossMark());
-        human.placeMark(new Position(i,2));
+        listenablePlayer.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
 
         initialize();
@@ -94,7 +94,7 @@ public class DefensiveAITest {
         defensiveAI.start();
 
         board.triggerSquareAt( new Position(i,0), new CrossMark());
-        human.placeMark(new Position(i,2));
+        listenablePlayer.placeMark(new Position(i,2));
         Assertions.assertEquals(getMarkAtPosition(i,1).getType(), new ZeroMark().getType());
     }
 
@@ -103,13 +103,13 @@ public class DefensiveAITest {
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(2,0), new CrossMark());
-        human.placeMark(new Position(0,2));
+        listenablePlayer.placeMark(new Position(0,2));
         Assertions.assertEquals(new ZeroMark().getType(),getMarkAtPosition(1,1).getType());
 
         initialize();
         defensiveAI.start();
         board.triggerSquareAt(new Position(2,0), new CrossMark());
-        human.placeMark(new Position(0,2));
+        listenablePlayer.placeMark(new Position(0,2));
         Assertions.assertEquals(new ZeroMark().getType(),getMarkAtPosition(1,1).getType());
 
     }
@@ -118,12 +118,12 @@ public class DefensiveAITest {
     public void randomWorksTest(){
         board = new Board();
         GameStatus gameStatus = new GamePlayStatus(board);
-        human = new HumanPlayer(board, new AdvancedWinChecker(gameStatus));
-        defensiveAI = new DefensiveAI(human,board,gameStatus);
+        listenablePlayer = new ListenablePlayerPlayer(board, new AdvancedWinChecker(gameStatus));
+        defensiveAI = new DefensiveAI(listenablePlayer,board,gameStatus);
         defensiveAI.start();
         final int[] triggered = {0};
         board.addOnChangeListener(() -> triggered[0]++);
-        human.placeMark(new Position(0,0));
+        listenablePlayer.placeMark(new Position(0,0));
         Assertions.assertEquals(2,triggered[0]);
     }
 
@@ -132,7 +132,7 @@ public class DefensiveAITest {
         board = new Board();
         GameStatus gameStatus = new GamePlayStatus(board);
         WinChecker winChecker = new AdvancedWinChecker(gameStatus);
-        human = new HumanPlayer(board,winChecker);
-        defensiveAI = new DefensiveAI(human,board,gameStatus);
+        listenablePlayer = new ListenablePlayerPlayer(board,winChecker);
+        defensiveAI = new DefensiveAI(listenablePlayer,board,gameStatus);
     }
 }

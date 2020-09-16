@@ -3,7 +3,7 @@ package maingame.UI;
 import javafx.scene.layout.Pane;
 import maingame.Board.Board;
 import maingame.Position;
-import maingame.player.Human;
+import maingame.player.ListenablePlayer;
 import maingame.theme.Theme;
 
 public class BoardUI {
@@ -12,11 +12,11 @@ Theme theme;
 private Pane boardPane;
 private SmallCellUI[][] smallCellUIs;
 private Board board;
-private Human player;
+private ListenablePlayer player;
 
 
 
-public BoardUI( Board board, Theme theme, Human player) {
+public BoardUI( Board board, Theme theme, ListenablePlayer player) {
     this.board=board;
     this.boardPane = new Pane();
     this.smallCellUIs = createBoardUI();

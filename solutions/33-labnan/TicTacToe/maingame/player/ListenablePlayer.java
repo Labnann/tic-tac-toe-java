@@ -3,8 +3,7 @@ package maingame.player;
 import maingame.PlayerMark.PlayerMarkEnum;
 import maingame.Position;
 
-public interface Human extends Player{
-    PlayerMarkEnum PLAYERMARK = PlayerMarkEnum.CROSS;
+public interface ListenablePlayer extends Player{
     void placeMark(Position position);
     void addOnMakeMoveListener(OnMakeMoveListener onMakeMoveListener);
 

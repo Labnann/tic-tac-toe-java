@@ -7,19 +7,20 @@ import maingame.Position;
 import maingame.gamestatus.GameStatus;
 
 public class RandomAI implements AI{
-    Human humanPlayer;
-    Human.OnMakeMoveListener onMakeMoveListener;
-    GameStatus gameStatus;
-    Board board;
-    PlayerMark playerMark = new ZeroMark();
+    private ListenablePlayer listenablePlayerPlayer;
+    private ListenablePlayer.OnMakeMoveListener onMakeMoveListener;
+    private GameStatus gameStatus;
+    private Board board;
+    private PlayerMark playerMark = new ZeroMark();
 
-    public RandomAI(Human humanPlayer, Board board, GameStatus gameStatus){
-        this.humanPlayer = humanPlayer;
+    public RandomAI(ListenablePlayer listenablePlayerPlayer, Board board, GameStatus gameStatus){
+        this.listenablePlayerPlayer = listenablePlayerPlayer;
         this.gameStatus = gameStatus;
         this.board = board;
 
     }
 
+    @Override
     public void setPlayerMark(PlayerMark playerMark) {
         this.playerMark = playerMark;
     }
@@ -33,7 +34,7 @@ public class RandomAI implements AI{
             if(gameStatus.getTurnCount()!=9)
             move();
         };
-        humanPlayer.addOnMakeMoveListener(onMakeMoveListener);
+        listenablePlayerPlayer.addOnMakeMoveListener(onMakeMoveListener);
     }
 
     private void move(){
@@ -56,7 +57,7 @@ public class RandomAI implements AI{
     }
 
     public void stop(){
-        humanPlayer.removeListener(onMakeMoveListener);
+        listenablePlayerPlayer.removeListener(onMakeMoveListener);
     }
 
 }

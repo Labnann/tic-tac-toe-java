@@ -1,6 +1,8 @@
 package maingame.player;
 
-public interface Player {
+import maingame.PlayerMark.PlayerMark;
 
+public interface Player {
+    void setPlayerMark(PlayerMark playerMark);
 }
 
