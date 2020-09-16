@@ -29,23 +29,22 @@ public class UICreator {
 
 
 
-    public UICreator(Stage gameRootStage, BoardUI boardUI, Theme theme, GameStarter gameStarter) {
+    public UICreator(Stage gameRootStage, BoardUI boardUI, GameStarter gameStarter) {
         this.boardUI = boardUI;
         this.gameRootStage = gameRootStage;
-        this.theme = theme;
         this.gameStarter = gameStarter;
+
     }
 
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
         createSeparatorLine();
+        setTheme(new ClassicTheme());
         addButtons();
         rootPane.getChildren().addAll(boardUI.getBoardPane(), buttonPane);
         gameRootStage.setScene(rootScene);
         gameRootStage.show();
-        boardUI.setTheme(theme);
-        boardUI.setTheme(theme);
-        theme.setRootPane(rootPane);
+
         WinChecker winChecker= gameStarter.getWinChecker();
         winChecker.addOnGameEnd(() -> {
             makeWinnerLine(winChecker.getWinResult());
@@ -78,7 +77,7 @@ public class UICreator {
     }
 
     private void createSeparatorLine() {
-        separatorLine = createLine(new Point(430,30), new Point(430,430),theme.getLineColor());
+        separatorLine = createLine(new Point(430, 30), new Point(430, 430), null);
     }
 
 
@@ -112,28 +111,23 @@ public class UICreator {
         Pane classicThemeButton = createButton("Theme: Classic");
         classicThemeButton.relocate(50, 250);
         buttonPane.getChildren().add(classicThemeButton);
-        classicThemeButton.setOnMouseClicked(event -> {
-            theme = new ClassicTheme();
-            boardUI.setTheme(theme);
-            theme.setRootPane(rootPane);
-            separatorLine.setStroke(theme.getLineColor());
-            if(winnerLine!=null)
-                winnerLine.setStroke(theme.getLineColor());
-        });
+        classicThemeButton.setOnMouseClicked(event -> setTheme(new ClassicTheme()));
+    }
+
+    private void setTheme(Theme theme) {
+        this.theme = theme;
+        boardUI.setTheme(theme);
+        theme.setRootPane(rootPane);
+        separatorLine.setStroke(theme.getLineColor());
+        if (winnerLine != null)
+            winnerLine.setStroke(theme.getLineColor());
     }
 
     private void configureHighContrastThemeButton() {
         Pane classicThemeButton = createButton("Theme: High Contrast");
         classicThemeButton.relocate(50, 350);
         buttonPane.getChildren().add(classicThemeButton);
-        classicThemeButton.setOnMouseClicked(event -> {
-            theme = new HighContrastTheme();
-            boardUI.setTheme(theme);
-            theme.setRootPane(rootPane);
-            separatorLine.setStroke(theme.getLineColor());
-            if(winnerLine!=null)
-                winnerLine.setStroke(theme.getLineColor());
-        });
+        classicThemeButton.setOnMouseClicked(event -> setTheme(new HighContrastTheme()));
     }
 
 
@@ -141,15 +135,7 @@ public class UICreator {
         Pane forestThemeButton = createButton("Theme: Forest");
         forestThemeButton.relocate(50, 300);
         buttonPane.getChildren().add(forestThemeButton);
-
-        forestThemeButton.setOnMouseClicked(event -> {
-            theme = new ForestTheme();
-            boardUI.setTheme(theme);
-            theme.setRootPane(rootPane);
-            separatorLine.setStroke(theme.getLineColor());
-            if(winnerLine!=null)
-            winnerLine.setStroke(theme.getLineColor());
-        });
+        forestThemeButton.setOnMouseClicked(event -> setTheme(new ForestTheme()));
     }
 
     public Theme getTheme() {
@@ -176,6 +162,8 @@ public class UICreator {
     }
 
     private Pane createButton(String buttonText) {
+        Button button = new Button(buttonText);
+
         return new Button(buttonText).getPane();
     }
 

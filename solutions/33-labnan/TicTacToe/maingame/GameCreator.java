@@ -30,7 +30,7 @@ public class GameCreator {
         boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInerfaceUser());
         if(uiCreator!=null)
         theme = uiCreator.getTheme();
-        uiCreator = new UICreator(gameRootStage,boardUI,theme,gameStarter);
+        uiCreator = new UICreator(gameRootStage, boardUI, gameStarter);
         uiCreator.createUI();
         addButtonFunctions();
     }
