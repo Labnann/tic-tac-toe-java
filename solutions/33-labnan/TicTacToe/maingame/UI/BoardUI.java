@@ -16,13 +16,11 @@ public class BoardUI {
 
 
     public BoardUI(Board board, Theme theme, InterfaceUserPlayer player) {
+        this.player = player;
         this.board = board;
         this.boardPane = new Pane();
         this.smallCellUIs = createBoardUI();
-
         this.theme = theme;
-        this.player = player;
-
     }
 
 
@@ -55,8 +53,9 @@ public class BoardUI {
     private SmallCellUI createBoardSquare(Position position) {
         SmallCellUI smallCellUI = new SmallCellUI(position, board.getSmallCellAt(position));
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        if (player != null)
+        if (player != null) {
             smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(position));
+        }
         return smallCellUI;
     }
 
