@@ -1,9 +1,9 @@
 package maingame.player;
 
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 
 public interface AI extends Player{
-    PlayerMark playerMark = PlayerMark.AI;
+    PlayerMarkEnum PLAYER_MARK_ENUM = PlayerMarkEnum.AI;
     void start();
     void stop();
 }

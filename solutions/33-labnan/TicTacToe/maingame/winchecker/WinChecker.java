@@ -1,12 +1,12 @@
 package maingame.winchecker;
 
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 
 public interface WinChecker {
     boolean isGameEnded();
 
 
-    PlayerMark getWinner();
+    PlayerMarkEnum getWinner();
 
     void addOnGameEnd(GameEndListener gameEndListener);
     void startChecking();

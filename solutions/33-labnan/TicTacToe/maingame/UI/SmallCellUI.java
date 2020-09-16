@@ -3,7 +3,7 @@ package maingame.UI;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import maingame.Board.SmallCell;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 import maingame.theme.ForestTheme;
 import maingame.theme.Theme;
@@ -31,25 +31,64 @@ public class SmallCellUI {
 
 
     private void adjustWithTheme() {
-
+        text.setText("");
         theme.setSquarePane(squarePane);
         syncWithTheCell();
     }
 
+    MarkUI markUI;
+
     private void syncWithTheCell() {
-        if(smallCell!=null){
-        if (smallCell.getTurnType() == PlayerMark.HUMAN)
-           theme.setHumanMark(squarePane);
-        else if (smallCell.getTurnType() == PlayerMark.AI) theme.setAIMark(squarePane);
-        else text.setText("");
+        createMarkUI();
+        if(markUI!=null)
+        markUI.putMark();
         }
 
+    private void createMarkUI() {
+        if (smallCell.getMark() == PlayerMarkEnum.HUMAN) {
+           markUI = new CrossMarkUI(theme,squarePane);
+        } else if (smallCell.getMark() == PlayerMarkEnum.AI) {
+            markUI = new ZeroMarkUI(theme,squarePane);
+        }
     }
+
 
     public Pane getSquarePane() {
         return squarePane;
     }
 }
+
+interface MarkUI{
+    void putMark();
+}
+
+class CrossMarkUI implements MarkUI {
+    Theme theme;
+    Pane squarePane;
+    CrossMarkUI(Theme theme, Pane squarePane){
+        this.theme = theme;
+        this.squarePane = squarePane;
+    }
+    public void putMark() {
+        theme.setCrossMark(squarePane);
+    }
+}
+
+class ZeroMarkUI implements MarkUI {
+    Theme theme;
+    Pane squarePane;
+    ZeroMarkUI(Theme theme, Pane squarePane){
+        this.theme = theme;
+        this.squarePane = squarePane;
+    }
+
+    public void putMark() {
+        theme.setZeroMark(squarePane);
+    }
+
+}
+
+
 
 
 

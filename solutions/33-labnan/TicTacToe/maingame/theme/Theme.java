@@ -5,9 +5,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public interface Theme {
-    void setHumanMark(Pane smallSquare);
+    void setCrossMark(Pane smallSquare);
 
-    void setAIMark(Pane smallSquare);
+    void setZeroMark(Pane smallSquare);
 
     void setSquarePane(Pane squarePane);
 

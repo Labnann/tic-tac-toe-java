@@ -1,6 +1,6 @@
 package maingame.Board;
 
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ public class Board {
         boardChangeListeners.add(boardChangeListener);
     }
 
-    public PlayerMark getMarkAtPosition(Position position){
-        return smallCells[position.getRowNum()][position.getColumnNum()].getTurnType();
+    public PlayerMarkEnum getMarkAtPosition(Position position){
+        return smallCells[position.getRowNum()][position.getColumnNum()].getMark();
     }
 
 
@@ -36,10 +36,10 @@ public class Board {
         return smallCells[position.getRowNum()][position.getColumnNum()];
     }
 
-    public void triggerSquareAt(Position position, PlayerMark playerMark) {
+    public void triggerSquareAt(Position position, PlayerMarkEnum playerMarkEnum) {
         SmallCell smallCell = smallCells[position.getRowNum()][position.getColumnNum()];
         if (smallCell.isNotTriggered()) {
-            smallCell.triggerSquareAs(playerMark);
+            smallCell.triggerSquareAs(playerMarkEnum);
         }
     }
 

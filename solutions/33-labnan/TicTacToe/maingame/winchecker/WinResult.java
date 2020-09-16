@@ -1,14 +1,14 @@
 package maingame.winchecker;
 
 import maingame.LineType;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 
 public class WinResult{
 
     private int winAt;
     private LineType lineType;
-    private PlayerMark winner;
-    public WinResult(int winAt, LineType lineType, PlayerMark winner) {
+    private PlayerMarkEnum winner;
+    public WinResult(int winAt, LineType lineType, PlayerMarkEnum winner) {
         this.winAt = winAt;
         this.lineType = lineType;
         this.winner = winner;
@@ -22,7 +22,7 @@ public class WinResult{
         return lineType;
     }
 
-    public PlayerMark getWinner() {
+    public PlayerMarkEnum getWinner() {
         return winner;
     }
 }

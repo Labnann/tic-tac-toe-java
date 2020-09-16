@@ -43,14 +43,14 @@ public class HighContrastTheme implements Theme {
     }
 
     @Override
-    public void setAIMark(Pane squarePane) {
+    public void setZeroMark(Pane squarePane) {
         squarePane.getChildren().clear();
         squarePane.setBackground(createBackground(Color.WHITE));
 
     }
 
     @Override
-    public void setHumanMark(Pane squarePane) {
+    public void setCrossMark(Pane squarePane) {
         squarePane.getChildren().clear();
         squarePane.setBackground(createBackground(Color.BLACK));
 

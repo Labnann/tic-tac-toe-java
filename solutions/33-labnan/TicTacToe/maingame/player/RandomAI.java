@@ -31,7 +31,7 @@ public class RandomAI implements AI{
 
     private void move(){
         Position position = findMove();
-        board.triggerSquareAt(position,playerMark);
+        board.triggerSquareAt(position, PLAYER_MARK_ENUM);
     }
 
     Position findMove() {

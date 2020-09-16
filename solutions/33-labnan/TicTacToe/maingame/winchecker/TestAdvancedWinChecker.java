@@ -1,7 +1,7 @@
 package maingame.winchecker;
 
 import maingame.Board.Board;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 import maingame.gamestatus.GamePlayStatus;
 import org.junit.Test;
@@ -23,19 +23,19 @@ public class TestAdvancedWinChecker {
     private void checkColumnForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateColumnWithCross(i);
-        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN, winChecker.getWinner());
     }
 
 
     private void populateColumnWithCross(int column) {
         for (int i = 0; i < 3; i++) {
-            board.triggerSquareAt(new Position(column,i),PlayerMark.HUMAN);
+            board.triggerSquareAt(new Position(column,i), PlayerMarkEnum.HUMAN);
         }
     }
 
     private void populateRowWithZero(int row) {
         for (int i = 0; i < 3; i++) {
-            board.triggerSquareAt(new Position(row,i),PlayerMark.AI);
+            board.triggerSquareAt(new Position(row,i), PlayerMarkEnum.AI);
         }
     }
 
@@ -52,7 +52,7 @@ public class TestAdvancedWinChecker {
     private void checkRowForWin(int i) {
         initializeWinCheckerAndBoardSquares();
         populateRowWithZero(i);
-        Assertions.assertEquals(PlayerMark.AI, winChecker.getWinner());
+        Assertions.assertEquals(PlayerMarkEnum.AI, winChecker.getWinner());
     }
 
     @Test
@@ -71,18 +71,18 @@ public class TestAdvancedWinChecker {
     }
 
     private void populateFirstColumnUnequally() {
-        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,0),PlayerMark.AI);
+        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,0), PlayerMarkEnum.AI);
     }
 
     private void populateRowCUnequally() {
-        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(0,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(0,2),PlayerMark.AI);
+        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,2), PlayerMarkEnum.AI);
     }
 
-    private void populateDiagonals(PlayerMark turnType) {
+    private void populateDiagonals(PlayerMarkEnum turnType) {
         board.triggerSquareAt(new Position(0,0),turnType);
         board.triggerSquareAt(new Position(1,1),turnType);
         board.triggerSquareAt(new Position(2,2),turnType);
@@ -91,18 +91,18 @@ public class TestAdvancedWinChecker {
     @Test
     public void diagonalWinTest(){
         initializeWinCheckerAndBoardSquares();
-        populateDiagonals(PlayerMark.HUMAN);
-        Assertions.assertEquals(PlayerMark.HUMAN,winChecker.getWinResult().getWinner());
+        populateDiagonals(PlayerMarkEnum.HUMAN);
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN,winChecker.getWinResult().getWinner());
     }
 
 
     @Test
     public void antiDiagonalWinTest() {
         initializeWinCheckerAndBoardSquares();
-        board.triggerSquareAt(new Position(0,2),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
-        Assertions.assertEquals(PlayerMark.HUMAN, winChecker.getWinner());
+        board.triggerSquareAt(new Position(0,2), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,0), PlayerMarkEnum.HUMAN);
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN, winChecker.getWinner());
 
     }
 

@@ -23,7 +23,7 @@ public class HumanPlayer implements Human{
     public void placeMark(Position position) {
         if(winChecker.isGameEnded()){ return;}
         if(board.getMarkAtPosition(position)!=null) return;
-        board.triggerSquareAt(position,playermark);
+        board.triggerSquareAt(position, PLAYERMARK);
       try { doOnMove();}
       catch (ConcurrentModificationException exception){ System.out.println("Let's just forget it >.>"); }
     }

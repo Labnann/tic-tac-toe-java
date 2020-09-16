@@ -1,10 +1,10 @@
 package maingame.player;
 
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 
 public interface Human extends Player{
-    PlayerMark playermark = PlayerMark.HUMAN;
+    PlayerMarkEnum PLAYERMARK = PlayerMarkEnum.HUMAN;
     void placeMark(Position position);
     void addOnMakeMoveListener(OnMakeMoveListener onMakeMoveListener);
 

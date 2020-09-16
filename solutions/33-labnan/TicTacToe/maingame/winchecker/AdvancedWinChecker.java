@@ -1,17 +1,15 @@
 package maingame.winchecker;
 
-import maingame.LineType;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
-import maingame.PlayerMark;
-import maingame.player.Player;
+import maingame.PlayerMarkEnum;
 
 import java.util.ArrayList;
 
 public class AdvancedWinChecker implements WinChecker{
 
     private GameStatus gameStatus;
-    private PlayerMark playerMark;
+    private PlayerMarkEnum playerMarkEnum;
     private int checkingAt;
     private WinResult winResult;
 
@@ -51,7 +49,7 @@ public class AdvancedWinChecker implements WinChecker{
 
     private void addListenerToLineChecker(CheckerLine checkerLine) {
        checkerLine.addDoOnWinnerFound(() -> {
-           winResult = new WinResult(checkerLine.getCheckerAt(),checkerLine.getLINE_TYPE(),checkerLine.getPlayerMark());
+           winResult = new WinResult(checkerLine.getCheckerAt(),checkerLine.getLINE_TYPE(),checkerLine.getPlayerMarkEnum());
            doOnGameEnd(); });
     }
 
@@ -72,7 +70,7 @@ public class AdvancedWinChecker implements WinChecker{
     }
 
     @Override
-    public PlayerMark getWinner() {
+    public PlayerMarkEnum getWinner() {
         if(winResult==null) return null;
         return winResult.getWinner();
     }

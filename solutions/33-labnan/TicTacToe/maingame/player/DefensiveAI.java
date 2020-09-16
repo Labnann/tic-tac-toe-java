@@ -1,7 +1,7 @@
 package maingame.player;
 
 import maingame.Board.Board;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 import maingame.gamestatus.CheckerLine;
 import maingame.gamestatus.GameStatus;
@@ -30,7 +30,7 @@ public class DefensiveAI implements AI {
 
     private void move(){
         findMove();
-        board.triggerSquareAt(position,playerMark);
+        board.triggerSquareAt(position, PLAYER_MARK_ENUM);
     }
 
     private void findMove() {
@@ -79,7 +79,7 @@ public class DefensiveAI implements AI {
     }
 
     private boolean checkerLineHasWinner(CheckerLine checkerLine) {
-        return checkerLine.getPlayerMark() == PlayerMark.HUMAN && checkerLine.getCount() == 2 && checkerLine.isWinnable();
+        return checkerLine.getPlayerMarkEnum() == PlayerMarkEnum.HUMAN && checkerLine.getCount() == 2 && checkerLine.isWinnable();
     }
 
     /*

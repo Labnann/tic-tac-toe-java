@@ -1,7 +1,6 @@
 package maingame.Board;
 
-import maingame.Board.SmallCell;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -21,14 +20,14 @@ public class SmallCellTester {
             update();
             Assertions.assertEquals(3, updateValue);
         });
-        smallCell.setTurnType(PlayerMark.HUMAN);
+        smallCell.setMark(PlayerMarkEnum.HUMAN);
     }
 
     @Test
     public void testBoxGetTypeOnDoubleSet() {
-        smallCell.setTurnType(PlayerMark.HUMAN);
-        smallCell.setTurnType(PlayerMark.AI);
-        Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
+        smallCell.setMark(PlayerMarkEnum.HUMAN);
+        smallCell.setMark(PlayerMarkEnum.AI);
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
     }
 
 
@@ -40,22 +39,22 @@ public class SmallCellTester {
     @Test
     public void getSquareIsTriggeredTest() {
 
-        smallCell.triggerSquareAs(PlayerMark.HUMAN);
+        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
         Assertions.assertFalse(smallCell.isNotTriggered());
     }
 
     @Test
     public void getSquarePlaceValueTest() {
-        Assertions.assertNull(smallCell.getTurnType());
-        smallCell.triggerSquareAs(PlayerMark.HUMAN);
-        Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
-        smallCell.triggerSquareAs(PlayerMark.AI);
-        Assertions.assertEquals(PlayerMark.HUMAN, smallCell.getTurnType());
+        Assertions.assertNull(smallCell.getMark());
+        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
+        smallCell.triggerSquareAs(PlayerMarkEnum.AI);
+        Assertions.assertEquals(PlayerMarkEnum.HUMAN, smallCell.getMark());
         smallCell = new SmallCell();
-        smallCell.triggerSquareAs(PlayerMark.AI);
-        Assertions.assertEquals(PlayerMark.AI, smallCell.getTurnType());
-        smallCell.triggerSquareAs(PlayerMark.HUMAN);
-        Assertions.assertEquals(PlayerMark.AI, smallCell.getTurnType());
+        smallCell.triggerSquareAs(PlayerMarkEnum.AI);
+        Assertions.assertEquals(PlayerMarkEnum.AI, smallCell.getMark());
+        smallCell.triggerSquareAs(PlayerMarkEnum.HUMAN);
+        Assertions.assertEquals(PlayerMarkEnum.AI, smallCell.getMark());
     }
 
 

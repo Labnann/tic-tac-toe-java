@@ -1,8 +1,7 @@
 package maingame.gamestatus;
 
 import maingame.Board.Board;
-import maingame.PlayerMark;
-import maingame.Board.SmallCell;
+import maingame.PlayerMarkEnum;
 import maingame.Position;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -15,9 +14,9 @@ public class GameStatusTester {
 
     @Test
     public void leadingDiagonalWinCase_GettingCountOfEveryParameters() {
-        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,2),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,2), PlayerMarkEnum.HUMAN);
 
         Assertions.assertEquals(1, status.getRowChecker()[0].getCount());
         Assertions.assertEquals(1, status.getRowChecker()[1].getCount());
@@ -33,14 +32,14 @@ public class GameStatusTester {
 
     @Test
     public void testCount() {
-        board.triggerSquareAt(new Position(0,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(0,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(1,2),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,0),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,1),PlayerMark.HUMAN);
-        board.triggerSquareAt(new Position(2,2),PlayerMark.HUMAN);
+        board.triggerSquareAt(new Position(0,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(0,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(1,2), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,0), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,1), PlayerMarkEnum.HUMAN);
+        board.triggerSquareAt(new Position(2,2), PlayerMarkEnum.HUMAN);
         Assertions.assertEquals(status.getTurnCount(),8);
     }
 }

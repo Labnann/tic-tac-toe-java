@@ -1,13 +1,13 @@
 package maingame.gamestatus;
 
 import maingame.LineType;
-import maingame.PlayerMark;
+import maingame.PlayerMarkEnum;
 
 import java.util.ArrayList;
 
 public class CheckerLine {
     private int count = 0;
-    private PlayerMark playerMark;
+    private PlayerMarkEnum playerMarkEnum;
     private boolean winnable = true;
     private LineType LINE_TYPE;
     private int checkerAt;
@@ -29,13 +29,13 @@ public class CheckerLine {
 
 
 
-    public void mark(PlayerMark type) {
+    public void mark(PlayerMarkEnum type) {
         if ( count == 3){
             return;
         }
 
-        if (this.playerMark == null || this.playerMark == type) {
-            this.playerMark = type;
+        if (this.playerMarkEnum == null || this.playerMarkEnum == type) {
+            this.playerMarkEnum = type;
             count++;
             if(count == 3){doOnWinnerFound();}
         }  else winnable = false;
@@ -57,8 +57,8 @@ public class CheckerLine {
         return winnable;
     }
 
-    public PlayerMark getPlayerMark() {
-        return playerMark;
+    public PlayerMarkEnum getPlayerMarkEnum() {
+        return playerMarkEnum;
     }
 
     public int getCount() {

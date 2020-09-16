@@ -44,7 +44,7 @@ public class ForestTheme implements Theme {
     }
 
     @Override
-     public void setAIMark(Pane squarePane) {
+     public void setZeroMark(Pane squarePane) {
         squarePane.getChildren().clear();
         Text text = new Text("🍊");
         manageInnerText(text);
@@ -53,7 +53,7 @@ public class ForestTheme implements Theme {
     }
 
     @Override
-    public void setHumanMark(Pane squarePane) {
+    public void setCrossMark(Pane squarePane) {
         squarePane.getChildren().clear();
         Text text = new Text("🌸");
         manageInnerText(text);
