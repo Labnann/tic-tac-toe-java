@@ -9,7 +9,7 @@ import maingame.winchecker.WinChecker;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
-public class ListenablePlayerPlayer implements ListenablePlayer {
+public class Human implements ListenablePlayer, InterfaceUserPlayer {
 
     ArrayList<OnMakeMoveListener> onMakeMoveListeners = new ArrayList<>();
 
@@ -17,7 +17,8 @@ public class ListenablePlayerPlayer implements ListenablePlayer {
     Board board;
     WinChecker winChecker;
     PlayerMark playerMark = new CrossMark();
-    public ListenablePlayerPlayer(Board board, WinChecker winChecker){
+
+    public Human(Board board, WinChecker winChecker) {
         this.winChecker = winChecker;
         this.board = board;
     }

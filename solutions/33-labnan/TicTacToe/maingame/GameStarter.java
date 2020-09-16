@@ -9,22 +9,25 @@ import maingame.winchecker.WinChecker;
 
 public class GameStarter{
     AI randomAI, defensiveAI;
-    private ListenablePlayer listenablePlayerPlayer;
+    private ListenablePlayer player;
     private Board board;
-    private GameStatus gameStatus;
     WinChecker winChecker;
 
-    GameStarter(){
+    GameStarter() {
         start();
     }
 
 
-
-    public ListenablePlayer getListenablePlayerPlayer() {
-        return listenablePlayerPlayer;
+    public InterfaceUserPlayer getInerfaceUser() {
+        InterfaceUserPlayer interfaceUserPlayer = null;
+        try {
+            interfaceUserPlayer = (InterfaceUserPlayer) player;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Wrong Player!");
+        }
+        return interfaceUserPlayer;
     }
-
-
 
 
     public Board getBoard() {
@@ -34,13 +37,12 @@ public class GameStarter{
 
     void start() {
         board = new Board();
-        gameStatus = new GamePlayStatus(board);
+        GameStatus gameStatus = new GamePlayStatus(board);
         winChecker = new AdvancedWinChecker(gameStatus);
-        listenablePlayerPlayer = new ListenablePlayerPlayer(board,winChecker);
-
+        player = new Human(board, winChecker);
         winChecker.startChecking();
-        randomAI = new RandomAI(listenablePlayerPlayer,board,gameStatus);
-        defensiveAI = new DefensiveAI(listenablePlayerPlayer,board,gameStatus);
+        randomAI = new RandomAI(player, board, gameStatus);
+        defensiveAI = new DefensiveAI(player, board, gameStatus);
         randomAI.start();
     }
 

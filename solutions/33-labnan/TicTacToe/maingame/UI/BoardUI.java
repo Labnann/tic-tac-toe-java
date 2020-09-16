@@ -3,29 +3,27 @@ package maingame.UI;
 import javafx.scene.layout.Pane;
 import maingame.Board.Board;
 import maingame.Position;
-import maingame.player.ListenablePlayer;
+import maingame.player.InterfaceUserPlayer;
 import maingame.theme.Theme;
 
 public class BoardUI {
 
-Theme theme;
-private Pane boardPane;
-private SmallCellUI[][] smallCellUIs;
-private Board board;
-private ListenablePlayer player;
+    Theme theme;
+    private Pane boardPane;
+    private SmallCellUI[][] smallCellUIs;
+    private Board board;
+    private InterfaceUserPlayer player;
 
 
+    public BoardUI(Board board, Theme theme, InterfaceUserPlayer player) {
+        this.board = board;
+        this.boardPane = new Pane();
+        this.smallCellUIs = createBoardUI();
 
-public BoardUI( Board board, Theme theme, ListenablePlayer player) {
-    this.board=board;
-    this.boardPane = new Pane();
-    this.smallCellUIs = createBoardUI();
+        this.theme = theme;
+        this.player = player;
 
-    this.theme = theme;
-    this.player = player;
-
-}
-
+    }
 
 
     public void setBoard(Board board) {
@@ -55,9 +53,10 @@ public BoardUI( Board board, Theme theme, ListenablePlayer player) {
 
 
     private SmallCellUI createBoardSquare(Position position) {
-        SmallCellUI smallCellUI = new SmallCellUI(position,board.getSmallCellAt(position));
+        SmallCellUI smallCellUI = new SmallCellUI(position, board.getSmallCellAt(position));
         boardPane.getChildren().add(smallCellUI.getSquarePane());
-        smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(position));
+        if (player != null)
+            smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(position));
         return smallCellUI;
     }
 
