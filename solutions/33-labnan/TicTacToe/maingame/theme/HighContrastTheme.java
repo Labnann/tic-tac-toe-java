@@ -13,21 +13,21 @@ public class HighContrastTheme implements Theme {
     private Text text;
 
     public void modifySquarePane(Pane squarePane) {
-        squarePane.setBackground(createBackground(Color.DARKGRAY));
+        squarePane.setBackground(createBackground(Color.DARKGREY));
         squarePane.setPrefSize(100, 100);
     }
 
     public void modifyBoardPane(Pane boardPane) {
-        boardPane.setBackground(createBackground(Color.LIGHTGRAY));
+        boardPane.setBackground(createBackground(Color.LIGHTGREY));
     }
 
     public void modifyRootPane(Pane rootPane) {
-        rootPane.setBackground(createBackground(Color.DARKGRAY));
+        rootPane.setBackground(createBackground(Color.DARKGREY));
     }
 
     @Override
     public Paint getLineColor() {
-        return Color.LIGHTGRAY;
+        return Color.LIGHTGREY;
     }
 
     private void manageInnerText(Text text) {
