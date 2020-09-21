@@ -14,7 +14,7 @@ public class ThemeSetter {
         this.themeables.add(themeable);
     }
 
-    public Theme getTheme() {
+    public Theme getCurrentTheme() {
         return theme;
     }
 

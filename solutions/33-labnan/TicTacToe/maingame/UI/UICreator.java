@@ -41,7 +41,7 @@ public class UICreator {
     public void createUI() {
         Scene rootScene = new Scene(rootPane, 750, 500);
         createSeparatorLine();
-        setTheme(themeSetter.getTheme());
+        setTheme(themeSetter.getCurrentTheme());
         addButtons();
         rootPane.getChildren().addAll(boardUI.getBoardPane(), buttonPane);
         gameRootStage.setScene(rootScene);

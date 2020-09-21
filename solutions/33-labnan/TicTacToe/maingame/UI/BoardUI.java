@@ -19,7 +19,7 @@ public class BoardUI implements Themeable {
     public BoardUI(Board board, InterfaceUserPlayer player, ThemeSetter themeSetter) {
         this.themeSetter = themeSetter;
         themeSetter.add(this);
-        this.theme = themeSetter.getTheme();
+        this.theme = themeSetter.getCurrentTheme();
         this.player = player;
         this.board = board;
         this.boardPane = new Pane();

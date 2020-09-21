@@ -6,6 +6,9 @@ import maingame.Board.SmallCell;
 import maingame.PlayerMark.CrossMark;
 import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
+import maingame.UI.MarkUI.CrossMarkUI;
+import maingame.UI.MarkUI.MarkUI;
+import maingame.UI.MarkUI.ZeroMarkUI;
 import maingame.theme.Theme;
 
 
@@ -56,36 +59,6 @@ public class SmallCellUI implements Themeable {
     public Pane getSquarePane() {
         return squarePane;
     }
-}
-
-interface MarkUI{
-    void putMark();
-}
-
-class CrossMarkUI implements MarkUI {
-    Theme theme;
-    Pane squarePane;
-    CrossMarkUI(Theme theme, Pane squarePane){
-        this.theme = theme;
-        this.squarePane = squarePane;
-    }
-    public void putMark() {
-        theme.setCrossMark(squarePane);
-    }
-}
-
-class ZeroMarkUI implements MarkUI {
-    Theme theme;
-    Pane squarePane;
-    ZeroMarkUI(Theme theme, Pane squarePane){
-        this.theme = theme;
-        this.squarePane = squarePane;
-    }
-
-    public void putMark() {
-        theme.setZeroMark(squarePane);
-    }
-
 }
 
 
