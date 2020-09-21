@@ -13,16 +13,16 @@ public class ClassicTheme implements Theme {
 
     private Text text;
 
-    public void setSquarePane(Pane squarePane) {
+    public void modifySquarePane(Pane squarePane) {
         squarePane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         squarePane.setPrefSize(100, 100);
     }
 
-    public void setBoardPane(Pane boardPane) {
+    public void modifyBoardPane(Pane boardPane) {
         boardPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 
-    public void setRootPane(Pane rootPane){
+    public void modifyRootPane(Pane rootPane) {
         rootPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
     }
 
@@ -45,7 +45,7 @@ public class ClassicTheme implements Theme {
     }
 
     @Override
-    public void setZeroMark(Pane squarePane) {
+    public void modifyZeroMark(Pane squarePane) {
         squarePane.getChildren().clear();
         Text text = new Text("O");
         manageInnerText(text);
@@ -54,7 +54,7 @@ public class ClassicTheme implements Theme {
     }
 
     @Override
-    public void setCrossMark(Pane squarePane) {
+    public void modifyCrossMark(Pane squarePane) {
         squarePane.getChildren().clear();
         Text text = new Text("X");
         manageInnerText(text);

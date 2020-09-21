@@ -13,6 +13,6 @@ public class CrossMarkUI implements MarkUI {
     }
 
     public void putMark() {
-        theme.setCrossMark(squarePane);
+        theme.modifyCrossMark(squarePane);
     }
 }

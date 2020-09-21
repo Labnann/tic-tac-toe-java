@@ -5,17 +5,17 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public interface Theme {
-    void setCrossMark(Pane smallSquare);
+    void modifyCrossMark(Pane smallSquare);
 
-    void setZeroMark(Pane smallSquare);
+    void modifyZeroMark(Pane smallSquare);
 
-    void setSquarePane(Pane squarePane);
+    void modifySquarePane(Pane squarePane);
 
-    void setBoardPane(Pane boardPane);
+    void modifyBoardPane(Pane boardPane);
 
     void setMark(Text text);
 
-    void setRootPane(Pane rootPane);
+    void modifyRootPane(Pane rootPane);
 
     Paint getLineColor();
 

@@ -12,16 +12,16 @@ public class HighContrastTheme implements Theme {
 
     private Text text;
 
-    public void setSquarePane(Pane squarePane) {
+    public void modifySquarePane(Pane squarePane) {
         squarePane.setBackground(createBackground(Color.DARKGRAY));
         squarePane.setPrefSize(100, 100);
     }
 
-    public void setBoardPane(Pane boardPane) {
+    public void modifyBoardPane(Pane boardPane) {
         boardPane.setBackground(createBackground(Color.LIGHTGRAY));
     }
 
-    public void setRootPane(Pane rootPane){
+    public void modifyRootPane(Pane rootPane) {
         rootPane.setBackground(createBackground(Color.DARKGRAY));
     }
 
@@ -43,14 +43,14 @@ public class HighContrastTheme implements Theme {
     }
 
     @Override
-    public void setZeroMark(Pane squarePane) {
+    public void modifyZeroMark(Pane squarePane) {
         squarePane.getChildren().clear();
         squarePane.setBackground(createBackground(Color.WHITE));
 
     }
 
     @Override
-    public void setCrossMark(Pane squarePane) {
+    public void modifyCrossMark(Pane squarePane) {
         squarePane.getChildren().clear();
         squarePane.setBackground(createBackground(Color.BLACK));
 

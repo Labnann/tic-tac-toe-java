@@ -13,7 +13,7 @@ public class ZeroMarkUI implements MarkUI {
     }
 
     public void putMark() {
-        theme.setZeroMark(squarePane);
+        theme.modifyZeroMark(squarePane);
     }
 
 }

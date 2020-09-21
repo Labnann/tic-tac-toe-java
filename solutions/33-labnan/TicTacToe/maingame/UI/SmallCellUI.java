@@ -35,7 +35,7 @@ public class SmallCellUI implements Themeable {
 
     private void adjustWithTheme() {
         text.setText("");
-        theme.setSquarePane(squarePane);
+        theme.modifySquarePane(squarePane);
         syncWithTheCell();
     }
 

@@ -119,7 +119,7 @@ public class UICreator {
     private void setTheme(Theme theme) {
         this.theme = theme;
         themeSetter.setTheme(theme);
-        theme.setRootPane(rootPane);
+        theme.modifyRootPane(rootPane);
         separatorLine.setStroke(theme.getLineColor());
         if (winnerLine != null)
             winnerLine.setStroke(theme.getLineColor());

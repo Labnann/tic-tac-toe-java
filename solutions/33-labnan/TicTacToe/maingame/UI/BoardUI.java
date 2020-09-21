@@ -34,7 +34,7 @@ public class BoardUI implements Themeable {
     }
 
     private void adjustWithTheme() {
-    theme.setBoardPane(boardPane);
+    theme.modifyBoardPane(boardPane);
     }
 
 
