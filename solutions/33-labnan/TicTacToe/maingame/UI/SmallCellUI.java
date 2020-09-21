@@ -6,7 +6,6 @@ import maingame.Board.SmallCell;
 import maingame.PlayerMark.CrossMark;
 import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
-import maingame.Themeable;
 import maingame.theme.Theme;
 
 

@@ -1,5 +1,6 @@
 package maingame;
 
+import maingame.UI.Themeable;
 import maingame.theme.ClassicTheme;
 import maingame.theme.Theme;
 

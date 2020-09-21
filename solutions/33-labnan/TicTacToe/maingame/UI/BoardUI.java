@@ -4,7 +4,6 @@ import javafx.scene.layout.Pane;
 import maingame.Board.Board;
 import maingame.Position;
 import maingame.ThemeSetter;
-import maingame.Themeable;
 import maingame.player.InterfaceUserPlayer;
 import maingame.theme.Theme;
 

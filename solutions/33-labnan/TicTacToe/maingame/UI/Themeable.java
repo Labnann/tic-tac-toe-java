@@ -1,4 +1,4 @@
-package maingame;
+package maingame.UI;
 
 import maingame.theme.Theme;
 
