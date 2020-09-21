@@ -30,10 +30,6 @@ public class HighContrastTheme implements Theme {
         return Color.LIGHTGRAY;
     }
 
-    public void setMark(Text text) {
-        manageInnerText(text);
-    }
-
     private void manageInnerText(Text text) {
         text.toFront();
         Font textFont = new Font("Arial Black Bold", 60);

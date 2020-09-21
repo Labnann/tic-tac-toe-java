@@ -27,10 +27,6 @@ public class ClassicTheme implements Theme {
     }
 
 
-    public void setMark(Text text) {
-        manageInnerText(text);
-    }
-
     @Override
     public Paint getLineColor() {
         return Color.BLACK;

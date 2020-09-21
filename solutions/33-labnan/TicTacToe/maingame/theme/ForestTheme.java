@@ -22,12 +22,6 @@ public class ForestTheme implements Theme {
     }
 
 
-
-
-    public void setMark(Text text) {
-        manageInnerText(text);
-    }
-
     @Override
     public void modifyRootPane(Pane rootPane) {
         rootPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
