@@ -27,7 +27,7 @@ public class GameCreator {
     }
 
     private void configureUI() {
-        boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInerfaceUser());
+        boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInterfaceUser());
         if(uiCreator!=null)
         theme = uiCreator.getTheme();
         uiCreator = new UICreator(gameRootStage, boardUI, gameStarter);

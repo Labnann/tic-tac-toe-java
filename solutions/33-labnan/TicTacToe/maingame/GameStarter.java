@@ -18,7 +18,7 @@ public class GameStarter{
     }
 
 
-    public InterfaceUserPlayer getInerfaceUser() {
+    public InterfaceUserPlayer getInterfaceUser() {
         InterfaceUserPlayer interfaceUserPlayer = null;
         try {
             interfaceUserPlayer = (InterfaceUserPlayer) player;
