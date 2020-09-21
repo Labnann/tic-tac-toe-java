@@ -6,20 +6,20 @@ import maingame.Board.SmallCell;
 import maingame.PlayerMark.CrossMark;
 import maingame.PlayerMark.ZeroMark;
 import maingame.Position;
-import maingame.theme.ForestTheme;
+import maingame.Themeable;
 import maingame.theme.Theme;
 
 
-public class SmallCellUI {
+public class SmallCellUI implements Themeable {
 
-    private Theme theme = new ForestTheme();
+    private Theme theme;
     private Text text = new Text();
     private SmallCell smallCell;
     private Pane squarePane = new Pane();
 
 
     public SmallCellUI(Position position, SmallCell smallCell) {
-        squarePane.relocate((position.getRowNum()* 110), (position.getColumnNum()* 110));
+        squarePane.relocate((position.getRowNum() * 110), (position.getColumnNum() * 110));
         squarePane.getChildren().addAll(text);
         this.smallCell = smallCell;
         smallCell.addOnSmallCellTrigger(this::syncWithTheCell);

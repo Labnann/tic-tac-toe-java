@@ -3,24 +3,29 @@ package maingame.UI;
 import javafx.scene.layout.Pane;
 import maingame.Board.Board;
 import maingame.Position;
+import maingame.ThemeSetter;
+import maingame.Themeable;
 import maingame.player.InterfaceUserPlayer;
 import maingame.theme.Theme;
 
-public class BoardUI {
+public class BoardUI implements Themeable {
 
     Theme theme;
     private Pane boardPane;
-    private SmallCellUI[][] smallCellUIs;
     private Board board;
     private InterfaceUserPlayer player;
+    ThemeSetter themeSetter;
 
 
-    public BoardUI(Board board, Theme theme, InterfaceUserPlayer player) {
+    public BoardUI(Board board, Theme theme, InterfaceUserPlayer player, ThemeSetter themeSetter) {
+        this.themeSetter = themeSetter;
+        themeSetter.add(this);
         this.player = player;
         this.board = board;
         this.boardPane = new Pane();
-        this.smallCellUIs = createBoardUI();
+        SmallCellUI[][] smallCellUIs = createBoardUI();
         this.theme = theme;
+
     }
 
 
@@ -31,12 +36,7 @@ public class BoardUI {
 
     private void adjustWithTheme() {
     theme.setBoardPane(boardPane);
-    for (SmallCellUI[] i : smallCellUIs) {
-        for (SmallCellUI j : i) {
-            j.setTheme(theme);
-        }
     }
-}
 
 
     private SmallCellUI[][] createBoardUI() {
@@ -52,6 +52,8 @@ public class BoardUI {
 
     private SmallCellUI createBoardSquare(Position position) {
         SmallCellUI smallCellUI = new SmallCellUI(position, board.getSmallCellAt(position));
+
+        themeSetter.add(smallCellUI);
         boardPane.getChildren().add(smallCellUI.getSquarePane());
         if (player != null) {
             smallCellUI.getSquarePane().setOnMouseClicked(event -> player.placeMark(position));

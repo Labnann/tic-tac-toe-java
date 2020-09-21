@@ -3,14 +3,14 @@ package maingame;
 import javafx.stage.Stage;
 import maingame.UI.BoardUI;
 import maingame.UI.UICreator;
-import maingame.theme.ClassicTheme;
 import maingame.theme.Theme;
 
 
 public class GameCreator {
     private Stage gameRootStage;
     private UICreator uiCreator;
-    private Theme theme = new ClassicTheme();
+    ThemeSetter themeSetter = new ThemeSetter();
+    private Theme theme = themeSetter.getTheme();
     private BoardUI boardUI;
     private GameStarter gameStarter;
 
@@ -27,10 +27,10 @@ public class GameCreator {
     }
 
     private void configureUI() {
-        boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInterfaceUser());
-        if(uiCreator!=null)
-        theme = uiCreator.getTheme();
-        uiCreator = new UICreator(gameRootStage, boardUI, gameStarter);
+        boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInterfaceUser(), themeSetter);
+        if (uiCreator != null)
+            theme = themeSetter.getTheme();
+        uiCreator = new UICreator(gameRootStage, boardUI, gameStarter, themeSetter);
         uiCreator.createUI();
         addButtonFunctions();
     }

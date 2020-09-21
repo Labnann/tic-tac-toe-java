@@ -7,6 +7,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import maingame.GameStarter;
 import maingame.LineType;
+import maingame.ThemeSetter;
 import maingame.theme.ClassicTheme;
 import maingame.theme.ForestTheme;
 import maingame.theme.HighContrastTheme;
@@ -26,13 +27,14 @@ public class UICreator {
     private Line winnerLine;
     private Line separatorLine;
     GameStarter gameStarter;
+    ThemeSetter themeSetter;
 
 
-
-    public UICreator(Stage gameRootStage, BoardUI boardUI, GameStarter gameStarter) {
+    public UICreator(Stage gameRootStage, BoardUI boardUI, GameStarter gameStarter, ThemeSetter themeSetter) {
         this.boardUI = boardUI;
         this.gameRootStage = gameRootStage;
         this.gameStarter = gameStarter;
+        this.themeSetter = themeSetter;
 
     }
 
@@ -116,7 +118,7 @@ public class UICreator {
 
     private void setTheme(Theme theme) {
         this.theme = theme;
-        boardUI.setTheme(theme);
+        themeSetter.setTheme(theme);
         theme.setRootPane(rootPane);
         separatorLine.setStroke(theme.getLineColor());
         if (winnerLine != null)
