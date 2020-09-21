@@ -17,14 +17,14 @@ public class BoardUI implements Themeable {
     ThemeSetter themeSetter;
 
 
-    public BoardUI(Board board, Theme theme, InterfaceUserPlayer player, ThemeSetter themeSetter) {
+    public BoardUI(Board board, InterfaceUserPlayer player, ThemeSetter themeSetter) {
         this.themeSetter = themeSetter;
         themeSetter.add(this);
+        this.theme = themeSetter.getTheme();
         this.player = player;
         this.board = board;
         this.boardPane = new Pane();
-        SmallCellUI[][] smallCellUIs = createBoardUI();
-        this.theme = theme;
+        createBoardUI();
 
     }
 

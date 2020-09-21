@@ -3,15 +3,12 @@ package maingame;
 import javafx.stage.Stage;
 import maingame.UI.BoardUI;
 import maingame.UI.UICreator;
-import maingame.theme.Theme;
 
 
 public class GameCreator {
     private Stage gameRootStage;
     private UICreator uiCreator;
     ThemeSetter themeSetter = new ThemeSetter();
-    private Theme theme = themeSetter.getTheme();
-    private BoardUI boardUI;
     private GameStarter gameStarter;
 
 
@@ -27,9 +24,7 @@ public class GameCreator {
     }
 
     private void configureUI() {
-        boardUI = new BoardUI(gameStarter.getBoard(), theme, gameStarter.getInterfaceUser(), themeSetter);
-        if (uiCreator != null)
-            theme = themeSetter.getTheme();
+        BoardUI boardUI = new BoardUI(gameStarter.getBoard(), gameStarter.getInterfaceUser(), themeSetter);
         uiCreator = new UICreator(gameRootStage, boardUI, gameStarter, themeSetter);
         uiCreator.createUI();
         addButtonFunctions();
